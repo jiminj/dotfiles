@@ -26,6 +26,10 @@ if command -v fc-cache @>/dev/null ; then
   fc-cache -vf $font_dir
 fi
 
+# Install oh-my-zsh if it's missing
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+fi
 
 
 if [ "$system_type" = "Darwin" ]; then
