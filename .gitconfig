@@ -1,0 +1,26 @@
+[color]
+	ui = true
+[user]
+	name = Jimin Jeon
+	email = jimin@jiminis.me
+[core]
+	excludesfile = /Users/Jimin/.gitignore_global
+	editor = vim
+	excluesfile = /Users/Jimin/.gitignore
+[difftool "sourcetree"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = false
+[mergetool]
+	keepBackup = false
+[diff]
+	tool = kdiff3
+[difftool "kdiff3"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
