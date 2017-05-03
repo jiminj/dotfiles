@@ -4,9 +4,8 @@
 	name = Jimin Jeon
 	email = jimin@jiminis.me
 [core]
-	excludesfile = /Users/Jimin/.gitignore_global
+	excludesfile = ~/.gitignore
 	editor = vim
-	excluesfile = /Users/Jimin/.gitignore
 [difftool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
 	path = 
