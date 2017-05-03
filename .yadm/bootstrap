@@ -1,0 +1,53 @@
+#!/bin/bash
+
+cd "$HOME"
+system_type=$(uname -s)
+
+echo "== Init submodules"
+yadm submodule update --recursive --init
+
+
+echo "== Install fonts"
+sh $HOME/.submodules/fonts/install.sh
+
+if [ "$system_type" = "Darwin" ]; then
+  font_dir="$HOME/Library/Fonts"
+elif [ "$system_type" = "Linux" ]; then
+  font_dir="$HOME/.local/share/fonts"
+  mkdir -p $font_dir
+fi
+
+echo "== Install fonts"
+eval cp "$HOME/.submodules/Menlo-for-Powerline/*.ttf" "$font_dir/"
+
+# Reset font cache
+if command -v fc-cache @>/dev/null ; then
+  echo "Resetting font cache, this may take a moment..."
+  fc-cache -vf $font_dir
+fi
+
+
+
+if [ "$system_type" = "Darwin" ]; then
+  # install homebrew if it's missing
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "== Installing homebrew"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  echo "== Updating homebrew bundle"
+  brew bundle --global
+
+  if [ -d "$HOME/.app-pref/iterm2" ]; then
+    echo "== Setting iTerm preference folder"
+    defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.app-pref/iterm2"
+  fi
+
+#elif [ "$system_type" = "Linux" ]; then
+
+fi
+
+
+
+
+

@@ -1,0 +1,6 @@
+[submodule ".submodules/fonts"]
+	path = .submodules/fonts
+	url = https://github.com/powerline/fonts.git
+[submodule ".submodules/Menlo-for-Powerline"]
+	path = .submodules/Menlo-for-Powerline
+	url = https://github.com/abertsch/Menlo-for-Powerline.git
