@@ -51,12 +51,12 @@ export PATH="/usr/local/heroku/bin:$PATH"
 ### GOROOT
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
-
 ### ALIAS
-alias rstudio='LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/server: open -a RStudio .'
-alias subl='open -a "Sublime Text"'
+#alias rstudio='LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/server: open -a RStudio .'
 export EDITOR=vim
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(thefuck --alias)"
+
+source .zshrc-private
