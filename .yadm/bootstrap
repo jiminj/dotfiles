@@ -26,12 +26,6 @@ if command -v fc-cache @>/dev/null ; then
   fc-cache -vf $font_dir
 fi
 
-# Install oh-my-zsh if it's missing
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-fi
-
-
 if [ "$system_type" = "Darwin" ]; then
   # install homebrew if it's missing
   if ! command -v brew >/dev/null 2>&1; then
@@ -47,11 +41,14 @@ if [ "$system_type" = "Darwin" ]; then
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.app-pref/iterm2"
   fi
 
-#elif [ "$system_type" = "Linux" ]; then
-
+elif [ "$system_type" = "Linux" ]; then
+  sudo apt update
+  sudo apt upgrade
+  sudo apt install zsh
 fi
 
-
-
-
+# Install oh-my-zsh if it's missing
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+fi
 
