@@ -27,7 +27,7 @@ call plug#begin($VIMHOME.'/plugs')
 Plug 'flazz/vim-colorschemes'
 
 " vim-scripts repos
-Plug 'L9'
+Plug 'vim-scripts/L9'
 
 "============ Fugitive.vim ============
 Plug 'tpope/vim-fugitive'
@@ -60,7 +60,8 @@ let NERDTreeShowHidden=1
 "[count]<leader>c<space> |NERDComToggleComment|
 "[count]<leader>cc |NERDComComment| Comment out the current line or text selected in visual mode.
 "[count]<leader>cu |NERDComUncommentLine| Uncomments the selected line(s).
-Plug 'The-NERD-Commenter'
+Plug 'scrooloose/nerdcommenter'
+
 "map <A-/> <leader>c<space>
 "if isWindows
 "endif
@@ -77,7 +78,7 @@ Plug 'Lokaltog/vim-easymotion'
 " :A switches to the header file corresponding to the current file being edited (or vise versa)
 " :AS splits and switches
 " :AV vertical splits and switches
-Plug 'a.vim'
+Plug 'vim-scripts/a.vim'
 
 "============ vim-airline ============
 Plug 'vim-airline/vim-airline'
@@ -97,7 +98,7 @@ set laststatus=2
 
 "============ MatchIt ============
 "HTML/Latex TAG Matcher
-Plug 'matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 
 "============ Tagbar ================"
 Plug 'majutsushi/tagbar'
