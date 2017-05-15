@@ -1,0 +1,12 @@
+# add this in .gitconfig
+# [core]
+#   include = .gitconfig.global
+
+[color]
+	ui = true
+
+[core]
+	editor = vim
+	autocrlf = input
+	excludesfile = ~/.gitignore
+
