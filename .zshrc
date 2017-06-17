@@ -36,27 +36,14 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn virtualenv apache2-macports mysql-macports macports)
-plugins=(git svn virtualenv brew)
+plugins=(git svn virtualenv)
 
-source $ZSH/oh-my-zsh.sh
-
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/server
-
-# Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### GOROOT
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-
-### ALIAS
-#alias rstudio='LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/server: open -a RStudio .'
 export EDITOR=vim
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 eval "$(thefuck --alias)"
 
+source $ZSH/oh-my-zsh.sh
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+source .zshrc-local
 source .zshrc-private

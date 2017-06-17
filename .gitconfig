@@ -1,0 +1,10 @@
+[color]
+	ui = true
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+
+[include]
+    path = .gitconfig-local
+
