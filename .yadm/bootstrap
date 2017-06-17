@@ -33,8 +33,10 @@ if [ "$system_type" = "Darwin" ]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
-  echo "== Updating homebrew bundle"
-  brew bundle --global
+  if [ -f "$HOME/.Brewfile" ]; then
+    echo "== Updating homebrew bundle"
+    brew bundle --global
+  fi
 
   if [ -d "$HOME/.app-pref/iterm2" ]; then
     echo "== Setting iTerm preference folder"
