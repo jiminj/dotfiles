@@ -1,5 +1,7 @@
 plugins=(brew)
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/server
 
