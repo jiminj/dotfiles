@@ -7,4 +7,4 @@
 
 [include]
     path = .gitconfig-local
-
+    path = .gitconfig-private

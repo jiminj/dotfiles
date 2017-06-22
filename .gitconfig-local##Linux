@@ -1,0 +1,20 @@
+[core]
+	editor = vim
+	autocrlf = input
+[http]
+	sslVerify = false
+[merge]
+	tool = kdiff3
+	conflictstyle = diff3
+[diff]
+	tool = kdiff3
+
+[mergetool "kdiff3"]
+  path = /usr/bin/kdiff3
+  keepBackup = false
+  trustExitCode = false
+
+[difftool "kdiff3"]
+  path = /usr/bin/kdiff3
+  keepBackup = false
+  trustExitCode = false
