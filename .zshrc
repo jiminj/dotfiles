@@ -46,4 +46,6 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.zshrc-local
 source $HOME/.zshrc-private
 
+setopt noincappendhistory
+setopt nosharehistory
 
