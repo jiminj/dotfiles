@@ -135,6 +135,9 @@ Plug 'ervandew/supertab'
 "============ YouCompleteMe ================"
 if hasPythonSupport
   Plug 'Valloric/YouCompleteMe', {'do': 'sudo python3 ./install.py --all'}
+  Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+
+  "Generate the config file :YcmGenerateConfig
 
   let g:ycm_global_ycm_extra_conf= $VIMHOME.'/plugs/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
   let g:ycm_python_binary_path = 'python'
