@@ -49,6 +49,8 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.zshrc-local
 source $HOME/.zshrc-private
 
+export LANG=en_us.UTF-8
+
 setopt noincappendhistory
 setopt nosharehistory
 
