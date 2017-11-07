@@ -11,7 +11,3 @@
 
 [merge]
 	tool = kdiff3
-
-[user]
-	name =
-	email =

@@ -1,6 +1,5 @@
-plugins=(brew docker git virtualenvwrapper wd)
+plugins=($plugins brew)
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"

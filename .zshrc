@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -36,7 +37,8 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn virtualenv apache2-macports mysql-macports macports)
-plugins=(git svn virtualenv)
+
+plugins=(git svn virtualenv docker git wd fast-syntax-highlighting)
 
 export EDITOR=vim
 eval "$(thefuck --alias)"
