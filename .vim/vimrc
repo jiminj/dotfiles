@@ -34,6 +34,21 @@ Plug 'tpope/vim-fugitive'
 set diffopt+=vertical
 ":Git, :Gstatus, :Gcommit, :Gbrowse, :Gread, :Ggrep, :Gmove..
 
+"============ Obsession.vim ==========
+Plug 'tpope/vim-obsession'
+"Manage working environment as sessions
+":Obsess (with optional file/directory name) - to start recording to a session file 
+":Obsess! - to stop and throw it away. 
+"'vim -S, or :source - Load a session in the usual manner: it.
+
+
+"============ Prosession.vim ==========
+Plug 'dhruvasagar/vim-prosession'
+"launch multiple vim instances for separate sessions (projects), 
+"and simply switch between them with ease.
+":Prosession {dir} - Switch to the existing directory or create a new session
+
+
 "============ vim-signify ============
 Plug 'mhinz/vim-signify'
 

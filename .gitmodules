@@ -4,3 +4,6 @@
 [submodule ".submodules/Menlo-for-Powerline"]
 	path = .submodules/Menlo-for-Powerline
 	url = https://github.com/abertsch/Menlo-for-Powerline.git
+[submodule "/Users/jiminj/.tmux/plugins/tpm"]
+	path = /Users/jiminj/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
