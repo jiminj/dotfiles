@@ -44,7 +44,7 @@ export EDITOR=vim
 eval "$(thefuck --alias)"
 
 #For X11
-export DISPLAY=:0
+#export DISPLAY=:0
 
 source $ZSH/oh-my-zsh.sh
 

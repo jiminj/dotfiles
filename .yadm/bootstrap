@@ -8,14 +8,14 @@ yadm submodule update --recursive --init
 
 
 echo "== Install fonts"
-sh $HOME/.submodules/fonts/install.sh
 
 if [ "$system_type" = "Darwin" ]; then
   font_dir="$HOME/Library/Fonts"
 elif [ "$system_type" = "Linux" ]; then
   font_dir="$HOME/.local/share/fonts"
-  mkdir -p $font_dir
 fi
+
+bash $HOME/.submodules/fonts/install.sh
 
 echo "== Install fonts"
 eval cp "$HOME/.submodules/Menlo-for-Powerline/*.ttf" "$font_dir/"
