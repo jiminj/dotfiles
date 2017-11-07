@@ -41,6 +41,7 @@ if [ "$system_type" = "Darwin" ]; then
   if [ -d "$HOME/.app-pref/iterm2" ]; then
     echo "== Setting iTerm preference folder"
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.app-pref/iterm2"
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     curl -L https://iterm2.com/misc/install_shell_integration_and_utilities.sh | bash
   fi
 
