@@ -9,6 +9,7 @@ export PATH=/usr/local/opt/python/libexec/bin
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin
 #export PATH=$PATH:/usr/local/heroku/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:/usr/local/anaconda3/bin
 
 ### ALIAS
 #alias rstudio='LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/server: open -a RStudio .'
