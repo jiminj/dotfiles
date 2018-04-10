@@ -149,7 +149,7 @@ Plug 'ervandew/supertab'
 
 "============ YouCompleteMe ================"
 if hasPythonSupport
-  Plug 'Valloric/YouCompleteMe', {'do': 'sudo python3 ./install.py --all'}
+  Plug 'Valloric/YouCompleteMe', {'do': 'sudo python3 ./install.py --clang-completer'}
   Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
   "Generate the config file :YcmGenerateConfig
