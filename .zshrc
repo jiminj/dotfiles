@@ -9,7 +9,7 @@ export ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="kphoen"
 #ZSH_THEME="blinks"
-ZSH_THEME="af-magic"
+ZSH_THEME="af-magic-docker"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -38,7 +38,7 @@ ZSH_THEME="af-magic"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn virtualenv apache2-macports mysql-macports macports)
 
-plugins=(git svn virtualenv docker git wd fast-syntax-highlighting)
+plugins=(git svn virtualenv docker docker-compose git wd fast-syntax-highlighting)
 
 export EDITOR=vim
 eval "$(thefuck --alias)"
@@ -56,3 +56,10 @@ export LANG=en_us.UTF-8
 setopt noincappendhistory
 setopt nosharehistory
 
+#function docker_machine_active() {
+    #local ref
+    #if [[ ! -z $DOCKER_MACHINE_NAME ]]; then
+        #ref=$DOCKER_MACHINE_NAME || return 0
+        #echo "docker:(%{$fg[red]%}$ref%{$reset_color%})"
+    #fi
+#}
