@@ -349,6 +349,9 @@ nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [T :tabfirst<CR>
 nnoremap <silent> ]T :tablast<CR>
 
+"for ctags
+set tags=tags;/
+
 "" ============ YouCompletMe ================"
 "let g:ycm_path_to_python_interpreter = ''
 
