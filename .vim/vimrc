@@ -6,6 +6,7 @@
 " Ref: Errors on Windows git bash - https://github.com/VundleVim/Vundle.vim/wiki#e484-cant-open-file-cusersuseridappdatalocaltemp-error
 "
 
+
 let isWindows=has("win32") || has("win64")
 let isMac=has("gui_macvim") || has("macunix") || has("mac")
 let hasPythonSupport=has('python') || has('python3')
@@ -205,6 +206,7 @@ noremap <Leader>a :Ack! <cword><cr>
 "============ Vim-Better-Whitespace ================"
 Plug 'ntpeters/vim-better-whitespace'
 
+
 "============ Delimitmate ================"
 "Automatic closing of parenthesis, quotes and brackets
 Plug 'raimondi/delimitMate'
@@ -224,6 +226,13 @@ Plug 'suan/vim-instant-markdown'
 let g:instant_markdown_slow = 1
 "Install - https://github.com/suan/vim-instant-markdown 
 
+
+"=========== Colorcode ==============="
+if !isWindows
+  Plug 'jeaye/color_coded', {'do': 'rm -f CMakeCache.txt && mkdir build && cd build && cmake .. && make && make install && make clean && make clean_clang'}
+  let g:color_coded_filetypes = ['c', 'cpp']
+  "https://github.com/jeaye/color_coded
+endif
 
 "" Only for MAC
 if isMac

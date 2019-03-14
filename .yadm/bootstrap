@@ -48,7 +48,7 @@ if [ "$system_type" = "Darwin" ]; then
 elif [ "$system_type" = "Linux" ]; then
   sudo apt update
   sudo apt upgrade
-  sudo apt install zsh
+  sudo apt install curl cmake vim exuberant-ctags zsh openssh-server cifs-utils
 fi
 
 # Install oh-my-zsh if it's missing
