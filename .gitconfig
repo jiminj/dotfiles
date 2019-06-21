@@ -9,5 +9,3 @@
     path = .gitconfig-local
     path = .gitconfig-private
 
-[merge]
-	tool = kdiff3
