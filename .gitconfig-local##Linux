@@ -18,3 +18,15 @@
   path = /usr/bin/kdiff3
   keepBackup = false
   trustExitCode = false
+
+[merge]
+	tool = kdiff3
+[user]
+	email = jiminj@qti.qualcomm.com
+	name = Jimin Jeon
+[filter "lfs"]
+	smudge = git-lfs smudge %f
+	required = true
+	clean = git-lfs clean %f
+[credential]
+	helper = cache
