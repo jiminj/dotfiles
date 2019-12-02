@@ -1,2 +1,3 @@
 .ssh/*
 .zshrc-private
+.gitconfig-private
