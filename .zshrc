@@ -9,7 +9,7 @@ export ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="kphoen"
 #ZSH_THEME="blinks"
-ZSH_THEME="af-magic-docker"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -38,7 +38,7 @@ ZSH_THEME="af-magic-docker"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn virtualenv apache2-macports mysql-macports macports)
 
-plugins=(git svn virtualenv docker docker-compose git wd fast-syntax-highlighting)
+plugins=(git svn virtualenv docker docker-compose git wd zsh-autosuggestions fast-syntax-highlighting)
 
 export EDITOR=vim
 eval "$(thefuck --alias)"
@@ -63,3 +63,8 @@ setopt nosharehistory
         #echo "docker:(%{$fg[red]%}$ref%{$reset_color%})"
     #fi
 #}
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

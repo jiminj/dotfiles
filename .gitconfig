@@ -1,9 +1,9 @@
 [color]
-	ui = true
+    ui = true
 
 [core]
-	editor = vim
-	excludesfile = /Users/jiminj/.gitignore
+    editor = vim
+    excludesfile = /Users/jiminj/.gitignore
 
 [include]
     path = .gitconfig-local
