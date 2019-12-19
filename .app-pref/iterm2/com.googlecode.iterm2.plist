@@ -14,6 +14,8 @@
 	<integer>1</integer>
 	<key>AppleWindowTabbingMode</key>
 	<string>manual</string>
+	<key>CopySelection</key>
+	<false/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>3024 Day</key>
@@ -42702,13 +42704,27 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>0 125 224 275 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 42 1440 835 0 0 1440 877 </string>
+	<string>1522 1988 1025 859 1440 598 1440 2537 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>870 229 570 427 0 0 1440 877 </string>
+	<string>1835 1305 570 427 1440 598 1440 2537 </string>
+	<key>NSWindow Frame iTerm Window 11</key>
+	<string>240 181 570 427 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>138 181 1011 667 0 0 1440 877 </string>
+	<string>969 292 934 555 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>1105 1081 570 427 762 900 2560 1417 </string>
+	<string>759 402 570 427 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>0 450 570 427 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 5</key>
+	<string>0 412 570 427 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 6</key>
+	<string>72 365 570 427 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 7</key>
+	<string>599 42 1440 835 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 8</key>
+	<string>776 407 570 427 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 9</key>
+	<string>203 443 1025 395 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -42861,7 +42877,7 @@
 				<real>0.9644390344619751</real>
 			</dict>
 			<key>BM Growl</key>
-			<true/>
+			<false/>
 			<key>Background Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -42949,7 +42965,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Flashing Bell</key>
-			<false/>
+			<true/>
 			<key>Foreground Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -43491,7 +43507,7 @@
 				<real>0.93725490570068359</real>
 			</dict>
 			<key>BM Growl</key>
-			<true/>
+			<false/>
 			<key>Background Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -43581,7 +43597,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Flashing Bell</key>
-			<false/>
+			<true/>
 			<key>Foreground Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -43990,12 +44006,12 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{445, 866}</string>
+		<string>{281, 831}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>4506A29C-5AB8-42FA-9176-128930B325FE</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>8</integer>
+	<integer>9</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -44726,6 +44742,8 @@
 	</array>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
 	<real>596745458.48380101</real>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -44761,6 +44779,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/jimijeon/.app-pref/iterm2</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -44770,7 +44790,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-12-11T22:32:15Z</date>
+	<date>2019-12-17T07:17:05Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SoundForEsc</key>
