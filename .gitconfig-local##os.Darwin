@@ -1,16 +1,5 @@
-[color]
-  ui = true
-
-[core]
-  editor = vim
-  excludesfile = .gitignore_global
-
-[user]
-  name = Jimin Jeon
-  email = jimin@jiminis.me
-
 [merge]
-	tool = kdiff3
+  tool = kdiff3
 [diff]
   tool = kdiff3
 
@@ -21,5 +10,6 @@
   cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
   trustExitCode = false
 
-[mergetool]
-  keepBackup = false
+[user]
+  name = Jimin Jeon
+  email = jimin@jiminis.me

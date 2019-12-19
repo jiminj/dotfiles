@@ -1,5 +1,5 @@
 .ssh/id_rsa*
 .zshrc-private
-.gitconfig\#\#class.Work*
+.gitconfig-local\#\#class.Work*
 .zshrc-local##class.Work,os.Darwin
 
