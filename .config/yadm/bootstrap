@@ -42,12 +42,7 @@ if [ "$system_type" = "Darwin" ]; then
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     curl -L https://iterm2.com/misc/install_shell_integration_and_utilities.sh | bash
   fi
-
-#elif [ "$system_type" = "Linux" ]; then
-  #sudo apt update
-  #sudo apt upgrade
-  #sudo apt install curl cmake vim exuberant-ctags zsh openssh-server cifs-utils
-#fi
+fi
 
 # Install oh-my-zsh if it's missing
 if [ ! -d "$HOME/.oh-my-zsh" ]; then

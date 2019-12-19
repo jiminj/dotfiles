@@ -1,5 +1,7 @@
 .ssh/id_rsa*
 .zshrc-private
-.gitconfig-local\#\#class.Work*
-.zshrc-local##class.Work,os.Darwin
+.tmux-local.conf##class.Work*
+.zshrc-private-preload##class.Work*
+.gitconfig-local##class.Work*
+.zshrc-local##class.Work*
 
