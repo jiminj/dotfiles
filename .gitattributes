@@ -1,0 +1,7 @@
+ssh/id_rsa* filter=git-crypt diff=git-crypt
+.zshrc-private filter=git-crypt diff=git-crypt
+.tmux-local.conf##class.Work* filter=git-crypt diff=git-crypt
+.zshrc-private-preload##class.Work* filter=git-crypt diff=git-crypt
+.gitconfig-local##class.Work* filter=git-crypt diff=git-crypt
+.zshrc-local##class.Work* filter=git-crypt diff=git-crypt
+
