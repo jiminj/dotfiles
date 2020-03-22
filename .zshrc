@@ -55,8 +55,6 @@ eval "$(thefuck --alias)"
 #For X11
 #export DISPLAY=:0
 
-export PATH=$PATH:/usr/local/opt/llvm/bin
-
 source $ZSH/oh-my-zsh.sh
 
 source $HOME/.zshrc-local

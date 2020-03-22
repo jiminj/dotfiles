@@ -1,0 +1,6 @@
+.ssh/id_rsa*
+.zshrc-private
+.tmux-local.conf##class.Work*
+.zshrc-private-preload##class.Work*
+.gitconfig-local##class.Work*
+.zshrc-local##class.Work*
