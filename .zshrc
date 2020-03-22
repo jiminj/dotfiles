@@ -1,4 +1,4 @@
-[ -f ~/.zshrc-private-preload ] && source .zshrc-private-preload
+[ -f ~/.zshrc-private-preload ] && source ~/.zshrc-private-preload
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -54,6 +54,8 @@ eval "$(thefuck --alias)"
 
 #For X11
 #export DISPLAY=:0
+
+export PATH=$PATH:/usr/local/opt/llvm/bin
 
 source $ZSH/oh-my-zsh.sh
 

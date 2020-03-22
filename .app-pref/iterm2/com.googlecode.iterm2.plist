@@ -8,6 +8,8 @@
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
@@ -42680,7 +42682,7 @@
 	gAKACoAN0xAJChEVGVdOUy5rZXlzoxITFIADgASABaMWFxiABoAHgAiACVpJZGVudGlm
 	aWVyVVdpZHRoVkhpZGRlblEwI0BowAAAAAAACNIhIiMkWiRjbGFzc25hbWVYJGNsYXNz
 	ZXNcTlNEaWN0aW9uYXJ5oiMlWE5TT2JqZWN00xAJCicrGaMSExSAA4AEgAWjLC0YgAuA
-	DIAIgAlRMSNAdKGdsi0OVtIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
+	DIAIgAlRMSNAc7Gdsi0OVtIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
 	TlNLZXllZEFyY2hpdmVy0Tg5VUFycmF5gAEACAARABoAIwAtADIANwBGAEwAUQBcAGMA
 	ZgBoAGoAbABzAHsAfwCBAIMAhQCJAIsAjQCPAJEAnACiAKkAqwC0ALUAugDFAM4A2wDe
 	AOcA7gDyAPQA9gD4APwA/gEAAQIBBAEGAQ8BFAEjAScBLwFBAUQBSgAAAAAAAAIBAAAA
@@ -42703,22 +42705,26 @@
 	</dict>
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>0 125 224 275 0 0 1440 877 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>530 483 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1522 1988 1025 859 1440 598 1440 2537 </string>
+	<string>485 600 570 427 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1835 1305 570 427 1440 598 1440 2537 </string>
+	<string>798 391 1747 955 0 0 2560 1417 </string>
+	<key>NSWindow Frame iTerm Window 10</key>
+	<string>569 337 990 491 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 11</key>
 	<string>240 181 570 427 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>969 292 934 555 0 0 1440 877 </string>
+	<string>110 46 1222 981 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>759 402 570 427 0 0 1440 877 </string>
+	<string>50 600 585 427 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>0 450 570 427 0 0 1440 877 </string>
+	<string>125 160 2160 1083 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 5</key>
-	<string>0 412 570 427 0 0 1440 877 </string>
+	<string>2560 1532 585 427 2560 -578 1440 2537 </string>
 	<key>NSWindow Frame iTerm Window 6</key>
-	<string>72 365 570 427 0 0 1440 877 </string>
+	<string>-1048 1474 1109 843 -1120 900 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 7</key>
 	<string>599 42 1440 835 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 8</key>
@@ -43993,25 +43999,28 @@
 	<key>NoSyncAllAppVersions</key>
 	<array>
 		<string>3.3.7</string>
+		<string>3.3.8</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
+		<string>Meslo LG L DZ for Powerline</string>
+		<string>Menlo for Powerline</string>
+		<string>Menlo</string>
 		<string>MesloLGS NF</string>
-		<string>Meslo LG S for Powerline</string>
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1440, 900}}</string>
+		<string>{{2560, -578}, {1440, 2560}}</string>
 		<key>topLeft</key>
-		<string>{281, 831}</string>
+		<string>{2833, 1513}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>4506A29C-5AB8-42FA-9176-128930B325FE</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>9</integer>
+	<integer>32</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -44736,10 +44745,6 @@
 			</dict>
 		</array>
 	</dict>
-	<key>NoSyncSearchHistory2</key>
-	<array>
-		<string>private</string>
-	</array>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
 	<real>596745458.48380101</real>
 	<key>PMPrintingExpandedStateForPrint2</key>
@@ -44790,8 +44795,10 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-12-17T07:17:05Z</date>
+	<date>2020-02-12T15:20:33Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>SoundForEsc</key>
 	<false/>
@@ -44802,6 +44809,6 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.7</string>
+	<string>3.3.8</string>
 </dict>
 </plist>
