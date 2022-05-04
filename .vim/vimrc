@@ -18,6 +18,7 @@ if isWindows
   set shellslash
 endif
 
+set termguicolors
 
 "=======================VimPlug settings=================================="
 
