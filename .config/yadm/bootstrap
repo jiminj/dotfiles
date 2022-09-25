@@ -42,12 +42,14 @@ if [ "$system_type" = "Darwin" ]; then
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     curl -L https://iterm2.com/misc/install_shell_integration_and_utilities.sh | bash
   fi
-fi
 
 # Install oh-my-zsh if it's missing
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 fi
+
+echo "== Install powerlevel10k"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh-custom/themes/powerlevel10k
 
 echo "== Install vim-plug"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -57,4 +59,3 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 echo "== Install TMUX Plugins"
 ~/.tmux/plugins/tpm/bin/install_plugins
-
