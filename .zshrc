@@ -1,25 +1,133 @@
+export EDITOR=vim
+
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=5000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
 export GPG_TTY=`tty`
+export LANG=en_us.UTF-8
+export LC_ALL=en_us.UTF-8
 
 [ -f ~/.zshrc-private-preload ] && source ~/.zshrc-private-preload
+#
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename "${HOME}/.zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+#
+source $HOME/.zshrc-local
+source $HOME/.zshrc-private
+
+#For X11
+#export DISPLAY=:0
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-export ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="kphoen"
-#ZSH_THEME="blinks"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+#  Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# fzf-tab
+zinit light Aloxaf/fzf-tab
+# Ctrl+Space: select multiple results, can be configured by fzf-bindings tag
+# F1/F2: switch between groups, can be configured by switch-group tag
+# /: trigger continuous completion (useful when completing a deep path), can be configured by continuous-trigger tag
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+# history-substring-search
+zinit light zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# zsh-auto-notify
+zinit light MichaelAquilina/zsh-auto-notify
+AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux')
+zinit light MichaelAquilina/zsh-you-should-use
+
+# zsh-vi-mode
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+
+function zvm_before_init() {
+  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+  ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+  zvm_bindkey viins '^[[A' history-substring-search-up
+  zvm_bindkey viins '^[[B' history-substring-search-down
+  zvm_bindkey vicmd '^[[A' history-substring-search-up
+  zvm_bindkey vicmd '^[[B' history-substring-search-down
+}
+
+### End of Zinit's installer chunk
+
+alias ls="ls --color=auto"
+
+# general use
+alias ls='exa'   # ls
+alias l='exa -lbF --git'    # list, size, type, git
+alias ll='exa -lbGF --git'  # long list
+alias llm='exa -lbGd --git --sort=modified'  # long list, modified date sort
+alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
+alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+# specialty views
+alias lS='exa -1'   # one column, just names
+alias lt='exa --tree --level=2'   # tree
+
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -48,22 +156,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn virtualenv apache2-macports mysql-macports macports)
 
-plugins=(git virtualenv docker docker-compose wd zsh-autosuggestions fast-syntax-highlighting)
+# plugins=(git virtualenv docker docker-compose wd zsh-autosuggestions fast-syntax-highlighting)
 
-export EDITOR=vim
-
-#For X11
-#export DISPLAY=:0
-
-source $ZSH/oh-my-zsh.sh
-
-source $HOME/.zshrc-local
-source $HOME/.zshrc-private
-
-export LANG=en_us.UTF-8
-
-setopt noincappendhistory
-setopt nosharehistory
 
 #function docker_machine_active() {
     #local ref
@@ -72,31 +166,4 @@ setopt nosharehistory
         #echo "docker:(%{$fg[red]%}$ref%{$reset_color%})"
     #fi
 #}
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/jiminjeon/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/jiminjeon/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/jiminjeon/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/jiminjeon/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
