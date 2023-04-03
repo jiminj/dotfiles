@@ -1,3 +1,7 @@
+# zsh-auto-notify
+zinit light MichaelAquilina/zsh-auto-notify
+AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux')
+
 if [ "$(arch)" = "arm64" ]; then
   BREW_HOME=/opt/homebrew
   BREW_BIN=/opt/homebrew/bin

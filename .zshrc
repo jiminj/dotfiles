@@ -28,9 +28,6 @@ zstyle :compinstall filename "${HOME}/.zshrc"
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-#
-source $HOME/.zshrc-local
-source $HOME/.zshrc-private
 
 #For X11
 #export DISPLAY=:0
@@ -95,9 +92,6 @@ zinit light zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# zsh-auto-notify
-zinit light MichaelAquilina/zsh-auto-notify
-AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux')
 zinit light MichaelAquilina/zsh-you-should-use
 
 # zsh-vi-mode
@@ -127,6 +121,9 @@ alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + e
 # specialty views
 alias lS='exa -1'   # one column, just names
 alias lt='exa --tree --level=2'   # tree
+
+source $HOME/.zshrc-local
+source $HOME/.zshrc-private
 
 
 # Example aliases
