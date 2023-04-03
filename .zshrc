@@ -65,10 +65,7 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
@@ -86,6 +83,10 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # history-substring-search
 zinit light zsh-users/zsh-history-substring-search
@@ -163,4 +164,8 @@ source $HOME/.zshrc-private
         #echo "docker:(%{$fg[red]%}$ref%{$reset_color%})"
     #fi
 #}
+#
+
+### ALIAS
+eval $(thefuck --alias)
 

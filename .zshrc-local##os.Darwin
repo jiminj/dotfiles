@@ -1,6 +1,6 @@
 # zsh-auto-notify
 zinit light MichaelAquilina/zsh-auto-notify
-AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux')
+AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux' 'ssh')
 
 if [ "$(arch)" = "arm64" ]; then
   BREW_HOME=/opt/homebrew
@@ -35,9 +35,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-### ALIAS
-eval $(thefuck --alias)
 
 function tabc() {
   NAME=$1; if [ -z "$NAME" ]; then NAME="Default"; fi 
