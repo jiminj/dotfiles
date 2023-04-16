@@ -1,3 +1,5 @@
+#zmodload zsh/zprof
+
 export EDITOR=vim
 
 HISTSIZE=5000
@@ -167,4 +169,6 @@ source $HOME/lazy-nvm.sh
 
 ### ALIAS
 eval $(thefuck --alias)
+
+#zprof
 
