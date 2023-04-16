@@ -25,8 +25,6 @@ export LC_ALL=en_us.UTF-8
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename "${HOME}/.zshrc"
 
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
 
 #For X11
@@ -103,6 +101,10 @@ function zvm_before_init() {
   zvm_bindkey vicmd '^[[B' history-substring-search-down
 }
 
+autoload -Uz compinit
+compinit
+zinit cdreplay -q
+
 ### End of Zinit's installer chunk
 
 alias ls="ls --color=auto"
@@ -161,7 +163,7 @@ source $HOME/.zshrc-private
 #}
 #
 
-source lazy-nvm.sh
+source $HOME/lazy-nvm.sh
 
 ### ALIAS
 eval $(thefuck --alias)
