@@ -78,6 +78,10 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' popup-min-size 50 8
+zstyle ':fzf-tab:complete:diff:*' popup-min-size 80 12
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
 
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
@@ -87,7 +91,9 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+# bindkey '-e' # disable vi mode
 
+zinit light gradle/gradle-completion
 zinit light MichaelAquilina/zsh-you-should-use
 
 # zsh-vi-mode
@@ -124,6 +130,7 @@ alias lt='exa --tree --level=2'   # tree
 
 source $HOME/.zshrc-local
 source $HOME/.zshrc-private
+
 
 
 # Example aliases
@@ -164,10 +171,13 @@ source $HOME/.zshrc-private
     #fi
 #}
 #
-
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 source $HOME/lazy-nvm.sh
 
 ### ALIAS
+alias vim="lvim"
+alias nvim="lvim"
 eval $(thefuck --alias)
 
 #zprof
