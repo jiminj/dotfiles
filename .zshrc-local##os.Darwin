@@ -61,4 +61,4 @@ compdef _ssh tabc=ssh
 
 alias ssh="colorssh"
 eval "$(zoxide init zsh)"
-
+export BAT_THEME="Nord"
