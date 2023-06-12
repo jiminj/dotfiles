@@ -144,26 +144,27 @@ lvim.builtin.telescope.defaults.dynamic_preview_title = true
 --   },
 -- }
 lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
-lvim.builtin.telescope.defaults.layout_config = { width = 0.80, height = 0.80, preview_width = 0.60 },
+lvim.builtin.telescope.defaults.layout_config = { width = 0.80, height = 0.80, preview_width = 0.60 }
+lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git", "build" }
 
-    -- lvim.builtin.treesitter.ignore_install = { "haskell" }
+-- lvim.builtin.treesitter.ignore_install = { "haskell" }
 
-    -- -- always installed on startup, useful for parsers without a strict filetype
-    -- lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex" }
+-- -- always installed on startup, useful for parsers without a strict filetype
+-- lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex" }
 
-    -- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
+-- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
 
-    -- --- disable automatic installation of servers
-    -- lvim.lsp.installer.setup.automatic_installation = false
+-- --- disable automatic installation of servers
+-- lvim.lsp.installer.setup.automatic_installation = false
 
-    -- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
-    -- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
-    -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
-    -- local opts = {} -- check the lspconfig documentation for a list of all possible options
-    -- require("lvim.lsp.manager").setup("pyright", opts)
+-- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
+-- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+-- local opts = {} -- check the lspconfig documentation for a list of all possible options
+-- require("lvim.lsp.manager").setup("pyright", opts)
 
 
-    vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 local lspclangd_opts = require("lvim.lsp").get_common_opts()
 lspclangd_opts.capabilities = require("lvim.lsp").common_capabilities()
 lspclangd_opts.cmd = { "/usr/local/opt/llvm/bin/clangd", "--enable-config" }
