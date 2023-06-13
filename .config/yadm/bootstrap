@@ -33,7 +33,7 @@ if [ "$system_type" = "Darwin" ]; then
 
   if [ -f "$HOME/Brewfile" ]; then
     echo "== Updating homebrew bundle"
-    brew bundle --global
+    brew bundle
   fi
 
   if [ -d "$HOME/.app-pref/iterm2" ]; then
