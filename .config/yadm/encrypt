@@ -4,3 +4,5 @@
 .zshrc-private-preload##class.Work*
 .gitconfig-local##class.Work*
 .zshrc-local##class.Work*
+.config/github-copilot/hosts.json
+
