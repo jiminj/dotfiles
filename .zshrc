@@ -100,9 +100,9 @@ zinit light MichaelAquilina/zsh-you-should-use
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
 function zvm_before_init() {
-  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
-  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-  ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+  # ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
+  # ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+  # ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
   zvm_bindkey viins '^[[A' history-substring-search-up
   zvm_bindkey viins '^[[B' history-substring-search-down
   zvm_bindkey vicmd '^[[A' history-substring-search-up
