@@ -61,7 +61,7 @@ lvim.builtin.treesitter.indent.disable = { "c", "cpp" }
 --   lunaline_a =
 -- }
 --
-lvim.lazy.opts.dev = { path = "~/Workplace/nvimplugins" }
+-- lvim.lazy.opts.dev = { path = "~/Workplace/nvimplugins" }
 
 local lualine_components = require("lvim.core.lualine.components")
 
@@ -162,20 +162,12 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git",
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
-
-
+--
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 local lspclangd_opts = require("lvim.lsp").get_common_opts()
 lspclangd_opts.capabilities = require("lvim.lsp").common_capabilities()
 lspclangd_opts.cmd = { "/usr/local/opt/llvm/bin/clangd", "--enable-config" }
-
 lspclangd_opts.capabilities.offsetEncoding = { "utf-16" }
-
-local clangd_extensions_status_ok, _ = pcall(require, "clangd_extensions")
-if clangd_extensions_status_ok == false then
-  require("lvim.lsp.manager").setup("clangd", lspclangd_opts)
-end
---
 
 vim.filetype.add({
   extension = { gradle = "gradle" }
@@ -521,6 +513,7 @@ lvim.plugins = {
     "Civitasv/cmake-tools.nvim",
     config = function()
       require("cmake-tools").setup({
+        cmake_regenerate_on_save = false,
         cmake_command = "cmake",
         cmake_build_directory = "",
         cmake_build_directory_prefix = "cmake_build_",                                        -- when cmake_build_directory is "", this option will be activated
@@ -538,7 +531,6 @@ lvim.plugins = {
       })
     end,
     ft = { "cpp", "c", "h", "hpp", "cxx" },
-    dev = true
   },
   {
     "SmiteshP/nvim-navbuddy",
@@ -564,7 +556,7 @@ lvim.plugins = {
       local trouble_telescope = require("trouble.providers.telescope")
       lvim.builtin.telescope.defaults.mappings.i["<C-t>"] = trouble_telescope.open_with_trouble
       lvim.builtin.telescope.defaults.mappings.n["<C-t>"] = trouble_telescope.open_with_trouble
-      lvim.builtin.which_key.mappings["t"] = {
+      lvim.builtin.which_key.mappings["lt"] = {
         name = "Trouble",
         r = { ":Trouble lsp_references<cr>", "References" },
         f = { ":Trouble lsp_definitions<cr>", "Definitions" },
@@ -707,16 +699,18 @@ lvim.plugins = {
     config = function()
       require("harpoon").setup()
       require("telescope").load_extension("harpoon")
-      lvim.builtin.which_key.mappings["m"] = {
-        name = "Marks",
-        q = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Toggle Harpoon Quick Menu" },
-        a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Harpoon Mark" },
-        n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next Harpoon Mark" },
-        p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Previous Harpoon Mark" },
-        c = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Toggle Harpoon Cmd Quick Menu" }
-      }
     end,
     keys = {
+      { "<leader>m",  desc = "Marks" },
+      { "<leader>mq", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Toggle Harpoon Quick Menu" },
+      { "<leader>ma", "<cmd>lua require('harpoon.mark').add_file()<cr>",        desc = "Add Harpoon Mark" },
+      { "<leader>mn", "<cmd>lua require('harpoon.ui').nav_next()<cr>",          desc = "Next Harpoon Mark" },
+      { "<leader>mp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>",          desc = "Previous Harpoon Mark" },
+      {
+        "<leader>mc",
+        "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>",
+        desc = "Toggle Harpoon Cmd Quick Menu"
+      },
       { "<leader>sm", ":Telescope harpoon marks<cr>", desc = "Search Harpoon Marks" }
     }
   },
@@ -822,6 +816,41 @@ lvim.plugins = {
       require("telescope").load_extension("ui-select")
     end
   },
+  {
+    'glepnir/template.nvim',
+    cmd = { 'Template', 'TemProject' },
+    config = function()
+      utils_funcs = {}
+      utils_funcs.cap_filename = function()
+        local filename = vim.fn.expand('%:t')
+        local snakeCase = string.gsub(filename, "[.%u]", function(c)
+          if c == "." then
+            return "_"
+          else
+            return "_" .. c
+          end
+        end):gsub("^_", "")
+
+        return string.upper(snakeCase)
+      end
+
+      require('template').setup({
+        temp_dir = '~/.config/lvim/template',
+        author = 'Jimin Jeon',
+        email = 'jimin.jeon@42dot.ai'
+      })
+      require("telescope").load_extension('find_template')
+    end,
+    keys = {
+      { "<leader>t", ":Telescope find_template type=insert<CR>", mode = "n", desc = "Find templates" },
+    }
+  },
+  {
+    'lewis6991/spaceless.nvim',
+    config = function()
+      require 'spaceless'.setup()
+    end
+  }
 }
 
 
@@ -835,6 +864,11 @@ lvim.plugins = {
 --   },
 -- })
 
+local clangd_extensions_status_ok, _ = pcall(require, "clangd_extensions")
+if clangd_extensions_status_ok == false then
+  require("lvim.lsp.manager").setup("clangd", lspclangd_opts)
+end
+--
 
 local cmp = require("cmp")
 local comp_cmp_ok, comp_cmp = pcall(require, "copilot_cmp.comparators")
