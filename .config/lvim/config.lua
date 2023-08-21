@@ -162,12 +162,15 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git",
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
---
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
-local lspclangd_opts = require("lvim.lsp").get_common_opts()
-lspclangd_opts.capabilities = require("lvim.lsp").common_capabilities()
-lspclangd_opts.cmd = { "/usr/local/opt/llvm/bin/clangd", "--enable-config" }
-lspclangd_opts.capabilities.offsetEncoding = { "utf-16" }
+
+local clangd_extensions_status_ok, _ = pcall(require, "clangd_extensions")
+if clangd_extensions_status_ok == true then
+  vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
+  local lspclangd_opts = require("lvim.lsp").get_common_opts()
+  lspclangd_opts.capabilities = require("lvim.lsp").common_capabilities()
+  lspclangd_opts.cmd = { "/usr/local/opt/llvm/bin/clangd", "--enable-config" }
+  lspclangd_opts.capabilities.offsetEncoding = { "utf-16" }
+end
 
 vim.filetype.add({
   extension = { gradle = "gradle" }
