@@ -176,8 +176,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 source $HOME/lazy-nvm.sh
 
 ### ALIAS
-alias vim="lvim"
-alias nvim="lvim"
+alias vim="nvim"
 eval $(thefuck --alias)
 
 #zprof
