@@ -2,6 +2,25 @@
 
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- Ensure mason installs the server
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+            "--completion-style=detailed",
+            "--function-arg-placeholders",
+            "--log=verbose",
+          },
+        },
+      },
+    },
+  },
+  {
     "Badhi/nvim-treesitter-cpp-tools",
     cmd = { "TsCppDefineClassFunc", "TSCppMakeConcreteClass", "TSCppRuleOf3", "TSCppRuleOf5" },
     ft = { "cpp", "c", "h", "hpp", "cxx" },
