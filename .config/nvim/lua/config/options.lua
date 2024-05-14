@@ -15,4 +15,21 @@ opt.colorcolumn = "81"
 opt.swapfile = false
 opt.smartindent = true
 
-vim.g.autoformat = false
+local function is_remote()
+  return vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil
+end
+
+if is_remote() then
+  opt.clipboard = "unnamedplus"
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+end
