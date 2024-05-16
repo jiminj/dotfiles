@@ -104,9 +104,13 @@ function zvm_before_init() {
   # ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
   # ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
   zvm_bindkey viins '^[[A' history-substring-search-up
+  zvm_bindkey viins '^[OA' history-substring-search-up
   zvm_bindkey viins '^[[B' history-substring-search-down
+  zvm_bindkey viins '^[OB' history-substring-search-down
   zvm_bindkey vicmd '^[[A' history-substring-search-up
+  zvm_bindkey vicmd '^[OA' history-substring-search-up
   zvm_bindkey vicmd '^[[B' history-substring-search-down
+  zvm_bindkey vicmd '^[OB' history-substring-search-down
 }
 
 autoload -Uz compinit
@@ -177,6 +181,7 @@ source $HOME/lazy-nvm.sh
 alias sudo='sudo '
 alias vim='nvim'
 eval $(thefuck --alias)
+eval "$(zoxide init zsh)"
 
 #zprof
 
