@@ -61,3 +61,4 @@ echo "== Install TMUX Plugins"
 echo "== Install RustUp"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
