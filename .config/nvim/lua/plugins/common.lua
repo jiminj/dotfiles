@@ -201,7 +201,7 @@ return {
       {
         "<leader>ha",
         function()
-          require("harpoon"):list():append()
+          require("harpoon"):list():add()
         end,
         desc = "Append",
       },
@@ -340,8 +340,8 @@ return {
     opts = {
       window = {
         mappings = {
-          ["F"] = "telescope_find",
-          ["G"] = "telescope_grep",
+          ["gF"] = "telescope_find",
+          ["gG"] = "telescope_grep",
           ["<cr>"] = "open_with_window_picker",
         },
       },

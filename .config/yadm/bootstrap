@@ -44,11 +44,6 @@ if [ "$system_type" = "Darwin" ]; then
   fi
 fi
 
-echo "== Install LunarVim"
-
-LV_BRANCH='release-1.3/neovim-0.9' \
-  bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
-
 echo "== Install vim-plug"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -61,4 +56,34 @@ echo "== Install TMUX Plugins"
 echo "== Install RustUp"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
+$HOME/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
+
+echo "==Install conda"
+
+install_miniconda() {
+  url=$1
+  # Download and run the Miniconda installer
+  echo "== Downloading and running the Miniconda installer from $url..."
+  curl -sL "$url" | bash -s -- -b
+  echo "Miniconda installation complete."
+}
+
+if [ "$system_type" == "Linux" ]; then
+  install_miniconda "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+elif [ "$system_type" == "Darwin" ]; then
+  # Determine the architecture (arm64 or x86_64)
+  arch_name=$(uname -m)
+  if [ "$arch_name" == "arm64" ]; then
+    install_miniconda "https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
+  elif [ "$arch_name" == "x86_64" ]; then
+    install_miniconda "https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+  else
+    echo "Unsupported Mac architecture: $arch_name"
+    exit 1
+  fi
+else
+  echo "Unsupported operating system: $os_name"
+  exit 1
+fi
+
+
