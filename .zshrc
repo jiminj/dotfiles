@@ -14,7 +14,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-export GPG_TTY=`tty`
+export GPG_TTY=$(tty)
 export LANG=en_us.UTF-8
 export LC_ALL=en_us.UTF-8
 
@@ -132,8 +132,8 @@ alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + e
 alias lS='eza -1'   # one column, just names
 alias lt='eza --tree --level=2'   # tree
 
-source $HOME/.zshrc-local
 source $HOME/.zshrc-private
+source $HOME/.zshrc-local
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -172,10 +172,13 @@ source $HOME/.zshrc-private
         #echo "docker:(%{$fg[red]%}$ref%{$reset_color%})"
     #fi
 #}
-#
+
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
-source $HOME/lazy-nvm.sh
+
+# fnm
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "`fnm env`"
 
 ### ALIAS
 alias sudo='sudo '
@@ -184,4 +187,19 @@ eval $(thefuck --alias)
 eval "$(zoxide init zsh)"
 
 #zprof
+
+conda_dir="$HOME/miniconda3"
+# >>> conda initialize >>>
+__conda_setup="$("$conda_dir/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$conda_dir/etc/profile.d/conda.sh" ]; then
+        . "$conda_dir/etc/profile.d/conda.sh"
+    else
+        export PATH="$conda_dir/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 

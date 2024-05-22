@@ -1,8 +1,13 @@
-.ssh/id_rsa*
+.ssh/id_*
+.netrc
 .zshrc-private
 .tmux-local.conf##class.Work*
 .zshrc-private-preload##class.Work*
 .gitconfig-local##class.Work*
 .zshrc-local##class.Work*
-.config/github-copilot/hosts.json
+.config/github-copilot/hosts.json\#\#class.Work*
+.config/github-copilot/hosts.json\#\#default
+connect_vpn.sh
+connect_vpn_browser.sh
+openconnect_nv_mac.sh
 
