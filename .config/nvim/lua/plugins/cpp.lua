@@ -1,11 +1,9 @@
--- see ~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/lang/clangd.lua
-
 return {
   {
-    "neovim/nvim-lspconfig",
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       servers = {
-        -- Ensure mason installs the server
         clangd = {
           cmd = {
             "clangd",
@@ -18,6 +16,13 @@ return {
           },
         },
       },
+      handlers = {
+        clangd = function(server, opts)
+          vim.opt_local.shiftwidth = 4
+          vim.opt_local.tabstop = 4
+          require("lspconfig")[server].setup(opts)
+        end,
+      },
     },
   },
   {
@@ -28,13 +33,13 @@ return {
       { "nvim-treesitter/nvim-treesitter" },
     },
     config = function()
-      require("nt-cpp-tools").setup({
+      require("nt-cpp-tools").setup {
         preview = {
           quit = "q", -- optional keymapping for quit preview
           accept = "<tab>", -- optional keymapping for accept preview
         },
-        header_extension = "h", -- optional
-        source_extension = "cpp", -- optional
+        -- header_extension = "h", -- optional
+        -- source_extension = "cpp", -- optional
         custom_define_class_function_commands = {
           -- optional
           TSCppImplWrite = {
@@ -49,43 +54,27 @@ return {
         }
         ]]
         },
-      })
-      vim.keymap.set("x", "<leader>rd", ":TsCppDefineClassFunc<cr>", { desc = "Define Class Functions" })
-      vim.keymap.set("x", "<leader>rc", ":TSCppMakeConcreteClass<cr>", { desc = "Make Concrete Class" })
-      vim.keymap.set("x", "<leader>r3", ":TSCppRuleOf3<cr>", { desc = "Make To Obey Rule of Three" })
-      vim.keymap.set("x", "<leader>r5", ":TSCppRuleOf5<cr>", { desc = "Make To Obey Rule of Five" })
+      }
     end,
+    keys = {
+      { "<leader>rd", ":TsCppDefineClassFunc<cr>", mode = "x", desc = "Define Class Functions (C++)" },
+      { "<leader>rc", ":TSCppMakeConcreteClass<cr>", mode = "x", desc = "Make Concrete Class (C++)" },
+      { "<leader>r3", ":TSCppRuleOf3<cr>", mode = "x", desc = "Make To Obey Rule of Three (C++)" },
+      { "<leader>r5", ":TSCppRuleOf5<cr>", mode = "x", desc = "Make To Obey Rule of Five (C++)" },
+    },
   },
   {
     "p00f/clangd_extensions.nvim",
-    command = { "ClangdMemoryUsage", "ClangdTypeHierarchy", "ClangdSymbolInfo", "ClangdAST" },
     config = function()
-      require("clangd_extensions").setup({
+      require("clangd_extensions").setup {
         memory_usage = { border = "rounded" },
         symbol_info = { border = "rounded" },
-      })
-
-      vim.keymap.set("n", "<leader>cm", ":ClangdMemoryUsage<cr>", { desc = "Show Clangd Memory Usage (Clangd)" })
-      vim.keymap.set("n", "<leader>ch", ":ClangdTypeHierarchy<cr>", { desc = "Type Hierachy (Clangd)" })
-      vim.keymap.set("n", "<leader>co", ":ClangdSymbolInfo<cr>", { desc = "Symbol Info (Clangd)" })
-      vim.keymap.set({ "n", "x" }, "<leader>cT", ":ClangdAST<cr>", { desc = "AST (Clangd)" })
+      }
     end,
-    ft = { "cpp", "c", "h", "hpp", "cxx" },
-  },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    opts = {
-      config = {
-        cpp = "// %s",
-      },
+    keys = {
+      { "<leader>lH", ":ClangdTypeHierarchy<cr>", mode = "n", desc = "Type Hierachy (Clangd)" },
+      { "<leader>lT", ":ClangdAST<cr>", mode = { "n", "x" }, desc = "AST (Clangd)" },
     },
+    --   ft = { "cpp", "c", "h", "hpp", "cxx" },
   },
-  -- {
-  --   "folke/which-key.nvim",
-  --   opts = {
-  --     defaults = {
-  --       ["<leader>C"] = { name = "+Clangd Extensions" },
-  --     },
-  --   },
-  -- },
 }
