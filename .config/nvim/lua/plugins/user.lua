@@ -211,7 +211,7 @@ return {
     },
     opts = {
       defaults = {
-        get_selection_window = function() return require("window-picker").pick_window() end,
+        get_selection_window = function() return require("window-picker").pick_window() or 0 end,
       },
     },
   },
