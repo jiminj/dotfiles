@@ -5,7 +5,7 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.bars-and-lines.bufferline-nvim" },
+  -- { import = "astrocommunity.bars-and-lines.bufferline-nvim" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
@@ -20,7 +20,6 @@ return {
   { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
-  { import = "astrocommunity.git.git-blame-nvim" },
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.nvim-surround" },

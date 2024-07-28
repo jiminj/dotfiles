@@ -6,13 +6,14 @@ return {
       servers = {
         clangd = {
           cmd = {
-            "clangd",
+            "clangd-18",
             "--background-index",
             "--clang-tidy",
             "--header-insertion=iwyu",
             "--completion-style=detailed",
             "--function-arg-placeholders",
-            "--log=verbose",
+            -- "--log=verbose",
+            "-j=8",
           },
         },
       },

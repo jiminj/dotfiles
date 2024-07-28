@@ -8,19 +8,6 @@ local opt = vim.opt
 
 local function is_remote() return vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil end
 
--- -- Set up custom filetypes
--- vim.filetype.add {
---   extension = {
---     foo = "fooscript",
---   },
---   filename = {
---     ["Foofile"] = "fooscript",
---   },
---   pattern = {
---     ["~/%.config/foo/.*"] = "fooscript",
---   },
--- }
-
 if is_remote() then
   opt.clipboard = "unnamedplus"
   vim.g.clipboard = {

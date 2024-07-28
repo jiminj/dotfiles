@@ -51,6 +51,25 @@ return {
     mappings = {
       -- first key is the mode
       n = {
+        ["<Leader>c"] = false,
+        ["<Leader>C"] = false,
+        ["<Leader>bc"] = {
+          function() require("astrocore.buffer").close() end,
+          desc = "Close buffer",
+        },
+        ["<Leader>bC"] = {
+          function() require("astrocore.buffer").close(0, true) end,
+          desc = "Force close buffer",
+        },
+        ["<Leader>ba"] = {
+          function() require("astrocore.buffer").close_all(true) end,
+          desc = "Close all buffers except current",
+        },
+        ["<Leader>bA"] = {
+          function() require("astrocore.buffer").close_all() end,
+          desc = "Close all buffers",
+        },
+
         -- second key is the lefthand side of the map
 
         -- -- navigate buffer tabs

@@ -6,8 +6,7 @@ local function getTelescopeOpts(state, path)
     cwd = path,
     search_dirs = { path },
     -- attach_mappings = function(prompt_bufnr, map)
-    --   local actions = require "telescope.actions"
-    --   actions.select_default:replace(function()
+    --   local actions = require "telescope.actions" actions.select_default:replace(function()
     --     actions.close(prompt_bufnr)
     --     local action_state = require "telescope.actions.state"
     --     local selection = action_state.get_selected_entry()
@@ -142,7 +141,13 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    event = "User AstroFile",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "seanbreckenridge/gitsigns-yadm.nvim",
+    },
     opts = {
+      _on_attach_pre = function(_, callback) require("gitsigns-yadm").yadm_signs(callback) end,
       signs = {
         add = { text = "▌" },
         change = { text = "▌" },
@@ -155,6 +160,14 @@ return {
       numhl = true,
       linehl = false,
       yadm = { enable = true },
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+        delay = 50,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+      },
     },
   },
   {
@@ -196,7 +209,7 @@ return {
           -- filter using buffer options
           bo = {
             -- if the file type is one of following, the window will be ignored
-            filetype = { "neo-tree", "neo-tree-popup", "notify", "noice" },
+            filetype = { "neo-tree", "neo-tree-popup", "notify", "noice", "blame", "undotree" },
             -- if the buffer type is one of following, the window will be ignored
             buftype = { "terminal", "quickfix" },
           },
@@ -250,34 +263,90 @@ return {
       },
     },
   },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   cmd = "Copilot",
-  --   -- event = "InsertEnter",
-  --   event = "User AstroFile",
-  --   opts = function(_, _)
-  --     return {
-  --       suggestion = {
-  --         enabled = true,
-  --         auto_trigger = true,
-  --         debounce = 150,
-  --         keymap = {
-  --           accept = "<M-l>",
-  --           accept_word = false,
-  --           accept_line = false,
-  --           next = "<M-]>",
-  --           prev = "<M-[>",
-  --           dismiss = "<C-]>",
-  --         },
-  --       },
-  --       -- panel = {
-  --       --   enabled = true,
-  --       --   auto_refresh = true,
-  --       -- },
-  --     }
-  --   end,
-  --   -- keys = {
-  --   --   { "<leader>lc", "<cmd>Copilot panel<cr>", desc = "Panel" },
-  --   -- },
-  -- },
+  {
+    "mrjones2014/smart-splits.nvim",
+    keys = {
+      { "<M-Up>", function() require("smart-splits").resize_up() end, desc = "Resize split up" },
+      { "<M-Down>", function() require("smart-splits").resize_down() end, desc = "Resize split down" },
+      { "<M-Left>", function() require("smart-splits").resize_left() end, desc = "Resize split left" },
+      { "<M-Right>", function() require("smart-splits").resize_right() end, desc = "Resize split right" },
+    },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    opts = function(_, _)
+      return {
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 150,
+          keymap = {
+            accept = "<M-l>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        -- panel = {
+        --   enabled = true,
+        --   auto_refresh = true,
+        -- },
+      }
+    end,
+    -- keys = {
+    --   { "<leader>lc", "<cmd>Copilot panel<cr>", desc = "Panel" },
+    -- },
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    -- cmd = { "ChatGPT", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions", "ChatGPTRun" },
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+      {
+        "AstroNvim/astrocore",
+        opts = function(_, opts)
+          local maps = opts.mappings
+          local prefix = "<Leader>C"
+          maps.n[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
+          maps.v[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
+
+          maps.n[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
+          maps.n[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
+          maps.n[prefix .. "m"] = { "<cmd>CopilotChatModels<CR>", desc = "Select model" }
+          maps.n[prefix .. "r"] = { "<cmd>CopilotChatReset<CR>", desc = "Reset chat window" }
+          maps.n[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain this line" }
+          maps.v[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain selection" }
+
+          maps.n[prefix .. "R"] = { "<cmd>CopilotChatReview<CR>", desc = "Review this line" }
+          maps.v[prefix .. "R"] = { "<cmd>CopilotChatReview<CR>", desc = "Review selection" }
+
+          maps.n[prefix .. "f"] = { "<cmd>CopilotChatFix<CR>", desc = "Fix this line" }
+          maps.v[prefix .. "f"] = { "<cmd>CopilotChatFix<CR>", desc = "Fix selection" }
+
+          maps.n[prefix .. "o"] = { "<cmd>CopilotChatOptimize<CR>", desc = "Optimize this line" }
+          maps.v[prefix .. "o"] = { "<cmd>CopilotChatOptimize<CR>", desc = "Optimize selection" }
+
+          maps.n[prefix .. "d"] = { "<cmd>CopilotChatDocs<CR>", desc = "Add documentation comment for this line" }
+          maps.v[prefix .. "d"] = { "<cmd>CopilotChatDocs<CR>", desc = "Add documentation comment for the selection" }
+
+          maps.n[prefix .. "t"] = { "<cmd>CopilotChatTest<CR>", desc = "Generate tests for this line" }
+          maps.v[prefix .. "t"] = { "<cmd>CopilotChatTest<CR>", desc = "Generate tests for the selection" }
+
+          maps.n[prefix .. "F"] = { "<cmd>CopilotChatFixDiagnostic<CR>", desc = "Fix diagnostic issue in file" }
+          maps.n[prefix .. "C"] = { "<cmd>CopilotChatCommit<CR>", desc = "Write commit message for the change" }
+          maps.n[prefix .. "S"] =
+            { "<cmd>CopilotChatCommitStaged<CR>", desc = "Write commit message for the staged change" }
+        end,
+      },
+      { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
+    },
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+  },
 }
