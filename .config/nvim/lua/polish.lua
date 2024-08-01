@@ -23,6 +23,8 @@ if is_remote() then
   }
 end
 
+opt.exrc = true
+
 -- vim.api.nvim_create_autocmd({ "FileType" }, {
 --   pattern = { "c", "cpp", "cmake" },
 --   callback = function()

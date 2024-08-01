@@ -349,4 +349,32 @@ return {
       -- See Configuration section for rest
     },
   },
+  {
+    "glepnir/template.nvim",
+    cmd = { "Template", "TemProject" },
+    config = function()
+      utils_funcs = {}
+      utils_funcs.cap_filename = function()
+        local filename = vim.fn.expand "%:t"
+        local snakeCase = string
+          .gsub(filename, "[.%u]", function(c)
+            if c == "." then
+              return "_"
+            else
+              return "_" .. c
+            end
+          end)
+          :gsub("^_", "")
+        print("snakeCase: " .. snakeCase)
+        return string.upper(snakeCase)
+      end
+      require("template").setup {
+        temp_dir = vim.fn.stdpath "config" .. "/templates",
+      }
+      require("telescope").load_extension "find_template"
+    end,
+    keys = {
+      { "<leader>fp", ":Telescope find_template type=insert<CR>", mode = "n", desc = "Find templates" },
+    },
+  },
 }
