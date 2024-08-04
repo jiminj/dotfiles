@@ -10,25 +10,23 @@
 [alias]
   adog="log --all --decorate --oneline --graph"
 
+[diff]
+  tool = nvimdiff
+[merge]
+  tool = nvimdiff
+
+[difftool]
+  prompt = false
+
 [mergetool]
   keepBackup = false
+  prompt = true
 
 [include]
   path = ~/.gitconfig-local
 
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-
 [merge]
   conflictstyle = diff3
-
-[diff]
-  colorMoved = default
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

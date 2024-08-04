@@ -6,6 +6,8 @@ system_type=$(uname -s)
 echo "== Init submodules"
 yadm submodule update --recursive --init
 
+#install fnm
+curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash
 
 #echo "== Install fonts"
 
