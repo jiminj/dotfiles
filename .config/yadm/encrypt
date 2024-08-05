@@ -5,11 +5,9 @@
 .zshrc-private-preload##class.Work*
 .gitconfig-local##class.Work*
 .zshrc-local##class.Work*
-.config/github-copilot/hosts.json\#\#class.Work*
-.config/github-copilot/hosts.json\#\#default
-.config/nvim/templates/nvidia_hdr.cpp
-.config/nvim/templates/nvidia_src.cpp
-.config/nvim/lua/local.lua\#\#class.Work*
+.config/github-copilot/hosts.json##*
+.config/nvim/lua/local.lua##class.Work*
+.config/nvim/templates/*
 connect_vpn.sh
 connect_vpn_browser.sh
 openconnect_nv_mac.sh
