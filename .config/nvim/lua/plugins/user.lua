@@ -351,7 +351,7 @@ return {
   },
   {
     "glepnir/template.nvim",
-    cmd = { "Template", "TemProject" },
+    cmd = { "Template" },
     config = function()
       utils_funcs = {}
       utils_funcs.cap_filename = function()
@@ -365,7 +365,6 @@ return {
             end
           end)
           :gsub("^_", "")
-        print("snakeCase: " .. snakeCase)
         return string.upper(snakeCase)
       end
       require("template").setup {
