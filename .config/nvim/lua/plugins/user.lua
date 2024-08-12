@@ -314,10 +314,15 @@ return {
           maps.n[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
           maps.v[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
 
-          maps.n[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
-          maps.n[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
           maps.n[prefix .. "m"] = { "<cmd>CopilotChatModels<CR>", desc = "Select model" }
           maps.n[prefix .. "r"] = { "<cmd>CopilotChatReset<CR>", desc = "Reset chat window" }
+
+          maps.n[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
+          maps.v[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
+
+          maps.n[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
+          maps.v[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
+
           maps.n[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain this line" }
           maps.v[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain selection" }
 

@@ -11,7 +11,6 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
   { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
-  { import = "astrocommunity.debugging.nvim-bqf" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.chatgpt-nvim" },
   { import = "astrocommunity.editing-support.dial-nvim" },
@@ -44,5 +43,6 @@ return {
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.test.nvim-coverage" },
   { import = "astrocommunity.utility.noice-nvim" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
   -- import/overde with your plugins folder
 }
