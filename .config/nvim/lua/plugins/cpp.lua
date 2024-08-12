@@ -29,37 +29,37 @@ return {
   {
     "Badhi/nvim-treesitter-cpp-tools",
     cmd = { "TsCppDefineClassFunc", "TSCppMakeConcreteClass", "TSCppRuleOf3", "TSCppRuleOf5" },
-    ft = { "cpp", "c", "h", "hpp", "cxx" },
+    -- ft = { "cpp", "c", "h", "hpp", "cxx" },
     dependencies = {
       { "nvim-treesitter/nvim-treesitter" },
     },
-    config = function()
-      require("nt-cpp-tools").setup {
+    opts = function()
+      return {
         preview = {
           quit = "q", -- optional keymapping for quit preview
           accept = "<tab>", -- optional keymapping for accept preview
         },
-        -- header_extension = "h", -- optional
-        -- source_extension = "cpp", -- optional
-        custom_define_class_function_commands = {
-          -- optional
+        header_extension = { "h", "hpp" }, -- optional
+        source_extension = "cpp", -- optional
+        custom_define_class_function_commands = { -- optional
           TSCppImplWrite = {
             output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
           },
           --[[
-        <your impl function custom command name> = {
-            output_handle = function (str, context)
-                -- string contains the class implementation
-                -- do whatever you want to do with it
-            end
-        }
-        ]]
+                <your impl function custom command name> = {
+                    output_handle = function (str, context)
+                        -- string contains the class implementation
+                        -- do whatever you want to do with it
+                    end
+                }
+                ]]
         },
       }
     end,
+    config = true,
     keys = {
-      { "<leader>rd", ":TsCppDefineClassFunc<cr>", mode = "x", desc = "Define Class Functions (C++)" },
-      { "<leader>rc", ":TSCppMakeConcreteClass<cr>", mode = "x", desc = "Make Concrete Class (C++)" },
+      { "<leader>rD", ":TSCppDefineClassFunc<cr>", mode = "x", desc = "Define Class Functions (C++)" },
+      { "<leader>rC", ":TSCppMakeConcreteClass<cr>", mode = "x", desc = "Make Concrete Class (C++)" },
       { "<leader>r3", ":TSCppRuleOf3<cr>", mode = "x", desc = "Make To Obey Rule of Three (C++)" },
       { "<leader>r5", ":TSCppRuleOf5<cr>", mode = "x", desc = "Make To Obey Rule of Five (C++)" },
     },
