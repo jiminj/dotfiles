@@ -1,0 +1,7 @@
+CompileFlags:
+  Add: [
+      --cuda-path=/usr/local/cuda,
+      --cuda-gpu-arch=sm_89,
+      -L/usr/local/cuda/lib64,
+      -I/usr/local/cuda/include,
+    ]

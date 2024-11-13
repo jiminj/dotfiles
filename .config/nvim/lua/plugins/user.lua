@@ -144,7 +144,7 @@ return {
     event = "User AstroFile",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "seanbreckenridge/gitsigns-yadm.nvim",
+      "purarue/gitsigns-yadm.nvim",
     },
     opts = {
       _on_attach_pre = function(_, callback) require("gitsigns-yadm").yadm_signs(callback) end,

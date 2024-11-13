@@ -69,6 +69,16 @@ return {
           function() require("astrocore.buffer").close_all() end,
           desc = "Close all buffers",
         },
+        ["<Leader>o"] = {
+          function()
+            if vim.bo.filetype == "neo-tree" then
+              vim.cmd.wincmd "p"
+            else
+              vim.cmd.Neotree "source=last"
+            end
+          end,
+          desc = "Toggle Explorer Focus",
+        },
 
         -- second key is the lefthand side of the map
 
