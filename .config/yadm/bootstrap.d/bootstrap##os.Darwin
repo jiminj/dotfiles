@@ -1,0 +1,49 @@
+#!/bin/bash
+
+cd "$HOME"
+system_type=$(uname -s)
+
+echo "== Init submodules"
+yadm submodule update --recursive --init
+
+#install fnm
+curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash
+
+# install homebrew if it's missing
+if ! command -v brew >/dev/null 2>&1; then
+  echo "== Installing homebrew"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+if [ -f "$HOME/Brewfile" ]; then
+  echo "== Updating homebrew bundle"
+  brew bundle
+fi
+
+if [ -d "$HOME/.app-pref/iterm2" ]; then
+  echo "== Setting iTerm preference folder"
+  defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.app-pref/iterm2"
+  defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+  curl -L https://iterm2.com/misc/install_shell_integration_and_utilities.sh | bash
+fi
+
+echo "== Install vim-plug"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo "== Install TMUX Plugins"
+~/.tmux/plugins/tpm/bin/install_plugins
+
+echo "== Install RustUp"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+$HOME/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
+
+echo "==Install conda"
+url="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"  # Download and run the Miniconda installer"
+echo "== Downloading and running the Miniconda installer from $url..."
+curl -sL "$url" | bash -s -- -b
+echo "Miniconda installation complete."
+

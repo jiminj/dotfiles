@@ -1,91 +1,29 @@
 #!/bin/bash
 
-cd "$HOME"
-system_type=$(uname -s)
+# Save this file as ~/.config/yadm/bootstrap and make it executable. It will
+# execute all executable files (excluding templates and editor backups) in the
+# ~/.config/yadm/bootstrap.d directory when run.
 
-echo "== Init submodules"
-yadm submodule update --recursive --init
+set -eu
 
-#install fnm
-curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash
+# Directory to look for bootstrap executables in
+BOOTSTRAP_D="${BASH_SOURCE[0]}.d"
 
-#echo "== Install fonts"
-
-#if [ "$system_type" = "Darwin" ]; then
-  #font_dir="$HOME/Library/Fonts"
-#elif [ "$system_type" = "Linux" ]; then
-  #font_dir="$HOME/.local/share/fonts"
-#fi
-#bash $HOME/.submodules/fonts/install.sh
-#echo "== Install fonts"
-#eval cp "$HOME/.submodules/Menlo-for-Powerline/*.ttf" "$font_dir/"
-
-# Reset font cache
-#if command -v fc-cache @>/dev/null ; then
-  #echo "Resetting font cache, this may take a moment..."
-  #fc-cache -vf $font_dir
-#fi
-
-if [ "$system_type" = "Darwin" ]; then
-  # install homebrew if it's missing
-  if ! command -v brew >/dev/null 2>&1; then
-    echo "== Installing homebrew"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  fi
-
-  if [ -f "$HOME/Brewfile" ]; then
-    echo "== Updating homebrew bundle"
-    brew bundle
-  fi
-
-  if [ -d "$HOME/.app-pref/iterm2" ]; then
-    echo "== Setting iTerm preference folder"
-    defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.app-pref/iterm2"
-    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-    curl -L https://iterm2.com/misc/install_shell_integration_and_utilities.sh | bash
-  fi
-fi
-
-echo "== Install vim-plug"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-echo "== Install TMUX Plugins"
-~/.tmux/plugins/tpm/bin/install_plugins
-
-echo "== Install RustUp"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-$HOME/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
-
-echo "==Install conda"
-
-install_miniconda() {
-  url=$1
-  # Download and run the Miniconda installer
-  echo "== Downloading and running the Miniconda installer from $url..."
-  curl -sL "$url" | bash -s -- -b
-  echo "Miniconda installation complete."
-}
-
-if [ "$system_type" == "Linux" ]; then
-  install_miniconda "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
-elif [ "$system_type" == "Darwin" ]; then
-  # Determine the architecture (arm64 or x86_64)
-  arch_name=$(uname -m)
-  if [ "$arch_name" == "arm64" ]; then
-    install_miniconda "https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
-  elif [ "$arch_name" == "x86_64" ]; then
-    install_miniconda "https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-  else
-    echo "Unsupported Mac architecture: $arch_name"
+if [[ ! -d "$BOOTSTRAP_D" ]]; then
+    echo "Error: bootstrap directory '$BOOTSTRAP_D' not found" >&2
     exit 1
-  fi
-else
-  echo "Unsupported operating system: $os_name"
-  exit 1
 fi
 
+declare -a bootstraps
+while IFS= read -r bootstrap; do
+    if [[ -x "$bootstrap" && ! "$bootstrap" =~ "##" && ! "$bootstrap" =~ ~$ ]]; then
+        bootstraps+=("$bootstrap")
+    fi
+done < <(find -L "$BOOTSTRAP_D" -type f | sort)
 
+for bootstrap in "${bootstraps[@]}"; do
+    if ! "$bootstrap"; then
+        echo "Error: bootstrap '$bootstrap' failed" >&2
+        exit 1
+    fi
+done
