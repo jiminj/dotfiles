@@ -7,7 +7,8 @@
 .zshrc-local##class.Work*
 .config/github-copilot/hosts.json##*
 .config/nvim/lua/local.lua##class.Work*
-.config/nvim/templates/*
+.config/nvim/templates/nvidia*
+.config/nvim/lua/plugins/nvidia.lua
 connect_vpn.sh
 connect_vpn_browser.sh
 openconnect_nv_mac.sh
