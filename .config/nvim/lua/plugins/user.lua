@@ -299,61 +299,61 @@ return {
     --   { "<leader>lc", "<cmd>Copilot panel<cr>", desc = "Panel" },
     -- },
   },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "main",
-    -- cmd = { "ChatGPT", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions", "ChatGPTRun" },
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-      {
-        "AstroNvim/astrocore",
-        opts = function(_, opts)
-          local maps = opts.mappings
-          local prefix = "<Leader>C"
-          maps.n[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
-          maps.v[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
-
-          maps.n[prefix .. "m"] = { "<cmd>CopilotChatModels<CR>", desc = "Select model" }
-          maps.n[prefix .. "r"] = { "<cmd>CopilotChatReset<CR>", desc = "Reset chat window" }
-
-          maps.n[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
-          maps.v[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
-
-          maps.n[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
-          maps.v[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
-
-          maps.n[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain this line" }
-          maps.v[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain selection" }
-
-          maps.n[prefix .. "R"] = { "<cmd>CopilotChatReview<CR>", desc = "Review this line" }
-          maps.v[prefix .. "R"] = { "<cmd>CopilotChatReview<CR>", desc = "Review selection" }
-
-          maps.n[prefix .. "f"] = { "<cmd>CopilotChatFix<CR>", desc = "Fix this line" }
-          maps.v[prefix .. "f"] = { "<cmd>CopilotChatFix<CR>", desc = "Fix selection" }
-
-          maps.n[prefix .. "o"] = { "<cmd>CopilotChatOptimize<CR>", desc = "Optimize this line" }
-          maps.v[prefix .. "o"] = { "<cmd>CopilotChatOptimize<CR>", desc = "Optimize selection" }
-
-          maps.n[prefix .. "d"] = { "<cmd>CopilotChatDocs<CR>", desc = "Add documentation comment for this line" }
-          maps.v[prefix .. "d"] = { "<cmd>CopilotChatDocs<CR>", desc = "Add documentation comment for the selection" }
-
-          maps.n[prefix .. "t"] = { "<cmd>CopilotChatTest<CR>", desc = "Generate tests for this line" }
-          maps.v[prefix .. "t"] = { "<cmd>CopilotChatTest<CR>", desc = "Generate tests for the selection" }
-
-          maps.n[prefix .. "F"] = { "<cmd>CopilotChatFixDiagnostic<CR>", desc = "Fix diagnostic issue in file" }
-          maps.n[prefix .. "C"] = { "<cmd>CopilotChatCommit<CR>", desc = "Write commit message for the change" }
-          maps.n[prefix .. "S"] =
-            { "<cmd>CopilotChatCommitStaged<CR>", desc = "Write commit message for the staged change" }
-        end,
-      },
-      { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
-    },
-    opts = {
-      debug = true, -- Enable debugging
-      -- See Configuration section for rest
-    },
-  },
+  -- {
+  --   "CopilotC-Nvim/CopilotChat.nvim",
+  --   branch = "main",
+  --   -- cmd = { "ChatGPT", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions", "ChatGPTRun" },
+  --   dependencies = {
+  --     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+  --     { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+  --     {
+  --       "AstroNvim/astrocore",
+  --       opts = function(_, opts)
+  --         local maps = opts.mappings
+  --         local prefix = "<Leader>C"
+  --         maps.n[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
+  --         maps.v[prefix] = { desc = require("astroui").get_icon("CopilotChat", 1, true) .. "CopilotChat" }
+  --
+  --         maps.n[prefix .. "m"] = { "<cmd>CopilotChatModels<CR>", desc = "Select model" }
+  --         maps.n[prefix .. "r"] = { "<cmd>CopilotChatReset<CR>", desc = "Reset chat window" }
+  --
+  --         maps.n[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
+  --         maps.v[prefix .. "c"] = { "<cmd>CopilotChatToggle<CR>", desc = "Toggle CopilotChat" }
+  --
+  --         maps.n[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
+  --         maps.v[prefix .. "d"] = { "<cmd>CopilotChatDebugInfo<CR>", desc = "Show debuginfo" }
+  --
+  --         maps.n[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain this line" }
+  --         maps.v[prefix .. "e"] = { "<cmd>CopilotChatExplain<CR>", desc = "Explain selection" }
+  --
+  --         maps.n[prefix .. "R"] = { "<cmd>CopilotChatReview<CR>", desc = "Review this line" }
+  --         maps.v[prefix .. "R"] = { "<cmd>CopilotChatReview<CR>", desc = "Review selection" }
+  --
+  --         maps.n[prefix .. "f"] = { "<cmd>CopilotChatFix<CR>", desc = "Fix this line" }
+  --         maps.v[prefix .. "f"] = { "<cmd>CopilotChatFix<CR>", desc = "Fix selection" }
+  --
+  --         maps.n[prefix .. "o"] = { "<cmd>CopilotChatOptimize<CR>", desc = "Optimize this line" }
+  --         maps.v[prefix .. "o"] = { "<cmd>CopilotChatOptimize<CR>", desc = "Optimize selection" }
+  --
+  --         maps.n[prefix .. "d"] = { "<cmd>CopilotChatDocs<CR>", desc = "Add documentation comment for this line" }
+  --         maps.v[prefix .. "d"] = { "<cmd>CopilotChatDocs<CR>", desc = "Add documentation comment for the selection" }
+  --
+  --         maps.n[prefix .. "t"] = { "<cmd>CopilotChatTest<CR>", desc = "Generate tests for this line" }
+  --         maps.v[prefix .. "t"] = { "<cmd>CopilotChatTest<CR>", desc = "Generate tests for the selection" }
+  --
+  --         maps.n[prefix .. "F"] = { "<cmd>CopilotChatFixDiagnostic<CR>", desc = "Fix diagnostic issue in file" }
+  --         maps.n[prefix .. "C"] = { "<cmd>CopilotChatCommit<CR>", desc = "Write commit message for the change" }
+  --         maps.n[prefix .. "S"] =
+  --           { "<cmd>CopilotChatCommitStaged<CR>", desc = "Write commit message for the staged change" }
+  --       end,
+  --     },
+  --     { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
+  --   },
+  --   opts = {
+  --     debug = true, -- Enable debugging
+  --     -- See Configuration section for rest
+  --   },
+  -- },
   {
     "glepnir/template.nvim",
     cmd = { "Template" },
@@ -380,5 +380,65 @@ return {
     keys = {
       { "<leader>fp", ":Telescope find_template type=insert<CR>", mode = "n", desc = "Find templates" },
     },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      {
+        "AstroNvim/astrocore",
+        opts = function(_, opts)
+          local maps = opts.mappings
+          maps.n["<Leader>a"] = {
+            "<cmd>CodeCompanionActions<CR>",
+            desc = require("astroui").get_icon("CodeCompanion", 1, true) .. "CodeCompanion Actions",
+          }
+          maps.v["<Leader>a"] = {
+            "<cmd>CodeCompanionActions<CR>",
+            desc = require("astroui").get_icon("CodeCompanion", 1, true) .. "CodeCompanion Actions",
+          }
+          maps.n["<Leader>C"] = {
+            "<cmd>CodeCompanionChat Toggle<CR>",
+            desc = require("astroui").get_icon("CodeCompanion", 1, true) .. "Toggle CodeCompanion",
+          }
+          maps.v["<Leader>C"] = {
+            "<cmd>CodeCompanionChat<CR>",
+            desc = require("astroui").get_icon("CodeCompanion", 1, true) .. "Open CodeCompanion",
+          }
+          maps.v["ga"] = {
+            "<cmd>CodeCompanionChat Add<cr>",
+            desc = "Add to CodeCompanion",
+          }
+        end,
+      },
+      { "AstroNvim/astroui", opts = { icons = { CodeCompanion = "" } } },
+    },
+    config = function()
+      require("codecompanion").setup {
+        display = {
+          diff = {
+            provider = "mini_diff",
+          },
+          inline = {
+            layout = "vertical", -- vertical|horizontal|buffer
+          },
+        },
+        strategies = {
+          -- Change the default chat adapter
+          chat = {
+            adapter = "copilot",
+          },
+          inline = {
+            adapter = "copilot",
+          },
+        },
+      }
+      vim.cmd [[cab cc CodeCompanion]]
+    end,
   },
 }
