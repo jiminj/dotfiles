@@ -135,44 +135,6 @@ alias lt='eza --tree --level=2'   # tree
 source $HOME/.zshrc-private
 source $HOME/.zshrc-local
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-#plugins=(git svn virtualenv apache2-macports mysql-macports macports)
-
-# plugins=(git virtualenv docker docker-compose wd zsh-autosuggestions fast-syntax-highlighting)
-
-
-#function docker_machine_active() {
-    #local ref
-    #if [[ ! -z $DOCKER_MACHINE_NAME ]]; then
-        #ref=$DOCKER_MACHINE_NAME || return 0
-        #echo "docker:(%{$fg[red]%}$ref%{$reset_color%})"
-    #fi
-#}
-
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 
@@ -186,20 +148,4 @@ alias vim='nvim'
 eval $(thefuck --alias)
 eval "$(zoxide init zsh)"
 
-#zprof
-
-# conda_dir="$HOME/miniconda3"
-# # >>> conda initialize >>>
-# __conda_setup="$("$conda_dir/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "$conda_dir/etc/profile.d/conda.sh" ]; then
-#         . "$conda_dir/etc/profile.d/conda.sh"
-#     else
-#         export PATH="$conda_dir/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
 
