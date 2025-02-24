@@ -1,4 +1,4 @@
-#zmodload zsh/zprof
+# zmodload zsh/zprof
 
 export EDITOR=vim
 
@@ -61,6 +61,15 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 zinit light zsh-users/zsh-completions
+
+# autocomp
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
+
+zinit cdreplay -q
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
@@ -132,10 +141,6 @@ source $HOME/.zshrc-local
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 
-# autocomp
-autoload -Uz compinit && compinit -i
-zinit cdreplay -q
-
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
@@ -160,3 +165,4 @@ fi
 
 export BAT_THEME="Nord"
 
+# zprof

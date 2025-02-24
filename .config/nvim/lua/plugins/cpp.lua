@@ -12,7 +12,7 @@ return {
             "--header-insertion=iwyu",
             "--completion-style=detailed",
             "--function-arg-placeholders",
-            -- "--log=verbose",
+            "--inlay-hints=true",
             "-j=8",
           },
         },

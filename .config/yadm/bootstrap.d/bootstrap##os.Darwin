@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cd "$HOME"
-system_type=$(uname -s)
+cd "$HOME" || exit
 
 echo "== Init submodules"
 yadm submodule update --recursive --init
@@ -39,11 +38,8 @@ echo "== Install TMUX Plugins"
 echo "== Install RustUp"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-$HOME/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
+"$HOME"/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
 
-echo "==Install conda"
-url="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"  # Download and run the Miniconda installer"
-echo "== Downloading and running the Miniconda installer from $url..."
-curl -sL "$url" | bash -s -- -b
-echo "Miniconda installation complete."
-
+echo "==Install Aider"
+python -m pip install aider-install
+aider-install
