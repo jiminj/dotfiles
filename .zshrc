@@ -113,12 +113,7 @@ function zvm_before_init() {
   zvm_bindkey vicmd '^[OB' history-substring-search-down
 }
 
-autoload -Uz compinit
-compinit
-zinit cdreplay -q
-
 ### End of Zinit's installer chunk
-
 alias ls="ls --color=auto"
 
 # general use
@@ -134,9 +129,12 @@ alias lt='eza --tree --level=2'   # tree
 
 source $HOME/.zshrc-private
 source $HOME/.zshrc-local
-
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+
+# autocomp
+autoload -Uz compinit && compinit -i
+zinit cdreplay -q
 
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
@@ -148,4 +146,17 @@ alias vim='nvim'
 eval $(thefuck --alias)
 eval "$(zoxide init zsh)"
 
+# GitHub Copilot
+# Use Copilot with the GitHub CLI to get suggestions and explanations for the command line
+# https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line
+if (( $+commands[gh] )); then
+  # GitHub Copilot
+  alias ghcp='gh copilot'
+  # Explain a command
+  alias cpe='ghcp explain'
+  # Suggest a command
+  alias cps='ghcp suggest'
+fi
+
+export BAT_THEME="Nord"
 

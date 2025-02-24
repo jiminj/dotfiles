@@ -2,60 +2,15 @@
 zinit light MichaelAquilina/zsh-auto-notify
 AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux' 'ssh', 'lvim', 'xpra')
 
-BREW_HOME=/opt/homebrew
-BREW_BIN=/opt/homebrew/bin
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/lib/server
 
-export PATH=$BREW_HOME/opt/python/libexec/bin:$PATH
-export PATH=$BREW_BIN:$BREW_HOME/sbin:/usr/texbin:$PATH
-export PATH=$PATH:$BREW_HOME/opt/go/libexec/bin
-export PATH=$PATH:$BREW_HOME/opt/llvm/bin
+export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH
+export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:/usr/texbin:$PATH
+export PATH=$PATH:$HOMEBREW_PREFIX/opt/go/libexec/bin
+export PATH=$PATH:$HOMEBREW_PREFIX/opt/llvm/bin
 
-# export PATH=/usr/local/anaconda3/bin:$PATH
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('$HOME/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
-#         . "$HOME/miniforge3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="$HOME/miniforge3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
+FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
 
-# [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-if [[ -n "$ITERM_SESSION_ID" ]]; then
-  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-  function tabc() {
-    NAME=$1; if [ -z "$NAME" ]; then NAME="Default"; fi
-    # if you have trouble with this, change
-    # "Default" to the name of your default theme
-    echo -e "\033]50;SetProfile=$NAME\a"
-  }
-
-  function tab-reset() {
-      NAME="Default"
-      echo -e "\033]50;SetProfile=$NAME\a"
-  }
-
-  function colorssh() {
-      trap "tab-reset" INT EXIT
-      #if [[ "$*" =~ "web*|production|ec2-.*compute-1" ]]; then
-      tabc RemoteSession
-      #fi
-      ssh $*
-  }
-  compdef _ssh tabc=ssh
-  alias ssh="colorssh"
-fi
-
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
-export BAT_THEME="Nord"

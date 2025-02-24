@@ -5,7 +5,6 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  -- { import = "astrocommunity.bars-and-lines.bufferline-nvim" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
@@ -24,7 +23,6 @@ return {
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.nvim-tree-pairs" },
-  -- { import = "astrocommunity.split-and-window.edgy-nvim" },
   { import = "astrocommunity.lsp.actions-preview-nvim" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.cmake" },
