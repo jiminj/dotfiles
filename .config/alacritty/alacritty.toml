@@ -1,14 +1,9 @@
-import = ["~/.config/alacritty/theme/nord.toml"]
-
 [cursor.style]
 blinking = "On"
 shape = "Block"
 
 [cursor.vi_mode_style]
 shape = "Beam"
-
-[env]
-TERM = "xterm-256color"
 
 [font]
 size = 14.0
@@ -31,6 +26,10 @@ style = "Regular"
 
 [window]
 option_as_alt = "OnlyLeft"
+decorations_theme_variant = "Dark"
 
 [terminal]
 osc52 = "CopyPaste"
+
+[general]
+import = ["~/.config/alacritty/theme/nord.toml"]
