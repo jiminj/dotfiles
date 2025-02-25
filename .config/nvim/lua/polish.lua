@@ -5,20 +5,37 @@
 -- fit in the normal config locations above can go here
 
 local opt = vim.opt
-opt.clipboard = "unnamedplus"
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy "+",
-    ["*"] = require("vim.ui.clipboard.osc52").copy "*",
-  },
-  paste = {
-    ["+"] = require("vim.ui.clipboard.osc52").paste "+",
-    ["*"] = require("vim.ui.clipboard.osc52").paste "*",
-  },
-}
-
 opt.exrc = true
+opt.clipboard = "unnamedplus"
+
+if vim.env.TMUX ~= nil then
+  local copy = { "tmux", "load-buffer", "-w", "-" }
+  local paste = { "bash", "-c", "tmux refresh-client -l && sleep 0.05 && tmux save-buffer -" }
+  vim.g.clipboard = {
+    name = "tmux",
+    copy = {
+      ["+"] = copy,
+      ["*"] = copy,
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
+    cache_enabled = 0,
+  }
+else
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy "+",
+      ["*"] = require("vim.ui.clipboard.osc52").copy "*",
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste "+",
+      ["*"] = require("vim.ui.clipboard.osc52").paste "*",
+    },
+  }
+end
 
 -- vim.api.nvim_create_autocmd({ "FileType" }, {
 --   pattern = { "c", "cpp", "cmake" },

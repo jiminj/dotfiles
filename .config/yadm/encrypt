@@ -13,4 +13,5 @@
 connect_vpn.sh
 connect_vpn_browser.sh
 openconnect_nv_mac.sh
-
+.aider.conf.yml
+.aider.model.*
