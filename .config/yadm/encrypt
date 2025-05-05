@@ -6,10 +6,6 @@
 .gitconfig-local##class.Work*
 .zshrc-local##class.Work*
 .config/github-copilot/hosts.json##*
-.config/nvim/lua/local.lua##class.Work*
-.config/nvim/lua/plugins/ai_assistants.lua##class.Work*
-.config/nvim/templates/nvidia*
-.config/nvim/lua/plugins/nvidia.lua
 connect_vpn.sh
 connect_vpn_browser.sh
 openconnect_nv_mac.sh
