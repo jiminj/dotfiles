@@ -1,13 +1,12 @@
 .ssh/id_*
-.netrc
+.gnupg/.exported-keyring/*
 .zshrc-private
-.tmux-local.conf##class.Work*
 .zshrc-private-preload##class.Work*
-.gitconfig-local##class.Work*
 .zshrc-local##class.Work*
+.tmux-local.conf##class.Work*
+.gitconfig-local##class.Work*
 .config/github-copilot/hosts.json##*
+.netrc
 connect_vpn.sh
 connect_vpn_browser.sh
 openconnect_nv_mac.sh
-.aider.conf.yml
-.aider.model.*

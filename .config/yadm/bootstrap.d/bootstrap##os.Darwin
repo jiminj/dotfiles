@@ -40,6 +40,3 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 "$HOME"/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
 
-echo "==Install Aider"
-python -m pip install aider-install
-aider-install
