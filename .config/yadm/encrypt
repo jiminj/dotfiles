@@ -1,4 +1,5 @@
 .ssh/id_*
+.gnupg/.exported-keyring/*
 .netrc
 .zshrc-private
 .tmux-local.conf##class.Work*
