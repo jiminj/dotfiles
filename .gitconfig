@@ -41,6 +41,9 @@
   navigate = true    # use n and N to move between diff sections
   line-numbers = true
 
+[mergetool "nvim-diffview"]
+  cmd = nvim -n -c "DiffviewOpen" "$MERGE"
+
 [includeIf "gitdir:~/.config/nvim"]
   path = .gitconfig.submodules
 

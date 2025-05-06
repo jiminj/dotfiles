@@ -122,6 +122,8 @@ function zvm_before_init() {
   zvm_bindkey vicmd '^[OB' history-substring-search-down
 }
 
+export ZVM_VI_EDITOR=nvim
+
 ### End of Zinit's installer chunk
 alias ls="ls --color=auto"
 

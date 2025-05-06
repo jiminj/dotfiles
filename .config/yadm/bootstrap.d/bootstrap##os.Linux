@@ -15,6 +15,14 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "== Install TMUX Plugins"
+curl -s https://api.github.com/repos/kiyoon/tmux-appimage/releases/latest \
+| grep "browser_download_url.*appimage" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -qi - \
+&& chmod u+x tmux.appimage
+mv tmux.appimage "$HOME"/local/bin/tmux
+
 ~/.tmux/plugins/tpm/bin/install_plugins
 
 echo "== Install RustUp"
@@ -26,12 +34,12 @@ echo "== Install lazygit"
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
-sudo install lazygit -D -t /usr/local/bin/
+sudo install lazygit -D -t "$HOME"/local/bin/
 
 echo "== Install neovim"
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt-get update -y
-sudo apt-get install neovim -y
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+mv nvim-linux-x86_64.appimage "$HOME"/local/bin/nvim
 
 echo "==Install Aider"
 python -m pip install aider-install
