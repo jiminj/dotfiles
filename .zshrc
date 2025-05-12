@@ -150,7 +150,6 @@ eval "`fnm env`"
 ### ALIAS
 alias sudo='sudo '
 alias vim='nvim'
-eval $(thefuck --alias)
 eval "$(zoxide init zsh)"
 
 # GitHub Copilot
