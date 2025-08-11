@@ -2,6 +2,9 @@
 
 cd "$HOME" || exit
 
+sudo apt update
+sudo apt install -y apt-transport-https curl gnupg
+
 echo "== Init submodules"
 yadm submodule update --recursive --init
 
@@ -40,4 +43,30 @@ echo "== Install neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 chmod u+x nvim-linux-x86_64.appimage
 mv nvim-linux-x86_64.appimage "$HOME"/local/bin/nvim
+
+echo "== Install Required Utilities"
+sudo add-apt-repository "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main"
+sudo add-apt-repository ppa:git-core/ppa
+sudo add-apt-repository ppa:deadsnakes/ppa
+
+# bazel
+curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
+sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+
+sudo apt update
+sudo apt install -y git clang-20 llvm-20 llvm-20-dev llvm-20-tools lldb-20 bazel
+
+
+
+
+
+# install python3.13
+# sudo apt update
+
+# sudo apt install python3.13-full libpython3.13 -y
+# sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13
+# python3 -m pip install --upgrade pip
+# pipx install vectorcode
+
 
