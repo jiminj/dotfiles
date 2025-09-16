@@ -142,6 +142,10 @@ source $HOME/.zshrc-private
 source $HOME/.zshrc-local
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
+
+# nvim-mason (LSP, DAP, linters, formatters, etc. manager for Neovim)
+export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
 
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
@@ -167,3 +171,6 @@ fi
 export BAT_THEME="Nord"
 
 # zprof
+
+# opencode
+export PATH=/home/jiminj/.opencode/bin:$PATH

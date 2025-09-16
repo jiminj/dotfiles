@@ -58,6 +58,7 @@ sudo apt update
 sudo apt install -y git clang-20 llvm-20 llvm-20-dev llvm-20-tools lldb-20 bazel
 
 
+go install github.com/isaacphi/mcp-language-server@latest
 
 
 
