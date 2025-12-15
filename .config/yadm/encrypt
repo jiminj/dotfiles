@@ -6,6 +6,7 @@
 .tmux-local.conf##class.Work*
 .gitconfig-local##class.Work*
 .config/github-copilot/hosts.json##*
+.config/opencode/opencode.jsonc
 .netrc
 connect_vpn.sh
 connect_vpn_browser.sh

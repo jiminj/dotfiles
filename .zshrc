@@ -60,14 +60,15 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
+zinit light gradle/gradle-completion
 zinit light zsh-users/zsh-completions
 
-# autocomp
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-    compinit
-done
-compinit -C
+# # autocomp
+# autoload -Uz compinit
+# for dump in ~/.zcompdump(N.mh+24); do
+#     compinit
+# done
+# compinit -C
 
 zinit cdreplay -q
 
@@ -102,7 +103,6 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 # bindkey '-e' # disable vi mode
 
-zinit light gradle/gradle-completion
 zinit light MichaelAquilina/zsh-you-should-use
 
 # zsh-vi-mode
@@ -147,6 +147,8 @@ export PATH=$HOME/go/bin:$PATH
 # nvim-mason (LSP, DAP, linters, formatters, etc. manager for Neovim)
 export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
 
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
@@ -168,9 +170,8 @@ if (( $+commands[gh] )); then
   alias cps='ghcp suggest'
 fi
 
-export BAT_THEME="Nord"
+# # temp- for copilot.lua nvim plugin
+# export NODE_OPTIONS="--experimental-sqlite"
 
 # zprof
 
-# opencode
-export PATH=/home/jiminj/.opencode/bin:$PATH
