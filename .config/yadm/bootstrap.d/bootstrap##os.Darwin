@@ -40,3 +40,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 "$HOME"/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
 
+#install bun
+echo "== Install Bun"
+curl -fsSL https://bun.sh/install | bash
+

@@ -33,6 +33,10 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 "$HOME"/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
 
+#install bun
+echo "== Install Bun"
+curl -fsSL https://bun.sh/install | bash
+
 echo "== Install lazygit"
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -59,8 +63,6 @@ sudo apt install -y git clang-20 llvm-20 llvm-20-dev llvm-20-tools lldb-20 bazel
 
 
 go install github.com/isaacphi/mcp-language-server@latest
-
-
 
 # install python3.13
 # sudo apt update
