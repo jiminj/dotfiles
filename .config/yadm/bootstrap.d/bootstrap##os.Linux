@@ -31,7 +31,7 @@ mv tmux.appimage "$HOME"/local/bin/tmux
 echo "== Install RustUp"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-"$HOME"/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc
+"$HOME"/.cargo/bin/cargo install bat ripgrep fd-find eza git-delta zoxide tlrc du-dust
 
 #install bun
 echo "== Install Bun"
@@ -59,7 +59,7 @@ sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 
 sudo apt update
-sudo apt install -y git clang-20 llvm-20 llvm-20-dev llvm-20-tools lldb-20 bazel
+sudo apt install -y zsh git clang-20 llvm-20 llvm-20-dev llvm-20-tools lldb-20 bazel
 
 
 go install github.com/isaacphi/mcp-language-server@latest

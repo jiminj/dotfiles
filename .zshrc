@@ -1,6 +1,6 @@
 # zmodload zsh/zprof
 
-export EDITOR=vim
+export EDITOR=nvim
 
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -124,6 +124,7 @@ function zvm_before_init() {
 
 export ZVM_VI_EDITOR=nvim
 
+alias cd='z'
 ### End of Zinit's installer chunk
 alias ls="ls --color=auto"
 
@@ -181,3 +182,5 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# fpath+=~/.zfunc; autoload -Uz compinit; compinit
