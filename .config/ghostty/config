@@ -1,0 +1,36 @@
+font-family="JetBrains Mono"
+font-family="D2 Coding"
+
+font-size=13
+font-thicken=true
+font-feature=-calt
+font-feature=-dlig
+font-feature=-liga
+
+adjust-cell-height=5%
+adjust-cell-width=-10%
+
+theme="Catppuccin Frappe"
+clipboard-read=allow
+clipboard-write=allow
+copy-on-select=clipboard
+macos-option-as-alt=left
+auto-update=download
+
+shell-integration=zsh
+shell-integration-features=title
+shell-integration-features=ssh-env
+shell-integration-features=ssh-terminfo
+
+window-inherit-font-size=false
+cursor-style-blink=true
+bold-color=bright
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+keybind = alt+up=unbind
+keybind = alt+down=unbind
+
+
+
+
