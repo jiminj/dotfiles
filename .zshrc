@@ -63,12 +63,12 @@ zinit light-mode for \
 zinit light gradle/gradle-completion
 zinit light zsh-users/zsh-completions
 
-# # autocomp
-# autoload -Uz compinit
-# for dump in ~/.zcompdump(N.mh+24); do
-#     compinit
-# done
-# compinit -C
+# autocomp
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
 
 zinit cdreplay -q
 
@@ -183,4 +183,4 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# fpath+=~/.zfunc; autoload -Uz compinit; compinit
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
