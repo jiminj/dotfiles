@@ -25,8 +25,8 @@
 [include]
   path = ~/.gitconfig-local
 
-[merge]
-  conflictstyle = zdiff3
+; [merge]
+;   conflictstyle = zdiff3
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
