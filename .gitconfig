@@ -5,13 +5,19 @@
   editor = nvim
   excludesfile = ~/.gitignore_global
   autocrlf=input
+  ; pager = hunk pager
   pager = delta
+
+[rebase]
+  updateRefs = true
 
 [alias]
   adog="log --all --decorate --oneline --graph"
 
 [diff]
   tool = nvimdiff
+  colorMoved = default
+
 [merge]
   tool = nvimdiff
 
@@ -25,8 +31,8 @@
 [include]
   path = ~/.gitconfig-local
 
-; [merge]
-;   conflictstyle = zdiff3
+[merge]
+  conflictstyle = zdiff3
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -41,14 +47,18 @@
   navigate = true    # use n and N to move between diff sections
   line-numbers = true
 
+[difftool "hunk"]
+	cmd = hunk difftool "$LOCAL" "$REMOTE" "$MERGED"
+
+[difftool "nvimdiff"]
+  cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED"
+
 [mergetool "nvim-diffview"]
   cmd = nvim -n -c "DiffviewOpen" "$MERGE"
 
 [includeIf "gitdir:~/.config/nvim"]
   path = .gitconfig.submodules
 
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
-
+[alias]
+    diff-side-by-side = -c delta.features=side-by-side diff
 

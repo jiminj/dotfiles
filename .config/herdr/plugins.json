@@ -1,0 +1,787 @@
+[
+  {
+    "plugin_id": "chmarax.herdr-nvim",
+    "name": "herdr-nvim",
+    "version": "1.1.0",
+    "min_herdr_version": "0.7.5",
+    "description": "Full-height nvim sidebar with agent annotations: toggle with one key, comment code, send to any agent.",
+    "manifest_path": "/home/jiminj/.config/herdr/plugins/github/chmarax.herdr-nvim-178624809c23/herdr-plugin.toml",
+    "plugin_root": "/home/jiminj/.config/herdr/plugins/github/chmarax.herdr-nvim-178624809c23",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux",
+      "windows"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "herdr/install.sh"
+        ]
+      },
+      {
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell.exe",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "herdr/install.ps1"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "command": [
+          "bin/herdr-nvim",
+          "daemon-gc"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open-link",
+        "title": "nvim sidebar: open clicked file",
+        "command": [
+          "bin/herdr-nvim",
+          "open-link"
+        ]
+      },
+      {
+        "id": "pick-file",
+        "title": "nvim sidebar: open file from agent output",
+        "contexts": [
+          "pane"
+        ],
+        "command": [
+          "bin/herdr-nvim",
+          "pick-file"
+        ]
+      },
+      {
+        "id": "toggle",
+        "title": "nvim sidebar: toggle",
+        "contexts": [
+          "pane",
+          "workspace"
+        ],
+        "command": [
+          "bin/herdr-nvim",
+          "toggle"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "tab.closed",
+        "command": [
+          "bin/herdr-nvim",
+          "on-event"
+        ]
+      },
+      {
+        "on": "workspace.closed",
+        "command": [
+          "bin/herdr-nvim",
+          "on-event"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "open file",
+        "placement": "popup",
+        "command": [
+          "bin/herdr-nvim",
+          "picker"
+        ]
+      },
+      {
+        "id": "sidebar",
+        "title": "nvim sidebar",
+        "placement": "split",
+        "command": [
+          "bin/herdr-nvim",
+          "sidebar"
+        ]
+      }
+    ],
+    "link_handlers": [
+      {
+        "id": "file-path",
+        "title": "Open in nvim sidebar",
+        "pattern": "^~?[\\w.@/()\\[\\]\\\\:+-]+[\\\\/][\\w.@()\\[\\]\\\\:+-]+\\.[A-Za-z]\\w*(?::\\d+){0,2}$",
+        "action": "open-link"
+      },
+      {
+        "id": "file-url",
+        "title": "Open in nvim sidebar",
+        "pattern": "^file://",
+        "action": "open-link"
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "ChmaraX",
+      "repo": "herdr-nvim",
+      "resolved_commit": "5e849b5377fd409d2fd4be159c9c9fa36c251f7a",
+      "managed_path": "/home/jiminj/.config/herdr/plugins/github/chmarax.herdr-nvim-178624809c23",
+      "installed_unix_ms": 1790691498419
+    }
+  },
+  {
+    "plugin_id": "herdr-navigator",
+    "name": "Herdr Navigator",
+    "version": "0.3.6",
+    "min_herdr_version": "0.7.3",
+    "description": "Jump to any Herdr workspace, agent, project, session, remote, directory, or action from one fuzzy navigator.",
+    "manifest_path": "/home/jiminj/.config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5/herdr-plugin.toml",
+    "plugin_root": "/home/jiminj/.config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "command": [
+          "cargo",
+          "build",
+          "--release"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "jump-back",
+        "title": "Herdr Navigator: jump back",
+        "contexts": [
+          "workspace",
+          "global"
+        ],
+        "command": [
+          "./target/release/herdr-navigator",
+          "jump-back"
+        ]
+      },
+      {
+        "id": "open",
+        "title": "Herdr Navigator: open",
+        "contexts": [
+          "workspace",
+          "global"
+        ],
+        "command": [
+          "./target/release/herdr-navigator",
+          "open"
+        ]
+      },
+      {
+        "id": "open-side",
+        "title": "Herdr Navigator: side pane",
+        "contexts": [
+          "workspace",
+          "global"
+        ],
+        "command": [
+          "./target/release/herdr-navigator",
+          "open-side"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "Herdr Navigator",
+        "placement": "overlay",
+        "command": [
+          "./target/release/herdr-navigator",
+          "ui"
+        ]
+      },
+      {
+        "id": "picker-side",
+        "title": "Navigator Side",
+        "placement": "split",
+        "command": [
+          "./target/release/herdr-navigator",
+          "ui",
+          "--side"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "thanhdat77",
+      "repo": "herdr-navigator",
+      "resolved_commit": "313b753b1f98f802b7d861430a13cb95a86e8dd3",
+      "managed_path": "/home/jiminj/.config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5",
+      "installed_unix_ms": 1790691502970
+    }
+  },
+  {
+    "plugin_id": "herdr.auto-title",
+    "name": "Auto Title",
+    "version": "0.10.0",
+    "min_herdr_version": "0.8.2",
+    "description": "Automatically generates contextual tab titles",
+    "manifest_path": "/home/jiminj/.config/herdr/plugins/github/herdr.auto-title-4b7d61f48ce8/herdr-plugin.toml",
+    "plugin_root": "/home/jiminj/.config/herdr/plugins/github/herdr.auto-title-4b7d61f48ce8",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "go",
+          "build",
+          "-o",
+          "herdr-auto-title",
+          "./cmd/herdr-auto-title"
+        ]
+      },
+      {
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "go",
+          "build",
+          "-o",
+          "herdr-auto-title.exe",
+          "./cmd/herdr-auto-title"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "./herdr-auto-title"
+        ]
+      },
+      {
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "./herdr-auto-title.exe"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "restart",
+        "title": "Auto Title: restart",
+        "description": "Start a fresh Auto Title in place of the running one",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "./herdr-auto-title",
+          "restart"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "kryptamine",
+      "repo": "herdr-auto-title",
+      "resolved_commit": "e78619a26674da2b741457be864169ad56767887",
+      "managed_path": "/home/jiminj/.config/herdr/plugins/github/herdr.auto-title-4b7d61f48ce8",
+      "installed_unix_ms": 1790691532526
+    }
+  },
+  {
+    "plugin_id": "herdr.collie",
+    "name": "Collie",
+    "version": "1.14.2",
+    "min_herdr_version": "0.7.0",
+    "description": "Mobile web UI to monitor and reply to your agent herd, served over Tailscale",
+    "manifest_path": "/home/jiminj/.config/herdr/plugins/github/herdr.collie-1edf0e1e987e/herdr-plugin.toml",
+    "plugin_root": "/home/jiminj/.config/herdr/plugins/github/herdr.collie-1edf0e1e987e",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "build"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "push-keys",
+        "title": "Generate push keys",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "push-keys"
+        ]
+      },
+      {
+        "id": "push-test",
+        "title": "Send a test notification",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "push-test"
+        ]
+      },
+      {
+        "id": "restart",
+        "title": "Restart Collie",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "restart"
+        ]
+      },
+      {
+        "id": "start",
+        "title": "Start Collie",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "start"
+        ]
+      },
+      {
+        "id": "status",
+        "title": "Collie status",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "status"
+        ]
+      },
+      {
+        "id": "stop",
+        "title": "Stop Collie",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "stop"
+        ]
+      },
+      {
+        "id": "uninstall",
+        "title": "Uninstall Collie (remove service)",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "uninstall"
+        ]
+      },
+      {
+        "id": "update",
+        "title": "Update plugin",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "update"
+        ]
+      },
+      {
+        "id": "update-major",
+        "title": "Update across a major version",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "update",
+          "--major"
+        ]
+      },
+      {
+        "id": "url",
+        "title": "Show Collie URL",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "url"
+        ]
+      },
+      {
+        "id": "version",
+        "title": "Show version",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/collie-ctl.sh",
+          "version"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "AltanS",
+      "repo": "collie",
+      "resolved_commit": "d70dc0d18fb4b18531e39475f8953eabbe450953",
+      "managed_path": "/home/jiminj/.config/herdr/plugins/github/herdr.collie-1edf0e1e987e",
+      "installed_unix_ms": 1790691518663
+    }
+  },
+  {
+    "plugin_id": "hotchpotch.herdr-tiny-fingers",
+    "name": "herdr-tiny-fingers",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "tmux-fingers style visible-screen copy hints for Herdr",
+    "manifest_path": "/home/jiminj/.config/herdr/plugins/github/hotchpotch.herdr-tiny-fingers-5596606cf4bb/herdr-plugin.toml",
+    "plugin_root": "/home/jiminj/.config/herdr/plugins/github/hotchpotch.herdr-tiny-fingers-5596606cf4bb",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "command": [
+          "cargo",
+          "build",
+          "--release",
+          "--locked"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open fingers mode",
+        "description": "Open tmux-fingers style copy hints for the focused pane",
+        "command": [
+          "./target/release/herdr-tiny-fingers",
+          "open"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "finger",
+        "title": "herdr-tiny-fingers",
+        "placement": "overlay",
+        "command": [
+          "./target/release/herdr-tiny-fingers"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "hotchpotch",
+      "repo": "herdr-tiny-fingers",
+      "resolved_commit": "2927dcf2bc95fe53a7143c040bbdcbcf804d65ed",
+      "managed_path": "/home/jiminj/.config/herdr/plugins/github/hotchpotch.herdr-tiny-fingers-5596606cf4bb",
+      "installed_unix_ms": 1789541269907
+    }
+  },
+  {
+    "plugin_id": "ntindle.herdr-resurrect",
+    "name": "herdr-resurrect",
+    "version": "0.2.0",
+    "min_herdr_version": "0.7.0",
+    "description": "tmux-resurrect for herdr: snapshot the whole herd (workspaces, tabs, panes, cwd, running programs, agents) and bring it back after a crash or reboot.",
+    "manifest_path": "/home/jiminj/.config/herdr/plugins/github/ntindle.herdr-resurrect-6e4571261caf/herdr-plugin.toml",
+    "plugin_root": "/home/jiminj/.config/herdr/plugins/github/ntindle.herdr-resurrect-6e4571261caf",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "actions": [
+      {
+        "id": "delete-space",
+        "title": "Resurrect: delete saved space…",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "delete-space.sh"
+        ]
+      },
+      {
+        "id": "open-space",
+        "title": "Resurrect: open saved space…",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "open-space.sh"
+        ]
+      },
+      {
+        "id": "restore",
+        "title": "Resurrect: restore last snapshot",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/restore.js"
+        ]
+      },
+      {
+        "id": "restore-preview",
+        "title": "Resurrect: preview restore (dry run)",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/restore.js",
+          "--dry-run"
+        ]
+      },
+      {
+        "id": "save",
+        "title": "Resurrect: save snapshot",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/save.js"
+        ]
+      },
+      {
+        "id": "save-space",
+        "title": "Resurrect: save this space as…",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "save-space.sh"
+        ]
+      },
+      {
+        "id": "snapshots",
+        "title": "Resurrect: list snapshots",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/list.js"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.agent_detected",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "pane.closed",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "pane.created",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "pane.exited",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "workspace.closed",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "workspace.created",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "autosave",
+        "title": "resurrect autosave",
+        "placement": "split",
+        "command": [
+          "node",
+          "bin/autosave.js"
+        ]
+      },
+      {
+        "id": "delete-space-ui",
+        "title": "Delete space",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/delete-space-ui.sh\""
+        ]
+      },
+      {
+        "id": "open-space-ui",
+        "title": "Open space",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/open-space-ui.sh\""
+        ]
+      },
+      {
+        "id": "save-space-ui",
+        "title": "Save space",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/save-space-ui.sh\""
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "ntindle",
+      "repo": "herdr-resurrect",
+      "resolved_commit": "5afa6755d4f35c62c7522ba4fd04922d1ac69602",
+      "managed_path": "/home/jiminj/.config/herdr/plugins/github/ntindle.herdr-resurrect-6e4571261caf",
+      "installed_unix_ms": 1789541315087
+    }
+  },
+  {
+    "plugin_id": "ray.plugin-manager",
+    "name": "Plugin Manager",
+    "version": "0.5.0",
+    "min_herdr_version": "0.7.4",
+    "description": "Manage herdr plugins from a popup: list, install, update, enable/disable, uninstall, browse the marketplace, open repo in browser, edit plugins.json",
+    "manifest_path": "/home/jiminj/.config/herdr/plugins/github/ray.plugin-manager-75f462e8e1d0/herdr-plugin.toml",
+    "plugin_root": "/home/jiminj/.config/herdr/plugins/github/ray.plugin-manager-75f462e8e1d0",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open plugin manager",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec \"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin ray.plugin-manager --entrypoint manager --placement popup --focus"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "manager",
+        "title": "Plugin Manager",
+        "placement": "popup",
+        "width": 82,
+        "height": 28,
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/bin/manager.sh\""
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "speardragon",
+      "repo": "herdr-plugin-manager",
+      "resolved_commit": "e4fef2693728a36cbb389af033a389cad2257869",
+      "managed_path": "/home/jiminj/.config/herdr/plugins/github/ray.plugin-manager-75f462e8e1d0",
+      "installed_unix_ms": 1790691470693
+    }
+  }
+]
