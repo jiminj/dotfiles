@@ -1,2 +1,13 @@
 os:
   copyToClipboardCmd: printf "\033]52;c;$(printf {{text}} | base64 -w 0)\a" > /dev/tty
+
+git:
+  diffRenderers:
+    - command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+
+# git:
+#   # pagers:
+#   #   - colorArg: always
+#   #     pager: hunk pager
+#   diffRenderers:
+#     - command: delta --dark --paging=never
