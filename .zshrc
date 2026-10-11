@@ -15,8 +15,8 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 export GPG_TTY=$(tty)
-export LANG=en_us.UTF-8
-export LC_ALL=en_us.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 [ -f ~/.zshrc-private-preload ] && source ~/.zshrc-private-preload
 #
