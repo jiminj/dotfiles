@@ -2,7 +2,7 @@
   {
     "plugin_id": "chmarax.herdr-nvim",
     "name": "herdr-nvim",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "min_herdr_version": "0.7.5",
     "description": "Full-height nvim sidebar with agent annotations: toggle with one key, comment code, send to any agent.",
     "manifest_path": "/home/jiminj/.config/herdr/plugins/github/chmarax.herdr-nvim-178624809c23/herdr-plugin.toml",
@@ -119,7 +119,7 @@
       {
         "id": "file-path",
         "title": "Open in nvim sidebar",
-        "pattern": "^~?[\\w.@/()\\[\\]\\\\:+-]+[\\\\/][\\w.@()\\[\\]\\\\:+-]+\\.[A-Za-z]\\w*(?::\\d+){0,2}$",
+        "pattern": "^(?:~|[A-Za-z]:)?[\\w.@/()\\[\\]\\\\+-]+[\\\\/][\\w.@()\\[\\]\\\\+-]+\\.[A-Za-z]\\w*(?::\\d+){0,2}$",
         "action": "open-link"
       },
       {
@@ -133,9 +133,9 @@
       "kind": "github",
       "owner": "ChmaraX",
       "repo": "herdr-nvim",
-      "resolved_commit": "5e849b5377fd409d2fd4be159c9c9fa36c251f7a",
+      "resolved_commit": "e2ec32e7bbbb1eefd64363414b5806f84eedd6bc",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/chmarax.herdr-nvim-178624809c23",
-      "installed_unix_ms": 1790691498419
+      "installed_unix_ms": 1791937093555
     }
   },
   {
@@ -231,7 +231,7 @@
   {
     "plugin_id": "herdr.auto-title",
     "name": "Auto Title",
-    "version": "0.10.0",
+    "version": "0.13.2",
     "min_herdr_version": "0.8.2",
     "description": "Automatically generates contextual tab titles",
     "manifest_path": "/home/jiminj/.config/herdr/plugins/github/herdr.auto-title-4b7d61f48ce8/herdr-plugin.toml",
@@ -306,15 +306,15 @@
       "kind": "github",
       "owner": "kryptamine",
       "repo": "herdr-auto-title",
-      "resolved_commit": "e78619a26674da2b741457be864169ad56767887",
+      "resolved_commit": "8b2504514bb2aaa79ecbba6cb0e6c426652f4419",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/herdr.auto-title-4b7d61f48ce8",
-      "installed_unix_ms": 1790691532526
+      "installed_unix_ms": 1791937098541
     }
   },
   {
     "plugin_id": "herdr.collie",
     "name": "Collie",
-    "version": "1.14.2",
+    "version": "1.21.0",
     "min_herdr_version": "0.7.0",
     "description": "Mobile web UI to monitor and reply to your agent herd, served over Tailscale",
     "manifest_path": "/home/jiminj/.config/herdr/plugins/github/herdr.collie-1edf0e1e987e/herdr-plugin.toml",
@@ -476,9 +476,9 @@
       "kind": "github",
       "owner": "AltanS",
       "repo": "collie",
-      "resolved_commit": "b7ccd7574741e7a7aa8599e8273db48498168b1f",
+      "resolved_commit": "827144e29f496101c89261d086442e3540a40b36",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/herdr.collie-1edf0e1e987e",
-      "installed_unix_ms": 1790737572630
+      "installed_unix_ms": 1791937104279
     }
   },
   {
@@ -729,9 +729,9 @@
       "kind": "github",
       "owner": "ntindle",
       "repo": "herdr-resurrect",
-      "resolved_commit": "5afa6755d4f35c62c7522ba4fd04922d1ac69602",
+      "resolved_commit": "109a9376549e29646c77fdfb7ed8ba456a9d6617",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/ntindle.herdr-resurrect-6e4571261caf",
-      "installed_unix_ms": 1789541315087
+      "installed_unix_ms": 1791937114114
     }
   },
   {
