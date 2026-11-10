@@ -1,16 +1,12 @@
-font-family="JetBrains Mono"
-font-family="D2 Coding"
+confirm-close-surface=false
+font-family="Pragmasevka Nerd Font"
 
-font-size=13
+font-size=14
 font-thicken=true
-font-feature=-calt
-font-feature=-dlig
-font-feature=-liga
+font-feature=-calt, -liga, -dlig
 
-adjust-cell-height=5%
-adjust-cell-width=-10%
-
-theme="Catppuccin Frappe"
+# theme="Catppuccin Frappe"
+theme="TokyoNight Storm"
 clipboard-read=allow
 clipboard-write=allow
 copy-on-select=clipboard
@@ -30,7 +26,4 @@ keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = alt+up=unbind
 keybind = alt+down=unbind
-
-
-
-
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
