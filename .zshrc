@@ -148,8 +148,6 @@ export PATH=$HOME/go/bin:$PATH
 # nvim-mason (LSP, DAP, linters, formatters, etc. manager for Neovim)
 export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
 
-# opencode
-export PATH=$HOME/.opencode/bin:$PATH
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
