@@ -1,0 +1,9 @@
+.ssh/id_* filter=git-crypt diff=git-crypt
+.gnupg/.exported-keyring/* filter=git-crypt diff=git-crypt
+.zshrc-private filter=git-crypt diff=git-crypt
+.zshrc-private-preload##class.Work* filter=git-crypt diff=git-crypt
+.zshrc-local##class.Work* filter=git-crypt diff=git-crypt
+.tmux-local.conf##class.Work* filter=git-crypt diff=git-crypt
+.gitconfig-local##class.Work* filter=git-crypt diff=git-crypt
+.config/github-copilot/hosts.json##* filter=git-crypt diff=git-crypt
+.netrc filter=git-crypt diff=git-crypt
