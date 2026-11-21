@@ -1,0 +1,59 @@
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[cursor.vi_mode_style]
+shape = "Beam"
+
+# [font]
+# size = 13.0
+#
+# [font.bold]
+# family = "JetBrainsMono Nerd Font"
+# style = "Bold"
+#
+# [font.bold_italic]
+# family = "JetBrainsMono Nerd Font"
+# style = "Bold Italic"
+#
+# [font.italic]
+# family = "JetBrainsMono Nerd Font"
+# style = "Italic"
+#
+# [font.normal]
+# family = "JetBrainsMono Nerd Font"
+# style = "Regular"
+#
+[font]
+size = 14.0
+
+[font.bold]
+family = "Pragmasevka Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "Pragmasevka Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "Pragmasevka Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Pragmasevka Nerd Font"
+style = "Regular"
+
+[window]
+option_as_alt = "OnlyLeft"
+decorations_theme_variant = "Dark"
+
+[terminal]
+osc52 = "CopyPaste"
+
+[general]
+import = ["~/.config/alacritty/theme/catppuccin-frappe.toml"]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

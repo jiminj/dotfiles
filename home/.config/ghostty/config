@@ -1,0 +1,29 @@
+confirm-close-surface=false
+font-family="Pragmasevka Nerd Font"
+
+font-size=14
+font-thicken=true
+font-feature=-calt, -liga, -dlig
+
+# theme="Catppuccin Frappe"
+theme="TokyoNight Storm"
+clipboard-read=allow
+clipboard-write=allow
+copy-on-select=clipboard
+macos-option-as-alt=left
+auto-update=download
+
+shell-integration=zsh
+shell-integration-features=title
+shell-integration-features=ssh-env
+shell-integration-features=ssh-terminfo
+
+window-inherit-font-size=false
+cursor-style-blink=true
+bold-color=bright
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+keybind = alt+up=unbind
+keybind = alt+down=unbind
+keybind = global:ctrl+grave_accent=toggle_quick_terminal

@@ -1,0 +1,292 @@
+{
+  "format": 1,
+  "enrollment": [
+    {
+      "path": "home/.app-pref/iterm2/com.googlecode.iterm2.plist",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/alacritty/alacritty.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/alacritty/theme/catppuccin-frappe.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/alacritty/theme/catppuccin-latte.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/alacritty/theme/catppuccin-macchiato.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/alacritty/theme/catppuccin-mocha.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/alacritty/theme/dracula.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/alacritty/theme/nord.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/bat/config",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/bat/themes/Catppuccin Frappe.tmTheme",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/bat/themes/Catppuccin Latte.tmTheme",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/bat/themes/Catppuccin Macchiato.tmTheme",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/bat/themes/Catppuccin Mocha.tmTheme",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/clangd/config.yaml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/fnox/config.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/ghostty/config",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/herdr/config.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/herdr/plugins.json",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/hunk/config.toml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/kitty/kitty.conf",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/kitty/nord.conf",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/lazygit/config.yml",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/yadm/export_gpg.sh",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.config/yadm/import_gpg.sh",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.gitconfig",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.gitconfig.submodules",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.gitignore_global",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.p10k.zsh",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.tmux.conf",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.vim/autoload/update-plug.sh",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.vim/ctags.exe",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.wezterm.lua",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.zshrc",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/Brewfile",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/README.md",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/colortest.zsh",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/local/bin/get-ip.sh",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/termbench.sh",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    }
+  ],
+  "exclude": [],
+  "recipients": [],
+  "permissions": {
+    "home/.app-pref": 509,
+    "home/.app-pref/iterm2": 509,
+    "home/.app-pref/iterm2/com.googlecode.iterm2.plist": 436,
+    "home/.config": 509,
+    "home/.config/alacritty": 509,
+    "home/.config/alacritty/alacritty.toml": 436,
+    "home/.config/alacritty/theme": 509,
+    "home/.config/alacritty/theme/catppuccin-frappe.toml": 436,
+    "home/.config/alacritty/theme/catppuccin-latte.toml": 436,
+    "home/.config/alacritty/theme/catppuccin-macchiato.toml": 436,
+    "home/.config/alacritty/theme/catppuccin-mocha.toml": 436,
+    "home/.config/alacritty/theme/dracula.toml": 436,
+    "home/.config/alacritty/theme/nord.toml": 436,
+    "home/.config/bat": 509,
+    "home/.config/bat/config": 436,
+    "home/.config/bat/themes": 509,
+    "home/.config/bat/themes/Catppuccin Frappe.tmTheme": 436,
+    "home/.config/bat/themes/Catppuccin Latte.tmTheme": 436,
+    "home/.config/bat/themes/Catppuccin Macchiato.tmTheme": 436,
+    "home/.config/bat/themes/Catppuccin Mocha.tmTheme": 436,
+    "home/.config/clangd": 509,
+    "home/.config/clangd/config.yaml": 436,
+    "home/.config/fnox": 448,
+    "home/.config/fnox/config.toml": 436,
+    "home/.config/ghostty": 509,
+    "home/.config/ghostty/config": 436,
+    "home/.config/herdr": 509,
+    "home/.config/herdr/config.toml": 436,
+    "home/.config/herdr/plugins.json": 436,
+    "home/.config/hunk": 509,
+    "home/.config/hunk/config.toml": 436,
+    "home/.config/kitty": 509,
+    "home/.config/kitty/kitty.conf": 436,
+    "home/.config/kitty/nord.conf": 436,
+    "home/.config/lazygit/config.yml": 436,
+    "home/.config/yadm": 509,
+    "home/.config/yadm/export_gpg.sh": 509,
+    "home/.config/yadm/import_gpg.sh": 509,
+    "home/.gitconfig": 436,
+    "home/.gitconfig.submodules": 436,
+    "home/.gitignore_global": 436,
+    "home/.p10k.zsh": 436,
+    "home/.tmux.conf": 436,
+    "home/.vim": 509,
+    "home/.vim/autoload": 509,
+    "home/.vim/autoload/update-plug.sh": 509,
+    "home/.vim/ctags.exe": 436,
+    "home/.wezterm.lua": 436,
+    "home/.zshrc": 436,
+    "home/Brewfile": 436,
+    "home/README.md": 436,
+    "home/colortest.zsh": 509,
+    "home/local": 509,
+    "home/local/bin/get-ip.sh": 509,
+    "home/termbench.sh": 509
+  }
+}
