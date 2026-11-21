@@ -30,3 +30,7 @@ run = "sh ~/.config/dotfiles/work.sh globalprotect"
 [tasks."work:ddb"]
 description = "Install DriveDebugger (ddb); needs credentials in ~/.netrc"
 run = "sh ~/.config/dotfiles/work.sh ddb"
+
+[tasks."work:copilot"]
+description = "Seed the GitHub Copilot login from fnox if this machine has none"
+run = "sh ~/.config/dotfiles/work.sh copilot"

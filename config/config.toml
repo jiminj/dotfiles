@@ -191,7 +191,8 @@ run = "sh ~/.config/mise/scripts/setup.sh status"
 description = "Write the SSH private keys from fnox into ~/.ssh"
 run = """
 mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
-fnox files write
+# Named explicitly: fnox also holds files that only a work machine gets.
+fnox files write ~/.ssh/id_ed25519 ~/.ssh/id_rsa
 """
 
 # The Neovim config is a private repo over SSH, so it is cloned here, after
