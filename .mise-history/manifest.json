@@ -400,12 +400,6 @@
       "variants": []
     },
     {
-      "path": "home/README.md",
-      "autosave": true,
-      "encrypt": false,
-      "variants": []
-    },
-    {
       "path": "home/colortest.zsh",
       "autosave": true,
       "encrypt": false,
@@ -497,7 +491,6 @@
     "home/.wezterm.lua": 436,
     "home/.zshrc": 436,
     "home/Brewfile": 436,
-    "home/README.md": 436,
     "home/colortest.zsh": 509,
     "home/local": 509,
     "home/local/bin/get-ip.sh": 509,

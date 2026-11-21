@@ -320,7 +320,6 @@ run = "true"
 "~/.zshrc" = { mode = "track" }
 "~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }, { os = "linux" }, { os = "macos", profile = "work" }, { os = "macos" }] }
 "~/Brewfile" = { mode = "track" }
-"~/README.md" = { mode = "track" }
 "~/colortest.zsh" = { mode = "track" }
 "~/local/bin/get-ip.sh" = { mode = "track" }
 "~/termbench.sh" = { mode = "track" }
