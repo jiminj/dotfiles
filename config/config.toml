@@ -290,7 +290,6 @@ run = "true"
 "~/.config/dotfiles/work.sh" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
 "~/.config/fnox/config.toml" = { mode = "track" }
 "~/.config/ghostty/config" = { mode = "track" }
-"~/.config/github-copilot/hosts.json" = { mode = "track", encrypt = true, variants = [{ profile = "work" }, { default = true }] }
 "~/.config/herdr/config.toml" = { mode = "track" }
 "~/.config/herdr/plugins.json" = { mode = "track" }
 "~/.config/hunk/config.toml" = { mode = "track" }
