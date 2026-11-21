@@ -282,6 +282,7 @@ run = "true"
 "~/.vim/ctags.exe" = { mode = "track" }
 "~/.wezterm.lua" = { mode = "track" }
 "~/.zshrc" = { mode = "track" }
+"~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }
 "~/Brewfile" = { mode = "track" }
 "~/README.md" = { mode = "track" }
 "~/colortest.zsh" = { mode = "track" }
