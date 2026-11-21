@@ -288,6 +288,20 @@
       "variants": []
     },
     {
+      "path": "home/.vim/vimrc",
+      "autosave": true,
+      "encrypt": false,
+      "variants": [
+        {
+          "os": [
+            "linux"
+          ],
+          "profile": "work",
+          "default": false
+        }
+      ]
+    },
+    {
       "path": "home/.wezterm.lua",
       "autosave": true,
       "encrypt": false,
@@ -422,6 +436,7 @@
     "home/termbench.sh": 509,
     "home@linux+work/.gitconfig-local": 384,
     "home@linux+work/.tmux-local.conf": 384,
+    "home@linux+work/.vim/vimrc": 436,
     "home@linux+work/.zshrc-local": 384,
     "home@work/.config/dotfiles/work.sh": 384
   }

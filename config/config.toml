@@ -282,6 +282,7 @@ run = "true"
 "~/.tmux.conf" = { mode = "track" }
 "~/.vim/autoload/update-plug.sh" = { mode = "track" }
 "~/.vim/ctags.exe" = { mode = "track" }
+"~/.vim/vimrc" = { mode = "track", variants = [{ os = "linux", profile = "work" }] }
 "~/.wezterm.lua" = { mode = "track" }
 "~/.zshrc" = { mode = "track" }
 "~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }
