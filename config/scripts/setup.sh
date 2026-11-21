@@ -63,8 +63,14 @@ cmd_key() {
 }
 
 cmd_install() {
-  work=""
-  [ "${1:-}" = --work ] && work=1
+  work="" take=""
+  for arg in "$@"; do
+    case "$arg" in
+      --work) work=1 ;;
+      --take-remote) take=1 ;;
+      *) die "unknown option: $arg" ;;
+    esac
+  done
 
   if [ "$(uname -s)" = Darwin ] && ! xcode-select -p >/dev/null 2>&1; then
     die "Xcode Command Line Tools are required. Run: xcode-select --install"
@@ -86,19 +92,31 @@ cmd_install() {
   # The key location is also set in the dotfiles' mise config, but that config
   # is what is being fetched here, so say it once by hand.
   export MISE_AGE_KEY_FILE="$AGE_KEY"
-  if grep -qs '^\[history.origin\]' "$HOME/.config/mise/config.local.toml"; then
-    say "Dotfiles already restored; re-running the bootstrap"
-    "$MISE" bootstrap --yes
-    say "Done."
-    return 0
-  fi
   if [ -n "$work" ]; then
-    say "Restore dotfiles and bootstrap (work profile)"
-    "$MISE" -E work bootstrap --adopt "$REPO?ref=$BRANCH" --yes --save-env
+    set -- -E work bootstrap --yes --save-env
   else
-    say "Restore dotfiles and bootstrap"
-    "$MISE" bootstrap --adopt "$REPO?ref=$BRANCH" --yes
+    set -- bootstrap --yes
   fi
+
+  if ! grep -qs '^\[history.origin\]' "$HOME/.config/mise/config.local.toml"; then
+    say "Restore dotfiles and bootstrap${work:+ (work profile)}"
+    "$MISE" "$@" --adopt "$REPO?ref=$BRANCH" || true
+  fi
+  # A machine that already has some of these files (for example from yadm) is
+  # left untouched: mise pauses until told which side wins. The [dotfiles]
+  # table only arrives with the restored config, so it marks a finished restore.
+  if ! grep -qs '^\[dotfiles\]' "$HOME/.config/mise/config.toml"; then
+    if [ -z "$take" ]; then
+      "$MISE" dot status || true
+      die "the restore is paused: files on this machine differ from the repository (listed above).
+       Nothing was changed. To overwrite them with the repository's version, run this again
+       with --take-remote. Files that only exist here are never touched."
+    fi
+    say "Replace differing files with the repository's version"
+    "$MISE" dot pull --take-remote-all
+  fi
+  say "Bootstrap"
+  "$MISE" "$@"
 
   # The dotfiles were fetched read-only over https; switch to SSH for pushing
   # now that the SSH key is in place.
@@ -143,5 +161,5 @@ case "${1:-}" in
   key) cmd_key ;;
   backup-key) cmd_backup_key ;;
   status) cmd_status ;;
-  *) echo "usage: $0 {install [--work]|key|backup-key|status}" >&2; exit 2 ;;
+  *) echo "usage: $0 {install [--work] [--take-remote]|key|backup-key|status}" >&2; exit 2 ;;
 esac

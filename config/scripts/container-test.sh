@@ -16,6 +16,7 @@
 #   APT_MIRROR=kr.archive.ubuntu.com  (when the default mirror is slow)
 #   TEST_CLASS=Work                   (exercise the work profile)
 #   TEST_REF=mise                     (branch of /src/origin.git to restore)
+#   TEST_CONFLICT=1                   (start with differing files in place)
 set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 if [ -n "${APT_MIRROR:-}" ]; then
@@ -32,11 +33,25 @@ install -d -o tester -g tester -m 700 $H/.config $H/.config/fnox
 install -o tester -g tester -m 600 /src/age.txt $H/.config/fnox/age.txt
 git config --system --add safe.directory '*' 2>/dev/null || printf '[safe]\n\tdirectory = *\n' > /etc/gitconfig
 
-sudo -iu tester env TEST_CLASS="${TEST_CLASS:-}" TEST_REF="${TEST_REF:-mise}" bash -s <<'EOS'
+sudo -iu tester env TEST_CLASS="${TEST_CLASS:-}" TEST_REF="${TEST_REF:-mise}" TEST_CONFLICT="${TEST_CONFLICT:-}" bash -s <<'EOS'
 set -uo pipefail
 M=~/.local/bin/mise
 export DOTFILES_REPO=/src/origin.git DOTFILES_REPO_SSH=/src/origin.git DOTFILES_REF=$TEST_REF
 flag=""; [ "$TEST_CLASS" = Work ] && flag=--work
+
+if [ -n "$TEST_CONFLICT" ]; then
+  # A machine that already has dotfiles (as one coming from yadm does): the
+  # first run must stop without touching them, --take-remote must finish.
+  echo "== setup run 0 (existing files)"
+  echo "# local" > ~/.zshrc; echo "# only here" > ~/.only-here
+  sh /src/scripts/setup.sh install $flag > /tmp/run0.log 2>&1; rc0=$?
+  if [ $rc0 -ne 0 ] && [ "$(cat ~/.zshrc)" = "# local" ] && grep -q 'restore is paused' /tmp/run0.log; then
+    echo "ok    paused, existing file untouched"
+  else
+    echo "FAIL  expected a paused restore (exit=$rc0)"; tail -20 /tmp/run0.log
+  fi
+  flag="$flag --take-remote"
+fi
 
 echo "== setup run 1"
 start=$(date +%s)
