@@ -150,9 +150,7 @@ if [[ $OSTYPE == darwin* ]]; then
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/lib/server
   fi
 
-  export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH
-  export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:/usr/texbin:$PATH
-  export PATH=$PATH:$HOMEBREW_PREFIX/opt/go/libexec/bin
+  export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
   export PATH=$PATH:$HOMEBREW_PREFIX/opt/llvm/bin
 
   FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
