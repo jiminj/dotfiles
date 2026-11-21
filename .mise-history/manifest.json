@@ -199,6 +199,24 @@
       "variants": []
     },
     {
+      "path": "home/.gnupg/.exported-keyring/ownertrust.txt",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.gnupg/.exported-keyring/private-key.asc",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.gnupg/.exported-keyring/public-key.asc",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
       "path": "home/.netrc",
       "autosave": true,
       "encrypt": true,
@@ -354,6 +372,11 @@
     "home/.gitconfig": 436,
     "home/.gitconfig.submodules": 436,
     "home/.gitignore_global": 436,
+    "home/.gnupg": 448,
+    "home/.gnupg/.exported-keyring": 448,
+    "home/.gnupg/.exported-keyring/ownertrust.txt": 384,
+    "home/.gnupg/.exported-keyring/private-key.asc": 384,
+    "home/.gnupg/.exported-keyring/public-key.asc": 384,
     "home/.netrc": 384,
     "home/.p10k.zsh": 436,
     "home/.ssh": 448,

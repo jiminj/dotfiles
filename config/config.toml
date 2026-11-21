@@ -288,11 +288,11 @@ run = "true"
 "~/.config/bat/themes/Catppuccin Mocha.tmTheme" = { mode = "track" }
 "~/.config/clangd/config.yaml" = { mode = "track" }
 "~/.config/dotfiles/work.sh" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
+"~/.config/fnox/config.toml" = { mode = "track" }
+"~/.config/ghostty/config" = { mode = "track" }
 # Copilot login: one key for work machines, another for the rest. Deleting the
 # file on one machine syncs as a removal to the others in the same group.
 "~/.config/github-copilot/hosts.json" = { mode = "track", encrypt = true, variants = [{ profile = "work" }, { default = true }] }
-"~/.config/fnox/config.toml" = { mode = "track" }
-"~/.config/ghostty/config" = { mode = "track" }
 "~/.config/herdr/config.toml" = { mode = "track" }
 "~/.config/herdr/plugins.json" = { mode = "track" }
 "~/.config/hunk/config.toml" = { mode = "track" }
@@ -304,6 +304,9 @@ run = "true"
 "~/.gitconfig-local" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
 "~/.gitconfig.submodules" = { mode = "track" }
 "~/.gitignore_global" = { mode = "track" }
+"~/.gnupg/.exported-keyring/ownertrust.txt" = { mode = "track", encrypt = true }
+"~/.gnupg/.exported-keyring/private-key.asc" = { mode = "track", encrypt = true }
+"~/.gnupg/.exported-keyring/public-key.asc" = { mode = "track", encrypt = true }
 "~/.netrc" = { mode = "track", encrypt = true }
 "~/.p10k.zsh" = { mode = "track" }
 "~/.ssh/id_ed25519.pub" = { mode = "track", encrypt = true }
