@@ -301,7 +301,7 @@ run = "true"
 "~/.config/yadm/export_gpg.sh" = { mode = "track" }
 "~/.config/yadm/import_gpg.sh" = { mode = "track" }
 "~/.gitconfig" = { mode = "track" }
-"~/.gitconfig-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }, { os = "linux" }, { os = "macos", profile = "work" }, { os = "macos" }] }
+"~/.gitconfig-local" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
 "~/.gitconfig.submodules" = { mode = "track" }
 "~/.gitignore_global" = { mode = "track" }
 "~/.gnupg/.exported-keyring/ownertrust.txt" = { mode = "track", encrypt = true }
@@ -312,14 +312,13 @@ run = "true"
 "~/.ssh/id_ed25519.pub" = { mode = "track", encrypt = true }
 "~/.ssh/id_rsa-cert.pub" = { mode = "track", encrypt = true }
 "~/.ssh/id_rsa.pub" = { mode = "track", encrypt = true }
-"~/.tmux-local.conf" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }, { os = "linux" }, { os = "macos" }] }
 "~/.tmux.conf" = { mode = "track" }
 "~/.vim/autoload/update-plug.sh" = { mode = "track" }
 "~/.vim/ctags.exe" = { mode = "track" }
 "~/.vim/vimrc" = { mode = "track", variants = [{ os = "linux", profile = "work" }, { default = true }] }
 "~/.wezterm.lua" = { mode = "track" }
 "~/.zshrc" = { mode = "track" }
-"~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }, { os = "linux" }, { os = "macos", profile = "work" }, { os = "macos" }] }
+"~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }
 "~/Brewfile" = { mode = "track" }
 "~/colortest.zsh" = { mode = "track" }
 "~/local/bin/get-ip.sh" = { mode = "track" }

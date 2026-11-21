@@ -87,9 +87,7 @@ for f in "Pragmasevka Nerd Font" "JetBrainsMono Nerd Font"; do
 done
 check "python3 venv"        "python3 -m venv /tmp/venv-check"
 check "vim-plug"            "test -f ~/.vim/autoload/plug.vim"
-# The work ~/.tmux-local.conf hard-codes the real user's plugin path, which the
-# test user does not have, so this is only checked on the default profile.
-[ "${TEST_CLASS:-}" = Work ] || check "tmux plugins" "test -d ~/.tmux/plugins/tmux-sensible && test -d ~/.tmux/plugins/tmux-resurrect"
+check "tmux plugins"        "test -d ~/.tmux/plugins/tmux-sensible && test -d ~/.tmux/plugins/tmux-resurrect"
 check "login shell is zsh"  "getent passwd tester | grep -q 'zsh$'"
 check "git from git-core PPA" "apt-cache policy git | grep -A1 '\*\*\*' | grep -q ppa.launchpadcontent.net"
 check "dotfiles: .zshrc restored"     "test -s ~/.zshrc && test ! -L ~/.zshrc"
@@ -103,9 +101,11 @@ if [ "${TEST_CLASS:-}" = Work ]; then
   check "work profile saved"          "grep -rqs work ~/.config/mise/miserc.local.toml"
   check "work variant: work.sh"       "test -s ~/.config/dotfiles/work.sh"
   check "work variant: .zshrc-local"  "test \"\$(wc -l < ~/.zshrc-local)\" -gt 50"
+  check "work variant: git email"     "git config --global --includes user.email | grep -qv jiminis"
 else
   check "personal variant: no work.sh"       "test ! -e ~/.config/dotfiles/work.sh"
-  check "personal variant: .zshrc-local"     "test -e ~/.zshrc-local && test \"\$(wc -l < ~/.zshrc-local)\" -lt 5"
+  check "personal variant: no local files"   "test ! -e ~/.zshrc-local && test ! -e ~/.gitconfig-local"
+  check "personal variant: git email"        "git config --global --includes user.email | grep -q jiminis"
 fi
 echo "== missing tools: $($M ls --missing 2>/dev/null | wc -l)"
 echo "== result: rc1=$rc1 rc2=$rc2 fail=$fail"
