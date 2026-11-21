@@ -28,7 +28,7 @@ tlrc = "latest"
 # Previously from apt, custom apt repos, or Homebrew
 fzf = "latest"
 jq = "latest"
-btop = "latest"
+btop = { version = "latest", os = ["linux"] }   # no macOS release asset; Homebrew there
 yazi = "latest"
 glow = "latest"
 uv = "latest"
@@ -110,6 +110,7 @@ fingerprint = "B499 3B57 3231 48E3 7977 E5D8 7325 4CAD 1797 8FAF"
 "brew:wget" = { os = "macos" }
 "brew:mosh" = { os = "macos" }
 "brew:htop" = { os = "macos" }
+"brew:btop" = { os = "macos" }
 "brew:llvm" = { os = "macos" }
 "brew:protobuf" = { os = "macos" }
 "brew-cask:ghostty" = { os = "macos" }
