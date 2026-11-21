@@ -25,6 +25,12 @@ exec zsh
 the dotfiles, then runs `mise bootstrap` (packages, tools, fonts, plugins). It
 is safe to re-run.
 
+On a machine that already has some of these files (one still on yadm, say),
+the first run stops and lists the files that differ without changing anything.
+Run it again with `install --take-remote` to overwrite them with the
+repository's version. Files with no saved variant for that machine (the
+`*-local` files on a new OS) are left alone; `mise dot save` then records them.
+
 ## Daily use
 
 | Command | What it does |
