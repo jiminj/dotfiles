@@ -116,6 +116,23 @@
       "variants": []
     },
     {
+      "path": "home/.config/github-copilot/hosts.json",
+      "autosave": true,
+      "encrypt": true,
+      "variants": [
+        {
+          "os": [],
+          "profile": "work",
+          "default": false
+        },
+        {
+          "os": [],
+          "profile": null,
+          "default": true
+        }
+      ]
+    },
+    {
       "path": "home/.config/herdr/config.toml",
       "autosave": true,
       "encrypt": false,
@@ -366,6 +383,7 @@
     "home/.config/fnox/config.toml": 436,
     "home/.config/ghostty": 509,
     "home/.config/ghostty/config": 436,
+    "home/.config/github-copilot": 509,
     "home/.config/herdr": 509,
     "home/.config/herdr/config.toml": 436,
     "home/.config/herdr/plugins.json": 436,
@@ -407,6 +425,7 @@
     "home/termbench.sh": 509,
     "home@linux+work/.vim/vimrc": 436,
     "home@linux+work/.zshrc-local": 384,
+    "home@work/.config/github-copilot/hosts.json": 384,
     "home@work/.gitconfig-local": 384
   }
 }
