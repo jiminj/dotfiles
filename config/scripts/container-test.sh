@@ -1,63 +1,53 @@
 #!/bin/bash
-# End-to-end bootstrap test in a clean ubuntu:24.04 container, run as root.
-# It creates a sudo-capable user, copies the config in, runs the yadm bootstrap
-# script twice (a stub stands in for yadm itself), then asserts the result.
+# End-to-end new-machine test in a clean ubuntu:24.04 container, run as root.
+# It creates a sudo-capable user, gives it the age key (standing in for the
+# Bitwarden fetch), runs `setup.sh install` twice against a copy of the dotfile
+# history, then asserts the result.
 #
+#   git clone --bare --branch mise https://github.com/jiminj/dotfiles.git /tmp/dotfiles.git
 #   docker run --rm \
-#     -v ~/.config/mise:/src/mise:ro \
-#     -v ~/.config/yadm/bootstrap:/src/yadm-bootstrap:ro \
-#     -v ~/.tmux.conf:/src/tmux.conf:ro \
-#     ubuntu:24.04 bash /src/mise/scripts/container-test.sh
+#     -v /tmp/dotfiles.git:/src/origin.git:ro \
+#     -v ~/.config/fnox/age.txt:/src/age.txt:ro \
+#     -v ~/.config/mise/scripts:/src/scripts:ro \
+#     ubuntu:24.04 bash /src/scripts/container-test.sh
 #
-# Optional env: APT_MIRROR=kr.archive.ubuntu.com  (when the default mirror is slow)
-#               TEST_CLASS=Work                   (exercise the work profile)
+# The container sees the real age key and so the real SSH keys; it is removed
+# afterwards (--rm). Optional env:
+#   APT_MIRROR=kr.archive.ubuntu.com  (when the default mirror is slow)
+#   TEST_CLASS=Work                   (exercise the work profile)
+#   TEST_REF=mise                     (branch of /src/origin.git to restore)
 set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 if [ -n "${APT_MIRROR:-}" ]; then
   sed -i "s#archive.ubuntu.com#$APT_MIRROR#" /etc/apt/sources.list.d/ubuntu.sources
 fi
 apt-get update -qq >/dev/null
-# git because yadm needs it on a real machine; curl is left out on purpose.
-apt-get install -y -qq sudo git ca-certificates >/dev/null 2>&1
+# git and curl are left out on purpose: setup.sh must install them.
+apt-get install -y -qq sudo ca-certificates >/dev/null 2>&1
 useradd -m -s /bin/bash tester
 echo 'tester ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/tester
 
 H=/home/tester
-mkdir -p $H/.config/yadm $H/.tmux/plugins
-cp -r /src/mise $H/.config/mise
-rm -f $H/.config/mise/*.local.toml   # per-machine state, not part of the repo
-cp /src/yadm-bootstrap $H/.config/yadm/bootstrap
-cp /src/tmux.conf $H/.tmux.conf
-chown -R tester:tester $H
+install -d -o tester -g tester -m 700 $H/.config $H/.config/fnox
+install -o tester -g tester -m 600 /src/age.txt $H/.config/fnox/age.txt
+git config --system --add safe.directory '*' 2>/dev/null || printf '[safe]\n\tdirectory = *\n' > /etc/gitconfig
 
-# Stand-in for yadm: `submodule` clones tpm (the public submodule), and the
-# class comes from TEST_CLASS.
-cat > /usr/local/bin/yadm <<EOF
-#!/bin/sh
-case "\$1" in
-  config) [ -n "${TEST_CLASS:-}" ] && echo "${TEST_CLASS:-}"; exit 0 ;;
-  submodule)
-    [ -d "\$HOME/.tmux/plugins/tpm/.git" ] || \
-      git clone -q https://github.com/tmux-plugins/tpm "\$HOME/.tmux/plugins/tpm" ;;
-  *) exit 0 ;;
-esac
-EOF
-chmod +x /usr/local/bin/yadm
-
-sudo -iu tester env TEST_CLASS="${TEST_CLASS:-}" bash -s <<'EOS'
+sudo -iu tester env TEST_CLASS="${TEST_CLASS:-}" TEST_REF="${TEST_REF:-mise}" bash -s <<'EOS'
 set -uo pipefail
 M=~/.local/bin/mise
+export DOTFILES_REPO=/src/origin.git DOTFILES_REPO_SSH=/src/origin.git DOTFILES_REF=$TEST_REF
+flag=""; [ "$TEST_CLASS" = Work ] && flag=--work
 
-echo "== bootstrap run 1"
+echo "== setup run 1"
 start=$(date +%s)
-bash ~/.config/yadm/bootstrap > /tmp/run1.log 2>&1; rc1=$?
+sh /src/scripts/setup.sh install $flag > /tmp/run1.log 2>&1; rc1=$?
 echo "exit=$rc1 seconds=$(( $(date +%s) - start ))"
 [ $rc1 -ne 0 ] && tail -40 /tmp/run1.log
 grep -E '^warning:' /tmp/run1.log | cut -c1-160
 
-echo "== bootstrap run 2 (idempotency)"
+echo "== setup run 2 (idempotency)"
 start=$(date +%s)
-bash ~/.config/yadm/bootstrap > /tmp/run2.log 2>&1; rc2=$?
+sh ~/.config/mise/scripts/setup.sh install $flag > /tmp/run2.log 2>&1; rc2=$?
 echo "exit=$rc2 seconds=$(( $(date +%s) - start ))"
 [ $rc2 -ne 0 ] && tail -40 /tmp/run2.log
 grep -E 'installed [0-9]+ tools|package\(s\)|already installed$' /tmp/run2.log | cut -c1-120
@@ -85,8 +75,20 @@ check "vim-plug"            "test -f ~/.vim/autoload/plug.vim"
 check "tmux plugins"        "test -d ~/.tmux/plugins/tmux-sensible && test -d ~/.tmux/plugins/tmux-resurrect"
 check "login shell is zsh"  "getent passwd tester | grep -q 'zsh$'"
 check "git from git-core PPA" "apt-cache policy git | grep -A1 '\*\*\*' | grep -q ppa.launchpadcontent.net"
+check "dotfiles: .zshrc restored"     "test -s ~/.zshrc && test ! -L ~/.zshrc"
+check "dotfiles: nothing pending"     "$M dot status 2>&1 | grep -q 'entries up to date' && ! $M dot status 2>&1 | grep -q 'unsaved changes'"
+check "secrets: .netrc decrypted 600" "test \"\$(stat -c %a ~/.netrc)\" = 600 && grep -q machine ~/.netrc"
+check "secrets: SSH key from fnox"    "test \"\$(stat -c %a ~/.ssh/id_ed25519)\" = 600 && ssh-keygen -y -f ~/.ssh/id_ed25519"
+check "secrets: SSH key matches .pub" "test \"\$(ssh-keygen -y -f ~/.ssh/id_ed25519 | cut -d' ' -f2)\" = \"\$(cut -d' ' -f2 ~/.ssh/id_ed25519.pub)\""
+check "secrets: API keys load"        "test -n \"\$($M exec -- fnox get OPENAI_API_KEY)\""
+check "nvim config cloned"            "test -f ~/.config/nvim/init.lua"
 if [ "${TEST_CLASS:-}" = Work ]; then
-  check "work profile saved" "grep -rqs work ~/.config/mise/miserc.local.toml"
+  check "work profile saved"          "grep -rqs work ~/.config/mise/miserc.local.toml"
+  check "work variant: work.sh"       "test -s ~/.config/dotfiles/work.sh"
+  check "work variant: .zshrc-local"  "test \"\$(wc -l < ~/.zshrc-local)\" -gt 50"
+else
+  check "personal variant: no work.sh"       "test ! -e ~/.config/dotfiles/work.sh"
+  check "personal variant: .zshrc-local"     "test -e ~/.zshrc-local && test \"\$(wc -l < ~/.zshrc-local)\" -lt 5"
 fi
 echo "== missing tools: $($M ls --missing 2>/dev/null | wc -l)"
 echo "== result: rc1=$rc1 rc2=$rc2 fail=$fail"

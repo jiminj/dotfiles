@@ -83,6 +83,12 @@ cmd_install() {
   # The key location is also set in the dotfiles' mise config, but that config
   # is what is being fetched here, so say it once by hand.
   export MISE_AGE_KEY_FILE="$AGE_KEY"
+  if grep -qs '^\[history.origin\]' "$HOME/.config/mise/config.local.toml"; then
+    say "Dotfiles already restored; re-running the bootstrap"
+    "$MISE" bootstrap --yes
+    say "Done."
+    return 0
+  fi
   if [ -n "$work" ]; then
     say "Restore dotfiles and bootstrap (work profile)"
     "$MISE" -E work bootstrap --adopt "$REPO?ref=$BRANCH" --yes --save-env
