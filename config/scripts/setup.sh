@@ -28,7 +28,7 @@ die() { printf 'setup: %s\n' "$*" >&2; exit 1; }
 # (Resolved before the wrappers are defined, so these are real paths or empty.)
 BW_BIN=$(command -v bw || true)
 JQ_BIN=$(command -v jq || true)
-bw() { if [ -n "$BW_BIN" ]; then "$BW_BIN" "$@"; else "$MISE" exec bitwarden -- bw "$@"; fi; }
+bw() { if [ -n "$BW_BIN" ]; then "$BW_BIN" "$@"; else "$MISE" exec bitwarden@2026.10.1 -- bw "$@"; fi; }
 jq() { if [ -n "$JQ_BIN" ]; then "$JQ_BIN" "$@"; else "$MISE" exec jq -- jq "$@"; fi; }
 
 # Log in if needed and export a session token for this process only.

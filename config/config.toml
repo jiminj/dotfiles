@@ -43,7 +43,9 @@ go = "latest"
 # age provides age-keygen; bitwarden (bw) holds the age key for new machines.
 fnox = "latest"
 age = "latest"
-bitwarden = "latest"
+# Pinned: "latest" can resolve to a bitwarden/clients release that has no CLI
+# download yet (2026.11.0 did), which fails the whole bootstrap.
+bitwarden = "2026.10.1"
 
 # AI coding agents: prebuilt binaries, no Node.js needed
 claude = "latest"
