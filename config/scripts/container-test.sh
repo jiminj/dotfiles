@@ -103,9 +103,11 @@ if [ "${TEST_CLASS:-}" = Work ]; then
   check "work profile saved"          "grep -rqs work ~/.config/mise/miserc.local.toml"
   check "work variant: work.sh"       "test -s ~/.config/dotfiles/work.sh"
   check "work variant: .zshrc-local"  "test \"\$(wc -l < ~/.zshrc-local)\" -gt 50"
+  check "work variant: git email"     "git config --global --includes user.email | grep -qv jiminis"
 else
   check "personal variant: no work.sh"       "test ! -e ~/.config/dotfiles/work.sh"
-  check "personal variant: .zshrc-local"     "test -e ~/.zshrc-local && test \"\$(wc -l < ~/.zshrc-local)\" -lt 5"
+  check "personal variant: no local files"   "test ! -e ~/.zshrc-local && test ! -e ~/.gitconfig-local"
+  check "personal variant: git email"        "git config --global --includes user.email | grep -q jiminis"
 fi
 echo "== missing tools: $($M ls --missing 2>/dev/null | wc -l)"
 echo "== result: rc1=$rc1 rc2=$rc2 fail=$fail"
