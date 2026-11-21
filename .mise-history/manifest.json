@@ -256,6 +256,20 @@
       "variants": []
     },
     {
+      "path": "home/.tmux-local.conf",
+      "autosave": true,
+      "encrypt": true,
+      "variants": [
+        {
+          "os": [
+            "linux"
+          ],
+          "profile": "work",
+          "default": false
+        }
+      ]
+    },
+    {
       "path": "home/.tmux.conf",
       "autosave": true,
       "encrypt": false,
@@ -407,6 +421,7 @@
     "home/local/bin/get-ip.sh": 509,
     "home/termbench.sh": 509,
     "home@linux+work/.gitconfig-local": 384,
+    "home@linux+work/.tmux-local.conf": 384,
     "home@linux+work/.zshrc-local": 384,
     "home@work/.config/dotfiles/work.sh": 384
   }

@@ -278,6 +278,7 @@ run = "true"
 "~/.ssh/id_rsa" = { mode = "track", encrypt = true }
 "~/.ssh/id_rsa-cert.pub" = { mode = "track", encrypt = true }
 "~/.ssh/id_rsa.pub" = { mode = "track", encrypt = true }
+"~/.tmux-local.conf" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }
 "~/.tmux.conf" = { mode = "track" }
 "~/.vim/autoload/update-plug.sh" = { mode = "track" }
 "~/.vim/ctags.exe" = { mode = "track" }
