@@ -265,6 +265,7 @@ run = "true"
 "~/.config/yadm/export_gpg.sh" = { mode = "track" }
 "~/.config/yadm/import_gpg.sh" = { mode = "track" }
 "~/.gitconfig" = { mode = "track" }
+"~/.gitconfig-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }
 "~/.gitconfig.submodules" = { mode = "track" }
 "~/.gitignore_global" = { mode = "track" }
 "~/.gnupg/.exported-keyring/ownertrust.txt" = { mode = "track", encrypt = true }

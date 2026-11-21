@@ -170,6 +170,20 @@
       "variants": []
     },
     {
+      "path": "home/.gitconfig-local",
+      "autosave": true,
+      "encrypt": true,
+      "variants": [
+        {
+          "os": [
+            "linux"
+          ],
+          "profile": "work",
+          "default": false
+        }
+      ]
+    },
+    {
       "path": "home/.gitconfig.submodules",
       "autosave": true,
       "encrypt": false,
@@ -392,6 +406,7 @@
     "home/local": 509,
     "home/local/bin/get-ip.sh": 509,
     "home/termbench.sh": 509,
+    "home@linux+work/.gitconfig-local": 384,
     "home@linux+work/.zshrc-local": 384,
     "home@work/.config/dotfiles/work.sh": 384
   }
