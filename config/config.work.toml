@@ -1,0 +1,32 @@
+# Work-only additions. Loaded when MISE_ENV=work, e.g.
+#   mise -E work bootstrap --save-env
+# The steps themselves live in ~/.config/dotfiles/work.sh, which is tracked
+# encrypted because it names internal hosts. This file must stay free of them:
+# mise cannot encrypt files in its own config directory.
+
+[bootstrap.hooks]
+# Failures warn and the bootstrap carries on. Re-run with: mise run work:<step>
+post-tools = '''
+mise=$(command -v mise || echo "$HOME/.local/bin/mise")
+if [ -f "$HOME/.config/dotfiles/work.sh" ]; then
+  "$mise" run work:all
+else
+  echo "warning: ~/.config/dotfiles/work.sh is missing; work steps skipped" >&2
+fi
+'''
+
+[tasks."work:all"]
+description = "Run every work step; a failing step warns and the rest carry on"
+run = "sh ~/.config/dotfiles/work.sh all"
+
+[tasks."work:alfred"]
+description = "Install the alfred CLI (needs VPN and git auth)"
+run = "sh ~/.config/dotfiles/work.sh alfred"
+
+[tasks."work:globalprotect"]
+description = "Download the GlobalProtect installer; running it is a manual step"
+run = "sh ~/.config/dotfiles/work.sh globalprotect"
+
+[tasks."work:ddb"]
+description = "Install DriveDebugger (ddb); needs credentials in ~/.netrc"
+run = "sh ~/.config/dotfiles/work.sh ddb"

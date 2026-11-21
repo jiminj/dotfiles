@@ -2,6 +2,12 @@
   "format": 1,
   "enrollment": [
     {
+      "path": "config",
+      "autosave": true,
+      "encrypt": false,
+      "variants": []
+    },
+    {
       "path": "home/.app-pref/iterm2/com.googlecode.iterm2.plist",
       "autosave": true,
       "encrypt": false,
@@ -233,6 +239,11 @@
   "exclude": [],
   "recipients": [],
   "permissions": {
+    "config/config.toml": 436,
+    "config/config.work.toml": 436,
+    "config/scripts": 509,
+    "config/scripts/container-test.sh": 436,
+    "config/scripts/install-font.sh": 436,
     "home/.app-pref": 509,
     "home/.app-pref/iterm2": 509,
     "home/.app-pref/iterm2/com.googlecode.iterm2.plist": 436,
