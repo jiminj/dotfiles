@@ -87,9 +87,7 @@ for f in "Pragmasevka Nerd Font" "JetBrainsMono Nerd Font"; do
 done
 check "python3 venv"        "python3 -m venv /tmp/venv-check"
 check "vim-plug"            "test -f ~/.vim/autoload/plug.vim"
-# The work ~/.tmux-local.conf hard-codes the real user's plugin path, which the
-# test user does not have, so this is only checked on the default profile.
-[ "${TEST_CLASS:-}" = Work ] || check "tmux plugins" "test -d ~/.tmux/plugins/tmux-sensible && test -d ~/.tmux/plugins/tmux-resurrect"
+check "tmux plugins"        "test -d ~/.tmux/plugins/tmux-sensible && test -d ~/.tmux/plugins/tmux-resurrect"
 check "login shell is zsh"  "getent passwd tester | grep -q 'zsh$'"
 check "git from git-core PPA" "apt-cache policy git | grep -A1 '\*\*\*' | grep -q ppa.launchpadcontent.net"
 check "dotfiles: .zshrc restored"     "test -s ~/.zshrc && test ! -L ~/.zshrc"
