@@ -66,7 +66,7 @@ sync is manual. Encrypted files are pushed as ciphertext.
 ## Secrets
 
 Chain: Bitwarden login → age key → fnox (API keys, SSH private keys) and
-mise-encrypted dotfiles (`.netrc`, GPG export, work configs).
+mise-encrypted dotfiles (`.netrc`, SSH public keys, work configs).
 
 ```sh
 fnox set NAME --global            # add or change an API key (value on stdin)
