@@ -92,6 +92,18 @@
       "variants": []
     },
     {
+      "path": "home/.config/dotfiles/work.sh",
+      "autosave": true,
+      "encrypt": true,
+      "variants": [
+        {
+          "os": [],
+          "profile": "work",
+          "default": false
+        }
+      ]
+    },
+    {
       "path": "home/.config/fnox/config.toml",
       "autosave": true,
       "encrypt": false,
@@ -322,6 +334,7 @@
     "home/.config/bat/themes/Catppuccin Mocha.tmTheme": 436,
     "home/.config/clangd": 509,
     "home/.config/clangd/config.yaml": 436,
+    "home/.config/dotfiles": 509,
     "home/.config/fnox": 448,
     "home/.config/fnox/config.toml": 436,
     "home/.config/ghostty": 509,
@@ -364,6 +377,7 @@
     "home/colortest.zsh": 509,
     "home/local": 509,
     "home/local/bin/get-ip.sh": 509,
-    "home/termbench.sh": 509
+    "home/termbench.sh": 509,
+    "home@work/.config/dotfiles/work.sh": 384
   }
 }

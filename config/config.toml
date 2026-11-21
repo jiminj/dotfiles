@@ -252,6 +252,7 @@ run = "true"
 "~/.config/bat/themes/Catppuccin Macchiato.tmTheme" = { mode = "track" }
 "~/.config/bat/themes/Catppuccin Mocha.tmTheme" = { mode = "track" }
 "~/.config/clangd/config.yaml" = { mode = "track" }
+"~/.config/dotfiles/work.sh" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
 "~/.config/fnox/config.toml" = { mode = "track" }
 "~/.config/ghostty/config" = { mode = "track" }
 "~/.config/herdr/config.toml" = { mode = "track" }
