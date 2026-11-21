@@ -170,9 +170,63 @@
       "variants": []
     },
     {
+      "path": "home/.gnupg/.exported-keyring/ownertrust.txt",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.gnupg/.exported-keyring/private-key.asc",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.gnupg/.exported-keyring/public-key.asc",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.netrc",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
       "path": "home/.p10k.zsh",
       "autosave": true,
       "encrypt": false,
+      "variants": []
+    },
+    {
+      "path": "home/.ssh/id_ed25519",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.ssh/id_ed25519.pub",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.ssh/id_rsa",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.ssh/id_rsa-cert.pub",
+      "autosave": true,
+      "encrypt": true,
+      "variants": []
+    },
+    {
+      "path": "home/.ssh/id_rsa.pub",
+      "autosave": true,
+      "encrypt": true,
       "variants": []
     },
     {
@@ -237,7 +291,9 @@
     }
   ],
   "exclude": [],
-  "recipients": [],
+  "recipients": [
+    "age19c67fjy5u6gylrtnk0mehryntmmaua3pkwr9m7les4pg0jeeufmqlxjh05"
+  ],
   "permissions": {
     "config/config.toml": 436,
     "config/config.work.toml": 436,
@@ -285,7 +341,17 @@
     "home/.gitconfig": 436,
     "home/.gitconfig.submodules": 436,
     "home/.gitignore_global": 436,
+    "home/.gnupg": 448,
+    "home/.gnupg/.exported-keyring": 448,
+    "home/.gnupg/.exported-keyring/ownertrust.txt": 384,
+    "home/.gnupg/.exported-keyring/private-key.asc": 384,
+    "home/.gnupg/.exported-keyring/public-key.asc": 384,
+    "home/.netrc": 384,
     "home/.p10k.zsh": 436,
+    "home/.ssh": 448,
+    "home/.ssh/id_ed25519.pub": 384,
+    "home/.ssh/id_rsa-cert.pub": 384,
+    "home/.ssh/id_rsa.pub": 384,
     "home/.tmux.conf": 436,
     "home/.vim": 509,
     "home/.vim/autoload": 509,
