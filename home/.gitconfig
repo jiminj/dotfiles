@@ -1,3 +1,8 @@
+[user]
+  name = Jimin Jeon
+  email = jimin@jiminis.me
+  ; a work machine overrides the email in ~/.gitconfig-local (included below)
+
 [color]
   ui = true
 

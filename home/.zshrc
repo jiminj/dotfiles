@@ -138,6 +138,27 @@ alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + e
 alias lS='eza -1'   # one column, just names
 alias lt='eza --tree --level=2'   # tree
 
+if [[ $OSTYPE == darwin* ]]; then
+  # zsh-auto-notify
+  zinit light MichaelAquilina/zsh-auto-notify
+  AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux' 'ssh' 'lvim' 'xpra')
+
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  if /usr/libexec/java_home >/dev/null 2>&1; then
+    export JAVA_HOME="$(/usr/libexec/java_home)"
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/lib/server
+  fi
+
+  export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH
+  export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:/usr/texbin:$PATH
+  export PATH=$PATH:$HOMEBREW_PREFIX/opt/go/libexec/bin
+  export PATH=$PATH:$HOMEBREW_PREFIX/opt/llvm/bin
+
+  FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
+fi
+
+# Work-only settings (work profile; encrypted in the dotfiles repository)
 [ -f ~/.zshrc-local ] && source ~/.zshrc-local
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
