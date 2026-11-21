@@ -187,6 +187,10 @@ run = "sh ~/.config/mise/scripts/setup.sh status"
 # The SSH private keys live in fnox ([files] in ~/.config/fnox/config.toml).
 # A task rather than a `mode = "fnox"` dotfile: bootstrap deploys dotfiles
 # before it installs tools, so fnox is not there yet on a new machine.
+[tasks."yadm:retire"]
+description = "One-time: archive yadm's repository and leftovers on a machine now tracked by mise"
+run = "sh ~/.config/mise/scripts/retire-yadm.sh"
+
 [tasks."ssh:keys"]
 description = "Write the SSH private keys from fnox into ~/.ssh"
 run = """
@@ -217,7 +221,7 @@ tpm="$HOME/.tmux/plugins/tpm/bin/install_plugins"
 if [ -x "$tpm" ]; then
   "$tpm" || echo "warning: tpm could not install every plugin; inside tmux press prefix + I" >&2
 else
-  echo "tmux:plugins skipped: tpm is missing (run: yadm submodule update --init --recursive)"
+  echo "tmux:plugins skipped: tpm is missing (run: mise bootstrap)"
 fi
 '''
 
@@ -318,6 +322,7 @@ run = "true"
 "~/.vim/autoload/update-plug.sh" = { mode = "track" }
 "~/.vim/ctags.exe" = { mode = "track" }
 "~/.vim/vimrc" = { mode = "track", variants = [{ os = "linux", profile = "work" }, { default = true }] }
+"~/.vim/gvimrc" = { mode = "track", variants = [{ os = "macos" }] }
 "~/.wezterm.lua" = { mode = "track" }
 "~/.zshrc" = { mode = "track" }
 "~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }

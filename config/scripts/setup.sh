@@ -9,13 +9,13 @@
 #   setup.sh status            show where each link of the chain stands
 #
 # New machine (BW_SERVER is only for a self-hosted Bitwarden):
-#   curl -fsSL https://raw.githubusercontent.com/jiminj/dotfiles/mise/config/scripts/setup.sh \
+#   curl -fsSL https://raw.githubusercontent.com/jiminj/dotfiles/master/config/scripts/setup.sh \
 #     | BW_SERVER=https://vault.example.com sh -s -- install [--work]
 set -eu
 
 REPO="${DOTFILES_REPO:-https://github.com/jiminj/dotfiles.git}"
 REPO_SSH="${DOTFILES_REPO_SSH:-git@github.com:jiminj/dotfiles.git}"
-BRANCH="${DOTFILES_REF:-mise}"
+BRANCH="${DOTFILES_REF:-master}"
 ITEM="${DOTFILES_AGE_ITEM:-dotfiles-age-key}"   # Bitwarden secure note name
 AGE_KEY="$HOME/.config/fnox/age.txt"
 MISE="$HOME/.local/bin/mise"
