@@ -451,7 +451,6 @@
     "home/.config/bat/themes/Catppuccin Mocha.tmTheme": 436,
     "home/.config/clangd": 509,
     "home/.config/clangd/config.yaml": 436,
-    "home/.config/dotfiles": 509,
     "home/.config/fnox": 448,
     "home/.config/fnox/config.toml": 436,
     "home/.config/ghostty": 509,
@@ -504,7 +503,6 @@
     "home@linux/.gitconfig-local": 384,
     "home@linux/.tmux-local.conf": 384,
     "home@linux/.zshrc-local": 384,
-    "home@work/.config/dotfiles/work.sh": 384,
     "home@work/.config/github-copilot/hosts.json": 384
   }
 }
