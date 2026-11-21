@@ -187,10 +187,6 @@ run = "sh ~/.config/mise/scripts/setup.sh status"
 # The SSH private keys live in fnox ([files] in ~/.config/fnox/config.toml).
 # A task rather than a `mode = "fnox"` dotfile: bootstrap deploys dotfiles
 # before it installs tools, so fnox is not there yet on a new machine.
-[tasks."yadm:retire"]
-description = "One-time: archive yadm's repository and leftovers on a machine now tracked by mise"
-run = "sh ~/.config/mise/scripts/retire-yadm.sh"
-
 [tasks."ssh:keys"]
 description = "Write the SSH private keys from fnox into ~/.ssh"
 run = """
