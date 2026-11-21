@@ -451,7 +451,6 @@
     "home/.config/bat/themes/Catppuccin Mocha.tmTheme": 436,
     "home/.config/clangd": 509,
     "home/.config/clangd/config.yaml": 436,
-    "home/.config/dotfiles": 509,
     "home/.config/fnox": 448,
     "home/.config/fnox/config.toml": 436,
     "home/.config/ghostty": 509,
@@ -477,7 +476,7 @@
     "home/.gnupg/.exported-keyring/ownertrust.txt": 384,
     "home/.gnupg/.exported-keyring/private-key.asc": 384,
     "home/.gnupg/.exported-keyring/public-key.asc": 384,
-    "home/.netrc": 436,
+    "home/.netrc": 384,
     "home/.p10k.zsh": 436,
     "home/.ssh": 448,
     "home/.ssh/id_ed25519.pub": 384,
@@ -497,15 +496,12 @@
     "home/local/bin/get-ip.sh": 509,
     "home/termbench.sh": 509,
     "home@default/.config/github-copilot/hosts.json": 384,
-    "home@default/.vim/vimrc": 436,
     "home@linux+work/.gitconfig-local": 384,
     "home@linux+work/.tmux-local.conf": 384,
     "home@linux+work/.vim/vimrc": 436,
     "home@linux+work/.zshrc-local": 384,
     "home@linux/.gitconfig-local": 384,
     "home@linux/.tmux-local.conf": 384,
-    "home@linux/.zshrc-local": 384,
-    "home@work/.config/dotfiles/work.sh": 384,
-    "home@work/.config/github-copilot/hosts.json": 384
+    "home@linux/.zshrc-local": 384
   }
 }
