@@ -28,7 +28,7 @@ die() { printf 'setup: %s\n' "$*" >&2; exit 1; }
 # (Resolved before the wrappers are defined, so these are real paths or empty.)
 BW_BIN=$(command -v bw || true)
 JQ_BIN=$(command -v jq || true)
-bw() { if [ -n "$BW_BIN" ]; then "$BW_BIN" "$@"; else "$MISE" exec bitwarden@2026.10.1 -- bw "$@"; fi; }
+bw() { if [ -n "$BW_BIN" ]; then "$BW_BIN" "$@"; else "$MISE" exec "bitwarden@${BW_VERSION:-2026.10.1}" -- bw "$@"; fi; }
 jq() { if [ -n "$JQ_BIN" ]; then "$JQ_BIN" "$@"; else "$MISE" exec jq -- jq "$@"; fi; }
 
 # Log in if needed and export a session token for this process only.
@@ -39,7 +39,13 @@ bw_session() {
         bw config server "$BW_SERVER" >/dev/null || die "bw rejected the server '$BW_SERVER'"
       fi
       say "Bitwarden login at $(bw config server 2>/dev/null) (self-hosted: set BW_SERVER=<url>)"
-      bw login </dev/tty >/dev/tty ;;
+      # A newer CLI can fail a post-login migration against an older
+      # self-hosted server while the login itself went through.
+      bw login </dev/tty >/dev/tty || warn "bw login reported an error; checking whether the login took"
+      case "$(bw status 2>/dev/null)" in
+        *'"status":"unauthenticated"'*)
+          die "Bitwarden login failed. An older CLI may suit the server: BW_VERSION=2026.9.1 sh $0 ..." ;;
+      esac ;;
   esac
   say "Unlock Bitwarden"
   BW_SESSION=$(bw unlock --raw </dev/tty) || die "Bitwarden unlock failed"
