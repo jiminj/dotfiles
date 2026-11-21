@@ -191,7 +191,6 @@ run = "sh ~/.config/mise/scripts/setup.sh status"
 description = "Write the SSH private keys from fnox into ~/.ssh"
 run = """
 mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
-# Named explicitly: fnox also holds files that only a work machine gets.
 fnox files write ~/.ssh/id_ed25519 ~/.ssh/id_rsa
 """
 
@@ -289,6 +288,9 @@ run = "true"
 "~/.config/bat/themes/Catppuccin Mocha.tmTheme" = { mode = "track" }
 "~/.config/clangd/config.yaml" = { mode = "track" }
 "~/.config/dotfiles/work.sh" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
+# Copilot login: one key for work machines, another for the rest. Deleting the
+# file on one machine syncs as a removal to the others in the same group.
+"~/.config/github-copilot/hosts.json" = { mode = "track", encrypt = true, variants = [{ profile = "work" }, { default = true }] }
 "~/.config/fnox/config.toml" = { mode = "track" }
 "~/.config/ghostty/config" = { mode = "track" }
 "~/.config/herdr/config.toml" = { mode = "track" }
