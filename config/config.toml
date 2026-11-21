@@ -214,7 +214,7 @@ description = "Install the tmux plugins listed in ~/.tmux.conf through tpm"
 run = '''
 tpm="$HOME/.tmux/plugins/tpm/bin/install_plugins"
 if [ -x "$tpm" ]; then
-  "$tpm"
+  "$tpm" || echo "warning: tpm could not install every plugin; inside tmux press prefix + I" >&2
 else
   echo "tmux:plugins skipped: tpm is missing (run: yadm submodule update --init --recursive)"
 fi
