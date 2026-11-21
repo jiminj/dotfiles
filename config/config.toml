@@ -304,15 +304,10 @@ run = "true"
 "~/.config/kitty/nord.conf" = { mode = "track" }
 "~/.config/lazygit/config.yml" = { mode = "track" }
 "~/.config/mise" = { mode = "track" }
-"~/.config/yadm/export_gpg.sh" = { mode = "track" }
-"~/.config/yadm/import_gpg.sh" = { mode = "track" }
 "~/.gitconfig" = { mode = "track" }
 "~/.gitconfig-local" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
 "~/.gitconfig.submodules" = { mode = "track" }
 "~/.gitignore_global" = { mode = "track" }
-"~/.gnupg/.exported-keyring/ownertrust.txt" = { mode = "track", encrypt = true }
-"~/.gnupg/.exported-keyring/private-key.asc" = { mode = "track", encrypt = true }
-"~/.gnupg/.exported-keyring/public-key.asc" = { mode = "track", encrypt = true }
 "~/.netrc" = { mode = "track", encrypt = true }
 "~/.p10k.zsh" = { mode = "track" }
 "~/.ssh/id_ed25519.pub" = { mode = "track", encrypt = true }
@@ -322,11 +317,8 @@ run = "true"
 "~/.vim/autoload/update-plug.sh" = { mode = "track" }
 "~/.vim/ctags.exe" = { mode = "track" }
 "~/.vim/vimrc" = { mode = "track", variants = [{ os = "linux", profile = "work" }, { default = true }] }
-"~/.vim/gvimrc" = { mode = "track", variants = [{ os = "macos" }] }
 "~/.wezterm.lua" = { mode = "track" }
 "~/.zshrc" = { mode = "track" }
 "~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }
 "~/Brewfile" = { mode = "track" }
-"~/colortest.zsh" = { mode = "track" }
 "~/local/bin/get-ip.sh" = { mode = "track" }
-"~/termbench.sh" = { mode = "track" }
