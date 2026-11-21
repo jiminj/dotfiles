@@ -181,10 +181,21 @@ run = "sh ~/.config/mise/scripts/setup.sh backup-key"
 description = "Show the state of the secrets chain (age key, fnox, Bitwarden, dotfiles)"
 run = "sh ~/.config/mise/scripts/setup.sh status"
 
+# The SSH private keys live in fnox ([files] in ~/.config/fnox/config.toml).
+# A task rather than a `mode = "fnox"` dotfile: bootstrap deploys dotfiles
+# before it installs tools, so fnox is not there yet on a new machine.
+[tasks."ssh:keys"]
+description = "Write the SSH private keys from fnox into ~/.ssh"
+run = """
+mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+fnox files write
+"""
+
 # The Neovim config is a private repo over SSH, so it is cloned here, after
 # the SSH key has been restored, rather than in [bootstrap.repos].
 [tasks."nvim:config"]
 description = "Clone the Neovim config into ~/.config/nvim"
+depends = ["ssh:keys"]
 run = '''
 dir="$HOME/.config/nvim"
 if [ -e "$dir/.git" ]; then
@@ -249,14 +260,14 @@ fi
 
 [tasks.bootstrap]
 description = "Post-install steps that mise has no table for"
-depends = ["font:pragmasevka", "font:jetbrains-mono", "tmux:plugins", "vim:plug", "shell:login", "macos:iterm", "nvim:config"]
+depends = ["font:pragmasevka", "font:jetbrains-mono", "tmux:plugins", "vim:plug", "shell:login", "macos:iterm", "ssh:keys", "nvim:config"]
 run = "true"
 
 # Dotfiles. `mode = "track"` saves a file where it lives ($HOME); `variants`
 # keeps separate contents per OS / work profile (the old yadm ## alternates);
-# `encrypt = true` stores age ciphertext. The two SSH private keys go through
-# fnox instead ([files] in ~/.config/fnox/config.toml): mise will not track
-# them because it treats those paths as its own decryption identities.
+# `encrypt = true` stores age ciphertext. The two SSH private keys are not
+# here: mise will not track those paths (it treats them as its own decryption
+# identities), so fnox holds them and the ssh:keys task writes them out.
 # Add a file with: mise dot track [--encrypt] [--profile work] [--os linux] <path>
 [dotfiles]
 "~/.app-pref/iterm2/com.googlecode.iterm2.plist" = { mode = "track" }
@@ -295,9 +306,7 @@ run = "true"
 "~/.gnupg/.exported-keyring/public-key.asc" = { mode = "track", encrypt = true }
 "~/.netrc" = { mode = "track", encrypt = true }
 "~/.p10k.zsh" = { mode = "track" }
-"~/.ssh/id_ed25519" = { mode = "fnox", permissions = "0600" }
 "~/.ssh/id_ed25519.pub" = { mode = "track", encrypt = true }
-"~/.ssh/id_rsa" = { mode = "fnox", permissions = "0600" }
 "~/.ssh/id_rsa-cert.pub" = { mode = "track", encrypt = true }
 "~/.ssh/id_rsa.pub" = { mode = "track", encrypt = true }
 "~/.tmux-local.conf" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }, { os = "linux" }, { os = "macos" }] }

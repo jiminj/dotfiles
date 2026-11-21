@@ -8,9 +8,9 @@
 #   setup.sh backup-key        once: store this machine's age key in Bitwarden
 #   setup.sh status            show where each link of the chain stands
 #
-# New machine (self-hosted Bitwarden: the script stops and tells you to run
-# `bw config server <url>` only if you are not logged in yet):
-#   curl -fsSL https://raw.githubusercontent.com/jiminj/dotfiles/mise/config/scripts/setup.sh | sh -s -- install [--work]
+# New machine (BW_SERVER is only for a self-hosted Bitwarden):
+#   curl -fsSL https://raw.githubusercontent.com/jiminj/dotfiles/mise/config/scripts/setup.sh \
+#     | BW_SERVER=https://vault.example.com sh -s -- install [--work]
 set -eu
 
 REPO="${DOTFILES_REPO:-https://github.com/jiminj/dotfiles.git}"
@@ -35,7 +35,10 @@ jq() { if [ -n "$JQ_BIN" ]; then "$JQ_BIN" "$@"; else "$MISE" exec jq -- jq "$@"
 bw_session() {
   case "$(bw status 2>/dev/null)" in
     *'"status":"unauthenticated"'*)
-      say "Bitwarden login (self-hosted? first run: bw config server <url>)"
+      if [ -n "${BW_SERVER:-}" ]; then
+        bw config server "$BW_SERVER" >/dev/null || die "bw rejected the server '$BW_SERVER'"
+      fi
+      say "Bitwarden login at $(bw config server 2>/dev/null) (self-hosted: set BW_SERVER=<url>)"
       bw login </dev/tty >/dev/tty ;;
   esac
   say "Unlock Bitwarden"
