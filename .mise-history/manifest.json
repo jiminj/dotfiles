@@ -124,6 +124,11 @@
           "os": [],
           "profile": "work",
           "default": false
+        },
+        {
+          "os": [],
+          "profile": null,
+          "default": true
         }
       ]
     },
@@ -192,6 +197,27 @@
           ],
           "profile": "work",
           "default": false
+        },
+        {
+          "os": [
+            "linux"
+          ],
+          "profile": null,
+          "default": false
+        },
+        {
+          "os": [
+            "macos"
+          ],
+          "profile": "work",
+          "default": false
+        },
+        {
+          "os": [
+            "macos"
+          ],
+          "profile": null,
+          "default": false
         }
       ]
     },
@@ -238,19 +264,7 @@
       "variants": []
     },
     {
-      "path": "home/.ssh/id_ed25519",
-      "autosave": true,
-      "encrypt": true,
-      "variants": []
-    },
-    {
       "path": "home/.ssh/id_ed25519.pub",
-      "autosave": true,
-      "encrypt": true,
-      "variants": []
-    },
-    {
-      "path": "home/.ssh/id_rsa",
       "autosave": true,
       "encrypt": true,
       "variants": []
@@ -277,6 +291,20 @@
             "linux"
           ],
           "profile": "work",
+          "default": false
+        },
+        {
+          "os": [
+            "linux"
+          ],
+          "profile": null,
+          "default": false
+        },
+        {
+          "os": [
+            "macos"
+          ],
+          "profile": null,
           "default": false
         }
       ]
@@ -310,6 +338,11 @@
           ],
           "profile": "work",
           "default": false
+        },
+        {
+          "os": [],
+          "profile": null,
+          "default": true
         }
       ]
     },
@@ -335,6 +368,27 @@
             "linux"
           ],
           "profile": "work",
+          "default": false
+        },
+        {
+          "os": [
+            "linux"
+          ],
+          "profile": null,
+          "default": false
+        },
+        {
+          "os": [
+            "macos"
+          ],
+          "profile": "work",
+          "default": false
+        },
+        {
+          "os": [
+            "macos"
+          ],
+          "profile": null,
           "default": false
         }
       ]
@@ -380,6 +434,7 @@
     "config/scripts": 509,
     "config/scripts/container-test.sh": 436,
     "config/scripts/install-font.sh": 436,
+    "config/scripts/setup.sh": 436,
     "home/.app-pref": 509,
     "home/.app-pref/iterm2": 509,
     "home/.app-pref/iterm2/com.googlecode.iterm2.plist": 436,
