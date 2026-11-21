@@ -13,7 +13,7 @@ holds the per-OS and work-only versions of a file.
 ## New machine
 
 ```sh
-url=https://raw.githubusercontent.com/jiminj/dotfiles/mise/config/scripts/setup.sh
+url=https://raw.githubusercontent.com/jiminj/dotfiles/master/config/scripts/setup.sh
 curl -fsSL $url | BW_SERVER=https://<my-bitwarden> sh -s -- install          # personal
 curl -fsSL $url | BW_SERVER=https://<my-bitwarden> sh -s -- install --work   # work
 exec zsh
@@ -89,7 +89,7 @@ API keys load into every zsh session through `fnox activate`.
 ## Testing a restore
 
 ```sh
-git clone --bare --branch mise https://github.com/jiminj/dotfiles.git /tmp/dotfiles.git
+git clone --bare https://github.com/jiminj/dotfiles.git /tmp/dotfiles.git
 docker run --rm [-e TEST_CLASS=Work] \
   -v /tmp/dotfiles.git:/src/origin.git:ro \
   -v ~/.config/fnox/age.txt:/src/age.txt:ro \
