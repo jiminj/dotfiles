@@ -4,7 +4,7 @@
 # Bitwarden fetch), runs `setup.sh install` twice against a copy of the dotfile
 # history, then asserts the result.
 #
-#   git clone --bare --branch mise https://github.com/jiminj/dotfiles.git /tmp/dotfiles.git
+#   git clone --bare https://github.com/jiminj/dotfiles.git /tmp/dotfiles.git
 #   docker run --rm \
 #     -v /tmp/dotfiles.git:/src/origin.git:ro \
 #     -v ~/.config/fnox/age.txt:/src/age.txt:ro \
@@ -15,7 +15,7 @@
 # afterwards (--rm). Optional env:
 #   APT_MIRROR=kr.archive.ubuntu.com  (when the default mirror is slow)
 #   TEST_CLASS=Work                   (exercise the work profile)
-#   TEST_REF=mise                     (branch of /src/origin.git to restore)
+#   TEST_REF=master                   (branch of /src/origin.git to restore)
 #   TEST_CONFLICT=1                   (start with differing files in place)
 set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
@@ -33,7 +33,7 @@ install -d -o tester -g tester -m 700 $H/.config $H/.config/fnox
 install -o tester -g tester -m 600 /src/age.txt $H/.config/fnox/age.txt
 git config --system --add safe.directory '*' 2>/dev/null || printf '[safe]\n\tdirectory = *\n' > /etc/gitconfig
 
-sudo -iu tester env TEST_CLASS="${TEST_CLASS:-}" TEST_REF="${TEST_REF:-mise}" TEST_CONFLICT="${TEST_CONFLICT:-}" bash -s <<'EOS'
+sudo -iu tester env TEST_CLASS="${TEST_CLASS:-}" TEST_REF="${TEST_REF:-master}" TEST_CONFLICT="${TEST_CONFLICT:-}" bash -s <<'EOS'
 set -uo pipefail
 M=~/.local/bin/mise
 export DOTFILES_REPO=/src/origin.git DOTFILES_REPO_SSH=/src/origin.git DOTFILES_REF=$TEST_REF
@@ -97,6 +97,7 @@ check "secrets: SSH key from fnox"    "test \"\$(stat -c %a ~/.ssh/id_ed25519)\"
 check "secrets: SSH key matches .pub" "test \"\$(ssh-keygen -y -f ~/.ssh/id_ed25519 | cut -d' ' -f2)\" = \"\$(cut -d' ' -f2 ~/.ssh/id_ed25519.pub)\""
 check "secrets: API keys load"        "test -n \"\$($M exec -- fnox get OPENAI_API_KEY)\""
 check "nvim config cloned"            "test -f ~/.config/nvim/init.lua"
+check "secrets: GPG key imported"     "gpg --batch --list-secret-keys --with-colons | grep -q '^sec'"
 if [ "${TEST_CLASS:-}" = Work ]; then
   check "work profile saved"          "grep -rqs work ~/.config/mise/miserc.local.toml"
   check "work variant: work.sh"       "test -s ~/.config/dotfiles/work.sh"

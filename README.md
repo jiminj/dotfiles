@@ -13,7 +13,7 @@ holds the per-OS and work-only versions of a file.
 ## New machine
 
 ```sh
-url=https://raw.githubusercontent.com/jiminj/dotfiles/mise/config/scripts/setup.sh
+url=https://raw.githubusercontent.com/jiminj/dotfiles/master/config/scripts/setup.sh
 curl -fsSL $url | BW_SERVER=https://<my-bitwarden> sh -s -- install          # personal
 curl -fsSL $url | BW_SERVER=https://<my-bitwarden> sh -s -- install --work   # work
 exec zsh
@@ -60,13 +60,14 @@ sync is manual. Encrypted files are pushed as ciphertext.
 | `mise run secrets:setup` | Fetch the age key from Bitwarden if this machine lost it |
 | `mise run font:pragmasevka` / `font:jetbrains-mono` | Terminal fonts |
 | `mise run nvim:config` | Clone the Neovim config |
+| `mise run gpg:import` | Import the restored GPG keys into the keyring |
 | `mise run tmux:plugins` / `vim:plug` / `shell:login` | Individual bootstrap steps |
 | `mise run work:all` | Work-only installs (work profile) |
 
 ## Secrets
 
 Chain: Bitwarden login → age key → fnox (API keys, SSH private keys) and
-mise-encrypted dotfiles (`.netrc`, GPG export, work configs).
+mise-encrypted dotfiles (`.netrc`, GPG export, SSH public keys, work configs).
 
 ```sh
 fnox set NAME --global            # add or change an API key (value on stdin)
@@ -89,7 +90,7 @@ API keys load into every zsh session through `fnox activate`.
 ## Testing a restore
 
 ```sh
-git clone --bare --branch mise https://github.com/jiminj/dotfiles.git /tmp/dotfiles.git
+git clone --bare https://github.com/jiminj/dotfiles.git /tmp/dotfiles.git
 docker run --rm [-e TEST_CLASS=Work] \
   -v /tmp/dotfiles.git:/src/origin.git:ro \
   -v ~/.config/fnox/age.txt:/src/age.txt:ro \
