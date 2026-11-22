@@ -77,6 +77,19 @@ fnox list                         # names only
 
 API keys load into every zsh session through `fnox activate`.
 
+### Updating the GPG export
+
+`mise run gpg:import` loads `~/.gnupg/.exported-keyring/` into the keyring on a
+new machine. After the keyring changes (new key or subkey, new expiry, changed
+trust), refresh the export and sync it:
+
+```sh
+gpg -a --export-secret-key -o ~/.gnupg/.exported-keyring/private-key.asc
+gpg -a --export            -o ~/.gnupg/.exported-keyring/public-key.asc
+gpg --export-ownertrust     > ~/.gnupg/.exported-keyring/ownertrust.txt
+mise dot save -d "GPG export" && mise dot sync
+```
+
 ## Layout
 
 | Path | Purpose |
