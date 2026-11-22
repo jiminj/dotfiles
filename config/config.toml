@@ -197,8 +197,8 @@ fnox files write ~/.ssh/id_ed25519 ~/.ssh/id_rsa
 # The Neovim config is a private repo over SSH, so it is cloned here, after
 # the SSH key has been restored, rather than in [bootstrap.repos].
 [tasks."nvim:config"]
-description = "Clone the Neovim config into ~/.config/nvim"
-depends = ["ssh:keys"]
+description = "Clone the Neovim config into ~/.config/nvim and unlock its git-crypt files"
+depends = ["ssh:keys", "gpg:import"]
 run = '''
 dir="$HOME/.config/nvim"
 if [ -e "$dir/.git" ]; then
@@ -207,6 +207,22 @@ else
   GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" \
     git clone git@github.com:jiminj/astronvim-config.git "$dir" ||
     echo "warning: could not clone the Neovim config; check GitHub SSH access, then: mise run nvim:config" >&2
+fi
+# The work-only part of the config is git-crypt encrypted. Its key is kept in
+# fnox, so unlocking needs no GPG passphrase prompt. `git-crypt status -e`
+# lists the encrypted files; a locked one starts with a NUL byte and "GITCRYPT".
+if [ -e "$dir/.git" ] && command -v git-crypt >/dev/null 2>&1; then
+  locked=$(cd "$dir" && git-crypt status -e 2>/dev/null | awk '{ print $2; exit }')
+  if [ -n "$locked" ] && head -c 9 "$dir/$locked" | tr -d '\0' | grep -q '^GITCRYPT'; then
+    key=$(mktemp) && chmod 600 "$key"
+    if fnox get NVIM_GIT_CRYPT_KEY_B64 2>/dev/null | base64 -d > "$key" && [ -s "$key" ] &&
+       (cd "$dir" && git-crypt unlock "$key"); then
+      echo "Neovim config unlocked"
+    else
+      echo "warning: could not unlock the Neovim config; in ~/.config/nvim run: git-crypt unlock" >&2
+    fi
+    rm -f "$key"
+  fi
 fi
 '''
 
