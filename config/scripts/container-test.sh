@@ -91,6 +91,8 @@ check "tmux plugins"        "test -d ~/.tmux/plugins/tmux-sensible && test -d ~/
 check "login shell is zsh"  "getent passwd tester | grep -q 'zsh$'"
 check "git from git-core PPA" "apt-cache policy git | grep -A1 '\*\*\*' | grep -q ppa.launchpadcontent.net"
 check "dotfiles: .zshrc restored"     "test -s ~/.zshrc && test ! -L ~/.zshrc"
+check "dotfiles: vimrc is a real file" "test ! -L ~/.vim/vimrc && test \"\$(wc -c < ~/.vim/vimrc)\" -gt 10000"
+check "dotfiles: no symlinks stored"  "test -z \"\$(git --git-dir ~/.local/state/mise/history/repo.git ls-tree -r HEAD | grep '^120000')\""
 check "dotfiles: nothing pending"     "$M dot status 2>&1 | grep -q 'entries up to date' && ! $M dot status 2>&1 | grep -q 'unsaved changes'"
 check "secrets: .netrc decrypted 600" "test \"\$(stat -c %a ~/.netrc)\" = 600 && grep -q machine ~/.netrc"
 check "secrets: SSH key from fnox"    "test \"\$(stat -c %a ~/.ssh/id_ed25519)\" = 600 && ssh-keygen -y -f ~/.ssh/id_ed25519"
