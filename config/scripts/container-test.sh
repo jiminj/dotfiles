@@ -99,7 +99,7 @@ check "secrets: SSH key from fnox"    "test \"\$(stat -c %a ~/.ssh/id_ed25519)\"
 check "secrets: SSH key matches .pub" "test \"\$(ssh-keygen -y -f ~/.ssh/id_ed25519 | cut -d' ' -f2)\" = \"\$(cut -d' ' -f2 ~/.ssh/id_ed25519.pub)\""
 check "secrets: API keys load"        "test -n \"\$($M exec -- fnox get OPENAI_API_KEY)\""
 check "nvim config cloned"            "test -f ~/.config/nvim/init.lua"
-check "nvim config unlocked"          "test -s ~/.config/nvim/lua/nvidia/plugins.lua && ! head -c 9 ~/.config/nvim/lua/nvidia/plugins.lua | tr -d '\\\\0' | grep -q GITCRYPT"
+check "nvim config unlocked"          "test -s ~/.config/nvim/lua/nvidia/plugins.lua && ! head -c 9 ~/.config/nvim/lua/nvidia/plugins.lua | LC_ALL=C grep -q -a GITCRYPT && grep -q return ~/.config/nvim/lua/nvidia/plugins.lua"
 check "secrets: GPG key imported"    "gpg --batch --list-secret-keys --with-colons | grep -q '^sec'"
 if [ "${TEST_CLASS:-}" = Work ]; then
   check "work profile saved"          "grep -rqs work ~/.config/mise/miserc.local.toml"
