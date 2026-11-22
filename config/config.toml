@@ -261,9 +261,27 @@ if [ "$(uname -s)" = Darwin ] && [ -d "$HOME/.app-pref/iterm2" ]; then
 fi
 '''
 
+[tasks."gpg:import"]
+description = "Import the GPG keys restored to ~/.gnupg/.exported-keyring into the keyring"
+run = '''
+dir="$HOME/.gnupg/.exported-keyring"
+if [ ! -s "$dir/private-key.asc" ]; then
+  echo "gpg:import skipped: no exported keyring in $dir"
+  exit 0
+fi
+fpr=$(gpg --batch --show-keys --with-colons "$dir/private-key.asc" | awk -F: '$1 == "fpr" { print $10; exit }')
+if [ -n "$fpr" ] && gpg --batch --list-secret-keys "$fpr" >/dev/null 2>&1; then
+  echo "GPG key already in the keyring"
+  exit 0
+fi
+# --batch: a passphrase-protected key is imported as it is, without a prompt.
+{ gpg --batch --import "$dir"/*.asc && gpg --batch --import-ownertrust "$dir/ownertrust.txt"; } ||
+  echo "warning: GPG import failed; run: mise run gpg:import" >&2
+'''
+
 [tasks.bootstrap]
 description = "Post-install steps that mise has no table for"
-depends = ["font:pragmasevka", "font:jetbrains-mono", "tmux:plugins", "vim:plug", "shell:login", "macos:iterm", "ssh:keys", "nvim:config"]
+depends = ["font:pragmasevka", "font:jetbrains-mono", "tmux:plugins", "vim:plug", "shell:login", "macos:iterm", "ssh:keys", "nvim:config", "gpg:import"]
 run = "true"
 
 # Dotfiles. `mode = "track"` saves a file where it lives ($HOME); `variants`
