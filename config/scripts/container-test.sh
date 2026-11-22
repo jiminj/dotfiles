@@ -99,7 +99,6 @@ check "secrets: SSH key from fnox"    "test \"\$(stat -c %a ~/.ssh/id_ed25519)\"
 check "secrets: SSH key matches .pub" "test \"\$(ssh-keygen -y -f ~/.ssh/id_ed25519 | cut -d' ' -f2)\" = \"\$(cut -d' ' -f2 ~/.ssh/id_ed25519.pub)\""
 check "secrets: API keys load"        "test -n \"\$($M exec -- fnox get OPENAI_API_KEY)\""
 check "nvim config cloned"            "test -f ~/.config/nvim/init.lua"
-check "nvim config unlocked"          "test -s ~/.config/nvim/lua/nvidia/plugins.lua && ! head -c 9 ~/.config/nvim/lua/nvidia/plugins.lua | LC_ALL=C grep -q -a GITCRYPT && grep -q return ~/.config/nvim/lua/nvidia/plugins.lua"
 check "secrets: GPG key imported"    "gpg --batch --list-secret-keys --with-colons | grep -q '^sec'"
 if [ "${TEST_CLASS:-}" = Work ]; then
   check "work profile saved"          "grep -rqs work ~/.config/mise/miserc.local.toml"
@@ -107,11 +106,14 @@ if [ "${TEST_CLASS:-}" = Work ]; then
   check "work variant: .zshrc-local"  "test \"\$(wc -l < ~/.zshrc-local)\" -gt 50"
   check "work variant: git email"     "git config --global --includes user.email | grep -qv jiminis"
   check "work variant: Copilot key"   "test \"\$(wc -c < ~/.config/github-copilot/hosts.json)\" -eq 97"
+  check "work variant: nvim unlocked" "! head -c 9 ~/.config/nvim/lua/nvidia/plugins.lua | LC_ALL=C grep -q -a GITCRYPT && grep -q return ~/.config/nvim/lua/nvidia/plugins.lua"
 else
   check "personal variant: no work.sh"       "test ! -e ~/.config/dotfiles/work.sh"
   check "personal variant: no local files"   "test ! -e ~/.zshrc-local && test ! -e ~/.gitconfig-local"
   check "personal variant: git email"        "git config --global --includes user.email | grep -q jiminis"
   check "personal variant: Copilot key"      "test \"\$(wc -c < ~/.config/github-copilot/hosts.json)\" -eq 90"
+  check "personal variant: nvim work files locked" "test ! -e ~/.config/dotfiles/nvim-git-crypt.key && head -c 9 ~/.config/nvim/lua/nvidia/plugins.lua | LC_ALL=C grep -q -a GITCRYPT"
+  check "personal variant: nvim still starts" "$M exec -- nvim --headless +q"
 fi
 echo "== missing tools: $($M ls --missing 2>/dev/null | wc -l)"
 echo "== result: rc1=$rc1 rc2=$rc2 fail=$fail"
