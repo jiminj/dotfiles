@@ -15,9 +15,10 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 export GPG_TTY=$(tty)
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+export LANG=en_us.UTF-8
+export LC_ALL=en_us.UTF-8
 
+[ -f ~/.zshrc-private-preload ] && source ~/.zshrc-private-preload
 #
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -138,26 +139,8 @@ alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + e
 alias lS='eza -1'   # one column, just names
 alias lt='eza --tree --level=2'   # tree
 
-if [[ $OSTYPE == darwin* ]]; then
-  # zsh-auto-notify
-  zinit light MichaelAquilina/zsh-auto-notify
-  AUTO_NOTIFY_IGNORE+=('docker' 'git' 'yadm' 'tmux' 'ssh' 'lvim' 'xpra')
-
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-
-  if /usr/libexec/java_home >/dev/null 2>&1; then
-    export JAVA_HOME="$(/usr/libexec/java_home)"
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/lib/server
-  fi
-
-  export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
-  export PATH=$PATH:$HOMEBREW_PREFIX/opt/llvm/bin
-
-  FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
-fi
-
-# Work-only settings (work profile; encrypted in the dotfiles repository)
-[ -f ~/.zshrc-local ] && source ~/.zshrc-local
+source $HOME/.zshrc-private
+source $HOME/.zshrc-local
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
@@ -165,14 +148,11 @@ export PATH=$HOME/go/bin:$PATH
 # nvim-mason (LSP, DAP, linters, formatters, etc. manager for Neovim)
 export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
 
-eval "$(~/.local/bin/mise activate zsh)"
-
-# Secrets (API keys): age-encrypted in ~/.config/fnox/config.toml, decrypted
-# with ~/.config/fnox/age.txt and loaded before the first prompt.
-if (( $+commands[fnox] )); then
-  export FNOX_SHELL_OUTPUT=none
-  eval "$(fnox activate zsh)"
-fi
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
+# fnm
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "`fnm env`"
 
 ### ALIAS
 alias sudo='sudo '
@@ -190,5 +170,17 @@ if (( $+commands[gh] )); then
   # Suggest a command
   alias cps='ghcp suggest'
 fi
+
+# # temp- for copilot.lua nvim plugin
+# export NODE_OPTIONS="--experimental-sqlite"
+
+# zprof
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit

@@ -5,42 +5,23 @@ shape = "Block"
 [cursor.vi_mode_style]
 shape = "Beam"
 
-# [font]
-# size = 13.0
-#
-# [font.bold]
-# family = "JetBrainsMono Nerd Font"
-# style = "Bold"
-#
-# [font.bold_italic]
-# family = "JetBrainsMono Nerd Font"
-# style = "Bold Italic"
-#
-# [font.italic]
-# family = "JetBrainsMono Nerd Font"
-# style = "Italic"
-#
-# [font.normal]
-# family = "JetBrainsMono Nerd Font"
-# style = "Regular"
-#
 [font]
-size = 14.0
+size = 13.0
 
 [font.bold]
-family = "Pragmasevka Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "Pragmasevka Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
 
 [font.italic]
-family = "Pragmasevka Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "Pragmasevka Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [window]

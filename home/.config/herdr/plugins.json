@@ -2,7 +2,7 @@
   {
     "plugin_id": "chmarax.herdr-nvim",
     "name": "herdr-nvim",
-    "version": "1.3.1",
+    "version": "1.1.0",
     "min_herdr_version": "0.7.5",
     "description": "Full-height nvim sidebar with agent annotations: toggle with one key, comment code, send to any agent.",
     "manifest_path": "/home/jiminj/.config/herdr/plugins/github/chmarax.herdr-nvim-178624809c23/herdr-plugin.toml",
@@ -119,7 +119,7 @@
       {
         "id": "file-path",
         "title": "Open in nvim sidebar",
-        "pattern": "^(?:~|[A-Za-z]:)?[\\w.@/()\\[\\]\\\\+-]+[\\\\/][\\w.@()\\[\\]\\\\+-]+\\.[A-Za-z]\\w*(?::\\d+){0,2}$",
+        "pattern": "^~?[\\w.@/()\\[\\]\\\\:+-]+[\\\\/][\\w.@()\\[\\]\\\\:+-]+\\.[A-Za-z]\\w*(?::\\d+){0,2}$",
         "action": "open-link"
       },
       {
@@ -133,9 +133,9 @@
       "kind": "github",
       "owner": "ChmaraX",
       "repo": "herdr-nvim",
-      "resolved_commit": "11ae164804b3094c0846f2c6d52a9ac5344fe623",
+      "resolved_commit": "5e849b5377fd409d2fd4be159c9c9fa36c251f7a",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/chmarax.herdr-nvim-178624809c23",
-      "installed_unix_ms": 1794293678908
+      "installed_unix_ms": 1790691498419
     }
   },
   {
@@ -231,7 +231,7 @@
   {
     "plugin_id": "herdr.auto-title",
     "name": "Auto Title",
-    "version": "0.21.0",
+    "version": "0.10.0",
     "min_herdr_version": "0.8.2",
     "description": "Automatically generates contextual tab titles",
     "manifest_path": "/home/jiminj/.config/herdr/plugins/github/herdr.auto-title-4b7d61f48ce8/herdr-plugin.toml",
@@ -249,8 +249,11 @@
           "macos"
         ],
         "command": [
-          "sh",
-          "scripts/install.sh"
+          "go",
+          "build",
+          "-o",
+          "herdr-auto-title",
+          "./cmd/herdr-auto-title"
         ]
       },
       {
@@ -258,10 +261,11 @@
           "windows"
         ],
         "command": [
-          "cmd",
-          "/d",
-          "/c",
-          "scripts\\install.cmd"
+          "go",
+          "build",
+          "-o",
+          "herdr-auto-title.exe",
+          "./cmd/herdr-auto-title"
         ]
       }
     ],
@@ -302,15 +306,15 @@
       "kind": "github",
       "owner": "kryptamine",
       "repo": "herdr-auto-title",
-      "resolved_commit": "e78dfca55a2b5aab006e10d34f722220a2222779",
+      "resolved_commit": "e78619a26674da2b741457be864169ad56767887",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/herdr.auto-title-4b7d61f48ce8",
-      "installed_unix_ms": 1794293684066
+      "installed_unix_ms": 1790691532526
     }
   },
   {
     "plugin_id": "herdr.collie",
     "name": "Collie",
-    "version": "1.28.0",
+    "version": "1.14.2",
     "min_herdr_version": "0.7.0",
     "description": "Mobile web UI to monitor and reply to your agent herd, served over Tailscale",
     "manifest_path": "/home/jiminj/.config/herdr/plugins/github/herdr.collie-1edf0e1e987e/herdr-plugin.toml",
@@ -472,9 +476,9 @@
       "kind": "github",
       "owner": "AltanS",
       "repo": "collie",
-      "resolved_commit": "01e36f45402f3b3d659742f6925d9b06d2e482c6",
+      "resolved_commit": "b7ccd7574741e7a7aa8599e8273db48498168b1f",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/herdr.collie-1edf0e1e987e",
-      "installed_unix_ms": 1794293713442
+      "installed_unix_ms": 1790737572630
     }
   },
   {
@@ -525,9 +529,9 @@
       "kind": "github",
       "owner": "hotchpotch",
       "repo": "herdr-tiny-fingers",
-      "resolved_commit": "3107e5d3547ab23b064f13576508bbd68186cf57",
+      "resolved_commit": "2927dcf2bc95fe53a7143c040bbdcbcf804d65ed",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/hotchpotch.herdr-tiny-fingers-5596606cf4bb",
-      "installed_unix_ms": 1793255548495
+      "installed_unix_ms": 1789541269907
     }
   },
   {
@@ -725,15 +729,15 @@
       "kind": "github",
       "owner": "ntindle",
       "repo": "herdr-resurrect",
-      "resolved_commit": "109a9376549e29646c77fdfb7ed8ba456a9d6617",
+      "resolved_commit": "5afa6755d4f35c62c7522ba4fd04922d1ac69602",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/ntindle.herdr-resurrect-6e4571261caf",
-      "installed_unix_ms": 1791937114114
+      "installed_unix_ms": 1789541315087
     }
   },
   {
     "plugin_id": "ray.plugin-manager",
     "name": "Plugin Manager",
-    "version": "0.6.0",
+    "version": "0.5.0",
     "min_herdr_version": "0.7.4",
     "description": "Manage herdr plugins from a popup: list, install, update, enable/disable, uninstall, browse the marketplace, open repo in browser, edit plugins.json",
     "manifest_path": "/home/jiminj/.config/herdr/plugins/github/ray.plugin-manager-75f462e8e1d0/herdr-plugin.toml",
@@ -741,8 +745,7 @@
     "enabled": true,
     "platforms": [
       "macos",
-      "linux",
-      "windows"
+      "linux"
     ],
     "actions": [
       {
@@ -751,32 +754,10 @@
         "contexts": [
           "workspace"
         ],
-        "platforms": [
-          "macos",
-          "linux"
-        ],
         "command": [
           "bash",
           "-c",
           "exec \"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin ray.plugin-manager --entrypoint manager --placement popup --focus"
-        ]
-      },
-      {
-        "id": "open-windows",
-        "title": "Open plugin manager (Windows)",
-        "contexts": [
-          "workspace"
-        ],
-        "platforms": [
-          "windows"
-        ],
-        "command": [
-          "powershell.exe",
-          "-NoProfile",
-          "-ExecutionPolicy",
-          "Bypass",
-          "-Command",
-          "& \"$env:HERDR_PLUGIN_ROOT/bin/windows.ps1\" open"
         ]
       }
     ],
@@ -784,10 +765,6 @@
       {
         "id": "manager",
         "title": "Plugin Manager",
-        "platforms": [
-          "macos",
-          "linux"
-        ],
         "placement": "popup",
         "width": 82,
         "height": 28,
@@ -796,33 +773,15 @@
           "-c",
           "exec bash \"$HERDR_PLUGIN_ROOT/bin/manager.sh\""
         ]
-      },
-      {
-        "id": "manager-windows",
-        "title": "Plugin Manager",
-        "platforms": [
-          "windows"
-        ],
-        "placement": "popup",
-        "width": 82,
-        "height": 28,
-        "command": [
-          "powershell.exe",
-          "-NoProfile",
-          "-ExecutionPolicy",
-          "Bypass",
-          "-Command",
-          "& \"$env:HERDR_PLUGIN_ROOT/bin/windows.ps1\" manager"
-        ]
       }
     ],
     "source": {
       "kind": "github",
       "owner": "speardragon",
       "repo": "herdr-plugin-manager",
-      "resolved_commit": "8ed222ab7efe735b3ef5e037e7ee81d6d7650e4e",
+      "resolved_commit": "e4fef2693728a36cbb389af033a389cad2257869",
       "managed_path": "/home/jiminj/.config/herdr/plugins/github/ray.plugin-manager-75f462e8e1d0",
-      "installed_unix_ms": 1792977714431
+      "installed_unix_ms": 1790691470693
     }
   }
 ]
