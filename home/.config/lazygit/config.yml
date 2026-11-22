@@ -5,6 +5,10 @@ git:
   diffRenderers:
     - command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 
+gui:
+  fileTreeSortOrder: foldersFirst
+
+
 # git:
 #   # pagers:
 #   #   - colorArg: always

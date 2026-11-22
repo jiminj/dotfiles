@@ -1,0 +1,341 @@
+# Global mise config: tools and bootstrap for every machine.
+# Work-only additions go in config.work.toml (select with MISE_ENV=work).
+#
+# Fresh machine:
+#   curl -fsSL https://mise.run | sh
+#   ~/.local/bin/mise bootstrap --dry-run   # preview
+#   ~/.local/bin/mise bootstrap --yes
+
+[tools]
+# Previously hand-installed into ~/local/bin
+neovim = "latest"
+tmux = "latest"
+lazygit = "latest"
+yq = "latest"
+# Pinned: the 0.50.0 prebuilt binary needs glibc 2.43; Ubuntu 24.04 has 2.39.
+resvg = "0.49.0"
+
+# Previously `cargo install` (prebuilt binaries via aqua, no compiling)
+bat = "latest"
+ripgrep = "latest"
+fd = "latest"
+eza = "latest"
+delta = "latest"
+zoxide = "latest"
+dust = "latest"
+tlrc = "latest"
+
+# Previously from apt, custom apt repos, or Homebrew
+fzf = "latest"
+jq = "latest"
+btop = { version = "latest", os = ["linux"] }   # no macOS release asset; Homebrew there
+yazi = "latest"
+glow = "latest"
+uv = "latest"
+
+# Runtimes for Neovim's Mason packages: node for the JS-based language servers
+# (bash, json, yaml, typescript), go for gopls/delve/goimports and friends.
+# The Python ones (basedpyright, black, debugpy) use apt:python3-venv below.
+node = "lts"
+go = "latest"
+
+# Secrets: fnox keeps API keys age-encrypted in ~/.config/fnox/config.toml;
+# age provides age-keygen; bitwarden (bw) holds the age key for new machines.
+fnox = "latest"
+age = "latest"
+# Pinned: "latest" can resolve to a bitwarden/clients release that has no CLI
+# download yet (2026.11.0 did), which fails the whole bootstrap.
+bitwarden = "2026.10.1"
+
+# AI coding agents: prebuilt binaries, no Node.js needed
+claude = "latest"
+codex = "latest"
+
+# Build toolchain (clang/llvm come from apt below)
+bazel = "8"
+gcloud = "latest"
+
+# Not in the mise registry: installed from crates.io.
+# cargo-binstall fetches prebuilt binaries when the crate publishes them.
+rust = "stable"
+cargo-binstall = "latest"
+"cargo:csvlens" = "latest"
+"cargo:viu" = "latest"
+
+[settings]
+# Tracked dotfiles marked `encrypt = true` use the same age key as fnox.
+age.key_file = "~/.config/fnox/age.txt"
+# The dotfiles repo is public: nothing is pushed or pulled until you run
+# `mise dot sync` / `mise dot pull` yourself.
+history.sync = "manual"
+
+# Public key only; the private half is ~/.config/fnox/age.txt (from Bitwarden).
+[history.encryption]
+recipients = ["age19c67fjy5u6gylrtnk0mehryntmmaua3pkwr9m7les4pg0jeeufmqlxjh05"]
+
+# Git checkouts that used to be yadm submodules. The Neovim config (private,
+# over SSH) is the nvim:config task instead: repos are cloned before the SSH
+# key is restored.
+[bootstrap.repos]
+"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+
+# Third-party apt repositories. mise adds these before installing packages.
+[bootstrap.apt.sources]
+git-core = { ppa = "git-core/ppa" }
+
+# The suite name is tied to the Ubuntu release (noble = 24.04) and LLVM major.
+[bootstrap.apt.sources.llvm]
+uris = "https://apt.llvm.org/noble/"
+suites = "llvm-toolchain-noble-20"
+components = "main"
+key = "https://apt.llvm.org/llvm-snapshot.gpg.key"
+fingerprint = "6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421"
+
+# Suite defaults to the Ubuntu release codename.
+[bootstrap.apt.sources.xpra]
+uris = "https://xpra.org"
+key = "https://xpra.org/xpra.asc"
+fingerprint = "B499 3B57 3231 48E3 7977 E5D8 7325 4CAD 1797 8FAF"
+
+[bootstrap.packages]
+# --- macOS (Homebrew formulae and casks; mise installs these itself) -------
+# Entries for a manager that the OS lacks are skipped, so the apt:/snap:
+# entries below are ignored on macOS and these are ignored on Linux.
+# Compiling needs the Xcode Command Line Tools: xcode-select --install
+"brew:git" = { os = "macos" }
+"brew:git-lfs" = { os = "macos" }
+"brew:git-crypt" = { os = "macos" }
+"brew:gnupg" = { os = "macos" }
+"brew:pinentry-mac" = { os = "macos" }
+"brew:wget" = { os = "macos" }
+"brew:mosh" = { os = "macos" }
+"brew:htop" = { os = "macos" }
+"brew:btop" = { os = "macos" }
+"brew:llvm" = { os = "macos" }
+"brew:protobuf" = { os = "macos" }
+"brew-cask:ghostty" = { os = "macos" }
+"brew-cask:kitty" = { os = "macos" }
+"brew-cask:iterm2" = { os = "macos" }
+"brew-cask:chromium" = { os = "macos" }
+
+# --- Linux (apt and snap) ----------------------------------------------------
+# Remote desktop and browser
+"apt:x11vnc" = "latest"
+"apt:xpra" = "latest"
+"apt:xpra-html5" = "latest"
+"snap:chromium" = "latest"
+
+# C/C++ toolchain
+"apt:clang-20" = "latest"
+"apt:clangd-20" = "latest"
+"apt:clang-tidy-20" = "latest"
+"apt:clang-tools-20" = "latest"
+"apt:lld-20" = "latest"
+"apt:lldb-20" = "latest"
+"apt:llvm-20" = "latest"
+"apt:llvm-20-dev" = "latest"
+"apt:llvm-20-tools" = "latest"
+"apt:valgrind" = "latest"
+"apt:protobuf-compiler" = "latest"
+
+# Needed if a cargo: tool falls back to compiling from source, and by Neovim
+# plugins that compile C (LuaSnip, treesitter parsers)
+"apt:build-essential" = "latest"
+# Mason installs Python-based tools into virtualenvs
+"apt:python3-venv" = "latest"
+
+# Base packages the dotfiles assume (.gitconfig, .zshrc, git-crypt secrets)
+"apt:git" = "latest"
+"apt:git-lfs" = "latest"
+"apt:git-crypt" = "latest"
+"apt:gnupg" = "latest"
+"apt:zsh" = "latest"
+"apt:vim" = "latest"
+"apt:wget" = "latest"
+"apt:mosh" = "latest"
+"apt:htop" = "latest"
+
+# Needed by the font tasks
+"apt:curl" = "latest"
+"apt:unzip" = "latest"
+"apt:fontconfig" = "latest"
+
+# Terminal fonts come from GitHub releases on every OS. The brew-cask route
+# on Linux wants sudo to create /home/linuxbrew, which a font does not justify.
+[tasks."font:pragmasevka"]
+description = "Pragmasevka Nerd Font (alacritty, ghostty)"
+run = "sh ~/.config/mise/scripts/install-font.sh shytikov/pragmasevka Pragmasevka_NF.zip Pragmasevka"
+
+[tasks."font:jetbrains-mono"]
+description = "JetBrainsMono Nerd Font (kitty)"
+run = "sh ~/.config/mise/scripts/install-font.sh ryanoasis/nerd-fonts JetBrainsMono.zip JetBrainsMonoNerdFont"
+
+# Secrets are a separate, interactive step (Bitwarden asks for your master
+# password), so they are not part of `mise bootstrap`.
+[tasks."secrets:setup"]
+description = "Fetch the age key from Bitwarden if this machine has lost it"
+run = "sh ~/.config/mise/scripts/setup.sh key"
+
+[tasks."secrets:backup-key"]
+description = "Once: store this machine's age key in Bitwarden"
+run = "sh ~/.config/mise/scripts/setup.sh backup-key"
+
+[tasks."secrets:status"]
+description = "Show the state of the secrets chain (age key, fnox, Bitwarden, dotfiles)"
+run = "sh ~/.config/mise/scripts/setup.sh status"
+
+# The SSH private keys live in fnox ([files] in ~/.config/fnox/config.toml).
+# A task rather than a `mode = "fnox"` dotfile: bootstrap deploys dotfiles
+# before it installs tools, so fnox is not there yet on a new machine.
+[tasks."ssh:keys"]
+description = "Write the SSH private keys from fnox into ~/.ssh"
+run = """
+mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+fnox files write ~/.ssh/id_ed25519 ~/.ssh/id_rsa
+"""
+
+# The Neovim config is a private repo over SSH, so it is cloned here, after
+# the SSH key has been restored, rather than in [bootstrap.repos].
+[tasks."nvim:config"]
+description = "Clone the Neovim config into ~/.config/nvim"
+depends = ["ssh:keys"]
+run = '''
+dir="$HOME/.config/nvim"
+if [ -e "$dir/.git" ]; then
+  echo "Neovim config already present"
+else
+  GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" \
+    git clone git@github.com:jiminj/astronvim-config.git "$dir" ||
+    echo "warning: could not clone the Neovim config; check GitHub SSH access, then: mise run nvim:config" >&2
+fi
+'''
+
+[tasks."tmux:plugins"]
+description = "Install the tmux plugins listed in ~/.tmux.conf through tpm"
+run = '''
+tpm="$HOME/.tmux/plugins/tpm/bin/install_plugins"
+if [ -x "$tpm" ]; then
+  "$tpm" || echo "warning: tpm could not install every plugin; inside tmux press prefix + I" >&2
+else
+  echo "tmux:plugins skipped: tpm is missing (run: mise bootstrap)"
+fi
+'''
+
+# Not [bootstrap.user]: that runs plain `chsh`, which prompts for the account
+# password and aborts the whole bootstrap if it fails. macOS already uses zsh.
+[tasks."shell:login"]
+description = "Make zsh the login shell (Linux)"
+run = '''
+[ "$(uname -s)" = Linux ] || exit 0
+user=$(id -un)
+zsh_path=$(command -v zsh || true)
+current=$(getent passwd "$user" | cut -d: -f7)
+if [ -z "$zsh_path" ]; then
+  echo "shell:login skipped: zsh is not installed"
+elif [ "$current" = "$zsh_path" ]; then
+  echo "login shell is already $zsh_path"
+else
+  sudo chsh -s "$zsh_path" "$user" && echo "login shell set to $zsh_path" \
+    || echo "warning: could not change the login shell; run: chsh -s $zsh_path" >&2
+fi
+'''
+
+[tasks."vim:plug"]
+description = "Download vim-plug for ~/.vim/vimrc"
+run = '''
+plug="$HOME/.vim/autoload/plug.vim"
+if [ -f "$plug" ]; then
+  echo "vim-plug already installed"
+else
+  curl -fsSLo "$plug" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  echo "vim-plug installed; run :PlugInstall inside vim"
+fi
+'''
+
+[tasks."macos:iterm"]
+description = "Point iTerm2 at the preferences folder kept in the dotfiles (macOS only)"
+run = '''
+if [ "$(uname -s)" = Darwin ] && [ -d "$HOME/.app-pref/iterm2" ]; then
+  defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.app-pref/iterm2"
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+fi
+'''
+
+[tasks."gpg:import"]
+description = "Import the GPG keys restored to ~/.gnupg/.exported-keyring into the keyring"
+run = '''
+dir="$HOME/.gnupg/.exported-keyring"
+if [ ! -s "$dir/private-key.asc" ]; then
+  echo "gpg:import skipped: no exported keyring in $dir"
+  exit 0
+fi
+fpr=$(gpg --batch --show-keys --with-colons "$dir/private-key.asc" | awk -F: '$1 == "fpr" { print $10; exit }')
+if [ -n "$fpr" ] && gpg --batch --list-secret-keys "$fpr" >/dev/null 2>&1; then
+  echo "GPG key already in the keyring"
+  exit 0
+fi
+# --batch: a passphrase-protected key is imported as it is, without a prompt.
+{ gpg --batch --import "$dir"/*.asc && gpg --batch --import-ownertrust "$dir/ownertrust.txt"; } ||
+  echo "warning: GPG import failed; run: mise run gpg:import" >&2
+'''
+
+[tasks.bootstrap]
+description = "Post-install steps that mise has no table for"
+depends = ["font:pragmasevka", "font:jetbrains-mono", "tmux:plugins", "vim:plug", "shell:login", "macos:iterm", "ssh:keys", "nvim:config", "gpg:import"]
+run = "true"
+
+# Dotfiles. `mode = "track"` saves a file where it lives ($HOME); `variants`
+# keeps separate contents per OS / work profile (the old yadm ## alternates);
+# `encrypt = true` stores age ciphertext. The two SSH private keys are not
+# here: mise will not track those paths (it treats them as its own decryption
+# identities), so fnox holds them and the ssh:keys task writes them out.
+# Add a file with: mise dot track [--encrypt] [--profile work] [--os linux] <path>
+[dotfiles]
+"~/.app-pref/iterm2/com.googlecode.iterm2.plist" = { mode = "track" }
+"~/.config/alacritty/alacritty.toml" = { mode = "track" }
+"~/.config/alacritty/theme/catppuccin-frappe.toml" = { mode = "track" }
+"~/.config/alacritty/theme/catppuccin-latte.toml" = { mode = "track" }
+"~/.config/alacritty/theme/catppuccin-macchiato.toml" = { mode = "track" }
+"~/.config/alacritty/theme/catppuccin-mocha.toml" = { mode = "track" }
+"~/.config/alacritty/theme/dracula.toml" = { mode = "track" }
+"~/.config/alacritty/theme/nord.toml" = { mode = "track" }
+"~/.config/bat/config" = { mode = "track" }
+"~/.config/bat/themes/Catppuccin Frappe.tmTheme" = { mode = "track" }
+"~/.config/bat/themes/Catppuccin Latte.tmTheme" = { mode = "track" }
+"~/.config/bat/themes/Catppuccin Macchiato.tmTheme" = { mode = "track" }
+"~/.config/bat/themes/Catppuccin Mocha.tmTheme" = { mode = "track" }
+"~/.config/clangd/config.yaml" = { mode = "track" }
+"~/.config/dotfiles/work.sh" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
+"~/.config/fnox/config.toml" = { mode = "track" }
+"~/.config/ghostty/config" = { mode = "track" }
+# Copilot login: one key for work machines, another for the rest. Deleting the
+# file on one machine syncs as a removal to the others in the same group.
+"~/.config/github-copilot/hosts.json" = { mode = "track", encrypt = true, variants = [{ profile = "work" }, { default = true }] }
+"~/.config/herdr/config.toml" = { mode = "track" }
+"~/.config/herdr/plugins.json" = { mode = "track" }
+"~/.config/hunk/config.toml" = { mode = "track" }
+"~/.config/kitty/kitty.conf" = { mode = "track" }
+"~/.config/kitty/nord.conf" = { mode = "track" }
+"~/.config/lazygit/config.yml" = { mode = "track" }
+"~/.config/mise" = { mode = "track" }
+"~/.gitconfig" = { mode = "track" }
+"~/.gitconfig-local" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
+"~/.gitconfig.submodules" = { mode = "track" }
+"~/.gitignore_global" = { mode = "track" }
+"~/.gnupg/.exported-keyring/ownertrust.txt" = { mode = "track", encrypt = true }
+"~/.gnupg/.exported-keyring/private-key.asc" = { mode = "track", encrypt = true }
+"~/.gnupg/.exported-keyring/public-key.asc" = { mode = "track", encrypt = true }
+"~/.netrc" = { mode = "track", encrypt = true }
+"~/.p10k.zsh" = { mode = "track" }
+"~/.ssh/id_ed25519.pub" = { mode = "track", encrypt = true }
+"~/.ssh/id_rsa-cert.pub" = { mode = "track", encrypt = true }
+"~/.ssh/id_rsa.pub" = { mode = "track", encrypt = true }
+"~/.tmux.conf" = { mode = "track" }
+"~/.vim/autoload/update-plug.sh" = { mode = "track" }
+"~/.vim/ctags.exe" = { mode = "track" }
+"~/.vim/vimrc" = { mode = "track", variants = [{ os = "linux", profile = "work" }, { default = true }] }
+"~/.wezterm.lua" = { mode = "track" }
+"~/.zshrc" = { mode = "track" }
+"~/.zshrc-local" = { mode = "track", encrypt = true, variants = [{ os = "linux", profile = "work" }] }
+"~/Brewfile" = { mode = "track" }
+"~/local/bin/get-ip.sh" = { mode = "track" }

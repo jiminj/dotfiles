@@ -6,7 +6,9 @@ menu_bar = true
 agent_notes = true
 copy_decorations = false
 cursor_line = "row"
-theme = "github-dark-high-contrast"
+theme = "delta"
+# Explicit surfaces allow darker headers while matching the terminal background.
+transparent_background = false
 
 [keybindings]
 "hunk.view.toggleLineNumbers" = "ctrl+l"
@@ -18,3 +20,55 @@ theme = "github-dark-high-contrast"
 "hunk.review.pageUp" = "ctrl+b"
 "hunk.history.pageDown" = "ctrl+f"
 "hunk.review.pageDown" = "ctrl+f"
+
+# Match delta's dark true-color palette and Monokai Extended syntax theme.
+# https://www.hunk.dev/docs/reference/config/#named-themes
+[themes.delta]
+label = "Delta"
+# base = "monokai"
+# Catppuccin Frappe: base for content, crust for headers and panels.
+background = "#303446"
+panel = "#232634"
+panelAlt = "#232634"
+# Lazygit-style UI: readable neutral labels, green focus, blue selections.
+border = "#a8a8a8"
+# Headers share these colors with other UI text and secondary labels.
+text = "#d7e7ff"
+muted = "#87afff"
+accent = "#a6e22e"
+accentMuted = "#203a5f"
+contextBg = "#303446"
+contextContentBg = "#303446"
+addedBg = "#002800"
+removedBg = "#3f0001"
+addedContentBg = "#006000"
+removedContentBg = "#901011"
+addedSignColor = "#a6e22e"
+removedSignColor = "#f92672"
+lineNumberBg = "#303446"
+lineNumberFg = "#a8a8a8"
+selectedHunk = "#203a5f"
+badgeAdded = "#a6e22e"
+badgeRemoved = "#f92672"
+badgeNeutral = "#87afff"
+fileNew = "#a6e22e"
+fileDeleted = "#f92672"
+fileModified = "#66d9ef"
+
+# Monokai Extended differs from Hunk's built-in Monokai in these scopes.
+[themes.delta.syntax_scopes]
+"comment" = "#75715e"
+"constant.numeric" = "#be84ff"
+"constant.language" = "#be84ff"
+"constant.character" = "#be84ff"
+"constant.other" = "#be84ff"
+"meta.preprocessor" = "#be84ff"
+"variable.language" = "#ffffff"
+"variable.other" = "#ffffff"
+"entity" = "#a6e22e"
+"entity.name.class" = "#66d9ef"
+"support.type" = "#a6e22e"
+"support.class" = "#a6e22e"
+"string.regexp" = "#f6aa11"
+"punctuation.definition.variable" = "#ffffff"
+"meta.structure.dictionary.json string.quoted.double.json" = "#cfcfc2"
