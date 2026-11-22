@@ -332,6 +332,7 @@
     "config/scripts": 509,
     "config/scripts/container-test.sh": 436,
     "config/scripts/install-font.sh": 436,
+    "config/scripts/retire-yadm.sh": 509,
     "config/scripts/setup.sh": 436,
     "home/.app-pref": 509,
     "home/.app-pref/iterm2": 509,
