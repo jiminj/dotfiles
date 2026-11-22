@@ -60,6 +60,7 @@ sync is manual. Encrypted files are pushed as ciphertext.
 | `mise run secrets:setup` | Fetch the age key from Bitwarden if this machine lost it |
 | `mise run font:pragmasevka` / `font:jetbrains-mono` | Terminal fonts |
 | `mise run nvim:config` | Clone the Neovim config |
+| `mise run gpg:import` | Import the restored GPG keys into the keyring |
 | `mise run tmux:plugins` / `vim:plug` / `shell:login` | Individual bootstrap steps |
 | `mise run work:all` | Work-only installs (work profile) |
 
