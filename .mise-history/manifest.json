@@ -92,6 +92,18 @@
       "variants": []
     },
     {
+      "path": "home/.config/dotfiles/nvim-git-crypt.key",
+      "autosave": true,
+      "encrypt": true,
+      "variants": [
+        {
+          "os": [],
+          "profile": "work",
+          "default": false
+        }
+      ]
+    },
+    {
       "path": "home/.config/dotfiles/work.sh",
       "autosave": true,
       "encrypt": true,
@@ -332,6 +344,7 @@
     "config/scripts": 509,
     "config/scripts/container-test.sh": 436,
     "config/scripts/install-font.sh": 436,
+    "config/scripts/retire-yadm.sh": 509,
     "config/scripts/setup.sh": 436,
     "home/.app-pref": 509,
     "home/.app-pref/iterm2": 509,
@@ -397,6 +410,7 @@
     "home@default/.config/github-copilot/hosts.json": 384,
     "home@linux+work/.vim/vimrc": 436,
     "home@linux+work/.zshrc-local": 384,
+    "home@work/.config/dotfiles/nvim-git-crypt.key": 384,
     "home@work/.config/github-copilot/hosts.json": 436,
     "home@work/.gitconfig-local": 384
   }

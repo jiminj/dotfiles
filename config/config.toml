@@ -197,8 +197,8 @@ fnox files write ~/.ssh/id_ed25519 ~/.ssh/id_rsa
 # The Neovim config is a private repo over SSH, so it is cloned here, after
 # the SSH key has been restored, rather than in [bootstrap.repos].
 [tasks."nvim:config"]
-description = "Clone the Neovim config into ~/.config/nvim"
-depends = ["ssh:keys"]
+description = "Clone the Neovim config into ~/.config/nvim and unlock its git-crypt files"
+depends = ["ssh:keys", "gpg:import"]
 run = '''
 dir="$HOME/.config/nvim"
 if [ -e "$dir/.git" ]; then
@@ -207,6 +207,19 @@ else
   GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" \
     git clone git@github.com:jiminj/astronvim-config.git "$dir" ||
     echo "warning: could not clone the Neovim config; check GitHub SSH access, then: mise run nvim:config" >&2
+fi
+# The work-only part of the config is git-crypt encrypted. Its key file is
+# restored only on the work profile, so other machines keep those files
+# locked (they are only loaded inside a work checkout anyway). `git-crypt
+# status -e` lists the encrypted files; a locked one starts with a NUL byte
+# and "GITCRYPT".
+key="$HOME/.config/dotfiles/nvim-git-crypt.key"
+if [ -e "$dir/.git" ] && [ -s "$key" ] && command -v git-crypt >/dev/null 2>&1; then
+  locked=$(cd "$dir" && git-crypt status -e 2>/dev/null | awk '{ print $2; exit }')
+  if [ -n "$locked" ] && head -c 9 "$dir/$locked" | tr -d '\0' | grep -q '^GITCRYPT'; then
+    (cd "$dir" && git-crypt unlock "$key") && echo "Neovim config unlocked" ||
+      echo "warning: could not unlock the Neovim config; in ~/.config/nvim run: git-crypt unlock $key" >&2
+  fi
 fi
 '''
 
@@ -306,6 +319,9 @@ run = "true"
 "~/.config/bat/themes/Catppuccin Mocha.tmTheme" = { mode = "track" }
 "~/.config/clangd/config.yaml" = { mode = "track" }
 "~/.config/dotfiles/work.sh" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
+# git-crypt key of the Neovim config's work-only files; nvim:config unlocks
+# them only where this file exists, so only on work machines.
+"~/.config/dotfiles/nvim-git-crypt.key" = { mode = "track", encrypt = true, variants = [{ profile = "work" }] }
 "~/.config/fnox/config.toml" = { mode = "track" }
 "~/.config/ghostty/config" = { mode = "track" }
 # Copilot login: one key for work machines, another for the rest. Deleting the
