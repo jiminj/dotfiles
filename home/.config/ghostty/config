@@ -7,6 +7,7 @@ font-feature=-calt, -liga, -dlig
 
 # theme="Catppuccin Frappe"
 theme="TokyoNight Storm"
+clipboard-paste-protection = false
 clipboard-read=allow
 clipboard-write=allow
 copy-on-select=clipboard
